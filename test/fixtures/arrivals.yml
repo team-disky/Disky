@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  arrival_date: 2019-11-12 10:59:24
+  product_id: 1
+
+two:
+  arrival_date: 2019-11-12 10:59:24
+  product_id: 1
