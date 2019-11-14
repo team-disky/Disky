@@ -1,0 +1,13 @@
+<h3>レーベル名を編集</h3>
+<%= form_for(@record_label, url:"manager_record_labels#{@record_label.id}") do |f| %>
+
+<div class="field">
+	<label for="record_label_name">レーベル名</label>
+    <%= f.text_field :name %>
+</div>
+
+<div class="actions">
+    <%= f.submit '保存' %>
+</div>
+
+<% end %>
