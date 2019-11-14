@@ -7,5 +7,4 @@ class Customer < ApplicationRecord
   has_many :orders
   has_many :registration_addresses
   has_many :cart_products
-  end
 end
