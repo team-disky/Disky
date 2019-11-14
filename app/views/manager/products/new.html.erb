@@ -1,0 +1,33 @@
+<h1>商品登録</h1>
+<%= form_for(@product, url: manager_products_path) do |f| %>
+
+	<%= f.label "商品名(必須)" %>
+	<%= f.text_field :title %><br>
+
+	<%= f.label "商品画像" %>
+	<%= f.attachment_field :image %>
+
+	<%= f.label "アーティスト名" %>
+	<%= f.collection_select :artist_id, Artist.all, :id, :name %><br>
+
+	<%= f.label "レーベル名" %>
+	<%= f.collection_select :record_label_id, RecordLabel.all, :id, :name %><br>
+
+	<%= f.label "ジャンル" %>
+	<%= f.collection_select :category_id, Category.all, :id, :name %><br>
+
+	<%= f.label "フォーマット" %>
+	<%= f.select :format, [["シングル","0"],["アルバム","1"],["マキシシングル","2"],["複数アルバム","3"],["ミニアルバム","4"]] %><br>
+
+	<%= f.label "発売日" %>
+	<%= f.text_field :sales_date, :size=>"7" %>年<%= f.text_field :sales_date, :size=>"3" %>月<%= f.text_field :sales_date, :size=>"3" %>日<br>
+
+	<%= f.label "価格(税抜)" %>
+	<%= f.text_field :price, :size=>"10" %>円<br>
+
+	<%= f.label "商品ステータス(必須)" %>
+	<%= f.select :status, [["販売中","0"],["販売停止中","1"]] %><br>
+
+	<%= f.submit "登録" %>
+
+<% end %>
