@@ -1,1 +1,29 @@
-<h1>hello world</h1>
+<%= render partial: "layouts/manager_header" %>
+
+<!-- エラーメッセージ　-->
+<% if @category.errors.any? %>
+<div id="error_explanation">
+  <h4>入力した内容に誤りがあります</h4>
+  <h5>
+      <% @category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+  </h5>
+</div>
+<% end %>
+
+<h3>ジャンル名を編集</h3>
+<%= form_for(@category, url:"/manager/categories/#{@category.id}") do |f| %>
+
+<div class="field">
+	<label for="category_name">ジャンル</label>
+    <%= f.text_field :name %>
+</div>
+
+<div class="actions">
+    <%= f.submit '保存' %>
+</div>
+
+<% end %>
+
+<%= link_to "削除", manager_category_path(@category), method: :delete, data: { confirm: "「#{@category.name}」を削除します"} %>

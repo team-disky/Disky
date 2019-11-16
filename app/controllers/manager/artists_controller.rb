@@ -1,7 +1,9 @@
 class Manager::ArtistsController < ApplicationController
 
 	def index
+        #@q = Artist.ransack(params[:q])
 		@artists = Artist.all
+        @artists = Artist.page(params[:page]).per(10)
 		@artist = Artist.new
     end
 
@@ -10,8 +12,12 @@ class Manager::ArtistsController < ApplicationController
 
     def create
     	@artist = Artist.new(artist_params)
-    	@artist.save
+     if	@artist.save
     	redirect_to manager_artists_path
+     else
+        @artists = Artist.all
+        render :index
+     end
     end
 
     def show
@@ -22,12 +28,18 @@ class Manager::ArtistsController < ApplicationController
     end
 
     def update
+        @artist = Artist.find(params[:id])
+    if  @artist.update(artist_params)
+        redirect_to manager_artists_path
+    else
+        render :edit
+    end
     end
 
-    def destory
-    	artist = Artist.find(params[:id])
-    	artist.destory
-    	redirect_to manager_artists_path
+    def destroy
+        artist = Artist.find(params[:id])
+        artist.destroy
+        redirect_to manager_artists_path
     end
 
     private

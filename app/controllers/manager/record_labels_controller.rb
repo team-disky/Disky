@@ -10,8 +10,12 @@ class Manager::RecordLabelsController < ApplicationController
 
     def create
     	@record_label = RecordLabel.new(record_label_params)
-    	@record_label.save
+    if	@record_label.save
     	redirect_to manager_record_labels_path
+    else
+        @record_labels = RecordLabel.all
+        render :index
+    end
     end
 
     def show
@@ -23,13 +27,16 @@ class Manager::RecordLabelsController < ApplicationController
 
     def update
         @record_label = RecordLabel.find(params[:id])
-        @record_label.update(record_label_params)
+    if  @record_label.update(record_label_params)
         redirect_to manager_record_labels_path
+    else
+        render :edit
+    end
     end
 
-    def destory
+    def destroy
     	record_label = RecordLabel.find(params[:id])
-    	record_label.destory
+    	record_label.destroy
     	redirect_to manager_record_labels_path
     end
 

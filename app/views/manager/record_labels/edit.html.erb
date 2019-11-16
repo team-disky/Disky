@@ -1,5 +1,19 @@
+<%= render partial: "layouts/manager_header" %>
+
+<!-- エラーメッセージ　-->
+<% if @record_label.errors.any? %>
+<div id="error_explanation">
+  <h4>入力した内容に誤りがあります</h4>
+  <h5>
+      <% @record_label.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+  </h5>
+</div>
+<% end %>
+
 <h3>レーベル名を編集</h3>
-<%= form_for(@record_label, url:"manager_record_labels#{@record_label.id}") do |f| %>
+<%= form_for(@record_label, url:"/manager/record_labels/#{@record_label.id}") do |f| %>
 
 <div class="field">
 	<label for="record_label_name">レーベル名</label>
@@ -11,3 +25,6 @@
 </div>
 
 <% end %>
+
+<%= link_to "削除", manager_record_label_path(@record_label), method: :delete, data: { confirm: "「#{@record_label.name}」を削除します"} %>
+

@@ -10,8 +10,12 @@ class Manager::CategoriesController < ApplicationController
 
     def create
         @category = Category.new(category_params)
-        @category.save
+    if  @category.save
         redirect_to manager_categories_path
+    else
+        @categories = Category.all
+        render :index
+    end
     end
 
     def show
@@ -22,11 +26,17 @@ class Manager::CategoriesController < ApplicationController
     end
 
     def update
+        @category = Category.find(params[:id])
+    if  @category.update(category_params)
+        redirect_to manager_categories_path
+    else
+        render :edit
+    end
     end
 
-    def destory
+    def destroy
         category = Category.find(params[:id])
-        category.destory
+        category.destroy
         redirect_to manager_categories_path
     end
 

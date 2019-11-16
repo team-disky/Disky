@@ -1,9 +1,21 @@
+<%= render partial: "layouts/manager_header" %>
+
 <div class="container">
-<h3>新しいレーベルを登録</h3>
+ <div class="row">
+  <div class="col-md-4">
+   <h3>新しいレーベルを登録</h3>
 
-
-<div class="row">
- <div class="col-lg-3">
+   <!-- エラーメッセージ　-->
+   <% if @record_label.errors.any? %>
+   <div id="error_explanation">
+   <h4>入力した内容に誤りがあります</h4>
+   <h5>
+      <% @record_label.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+   </h5>
+   </div>
+   <% end %>
 
    <%= form_for(@record_label, url: manager_record_labels_path) do |f| %>
 
@@ -17,14 +29,10 @@
    <% end %>
    </div>
   </div>
- </div>
 
-
-<div class="row">
- <div class="col-lg-9">
-
+ <div class="col-md-6">
  <h3>登録レーベル一覧</h3>
- <table>
+ <table class="table table-hover table-inverse">
  <thead>
   <tr>
     <th>レーベル名</th>
@@ -36,13 +44,11 @@
     <tr>
         <td><%= record_label.name %></td>
         <td><%= link_to "編集", edit_manager_record_label_path(record_label.id) %></td>
-    <td><%= link_to "削除", manager_record_label_path(record_label.id), method: :delete, data: { confirm: "「」を削除します"} %></td>
+        <td><%= link_to "削除", manager_record_label_path(record_label.id),method: :delete, data: { confirm: "「#{record_label.name}」を削除します"} %></td>
     </tr>
  <% end %>
-</tbody>
-</table>
-
+ </tbody>
+ </table>
  </div>
-</div>
-
+ </div>
 </div>
