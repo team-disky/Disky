@@ -15,7 +15,7 @@ class Manager::ArtistsController < ApplicationController
      if	@artist.save
     	redirect_to manager_artists_path
      else
-        @artists = Artist.all
+        @artists = Artist.page(params[:page]).per(10)
         render :index
      end
     end
