@@ -1,0 +1,26 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new_arrival{
+	display:inline-block;
+	float:left;
+}
+
+.JacketImage{border: 2px grey solid;
+}
+
+.cd-info{
+	padding-top:100px;
+}
+
+.kirikae{
+	text-align:center;
+	color:silver;
+}
+
+.top-banner{
+	background-image: url(/assets/disky_sample.png);
+	height:500px;
+	background-size:cover;
+}
