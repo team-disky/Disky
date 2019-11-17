@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    models:
+      artist:
+      category:
+      record_label:
+    attributes:
+      artist:
+        name: アーティスト
+      category:
+        name: ジャンル
+      record_label:
+        name: レーベル
+

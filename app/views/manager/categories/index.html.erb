@@ -1,0 +1,56 @@
+<%= render partial: "layouts/manager_header" %>
+
+<div class="container">
+ <div class="row">
+  <div class="col-md-4">
+  <h3>新しいジャンルを登録</h3>
+
+  <!-- エラーメッセージ　-->
+  <br>
+  <% if @category.errors.any? %>
+  <div id="error_explanation">
+  <h4>入力した内容に誤りがあります</h4>
+  <h5>
+      <% @category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+  </h5>
+  </div>
+  <% end %>
+
+   <%= form_for(@category, url: manager_categories_path) do |f| %>
+
+   <div class="field">
+    <label for="category_name"></label>
+    <%= f.text_field :name, :placeholder=> "ジャンル" %>
+   </div>
+
+   <div class="actions">
+    <%= f.submit '登録', :class=>"category-registration-btn btn-lg" %>
+   <% end %>
+  </div>
+  </div>
+
+ <div class="col-md-6">
+
+  <h3>登録ジャンル一覧</h3>
+  <table class="table table-hover table-inverse">
+  <thead>
+  <tr>
+ 	<th>ジャンル名</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @categories.each do |category| %>
+ 	<tr>
+ 		<td><%= category.name %></td>
+ 		<td><%= link_to "編集", edit_manager_category_path(category.id) %></td>
+    <td><%= link_to "削除", manager_category_path(category.id),method: :delete, data: { confirm: "「#{category.name}」を削除します"} %></td>
+ 	</tr>
+  <% end %>
+  </tbody>
+  </table>
+  </div>
+ </div>
+</div>
