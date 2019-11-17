@@ -1,8 +1,44 @@
 <%= render partial: "layouts/manager_header" %>
 <div class="container">
-	<div class="row">
-		<div class="col-md-4">
-			<h1>Hello World</h1>
+			<br>
+			<div class="row">
+			 <div class="col-md-11">
+
+			<h3>会員情報</h3>
+
+			<%= search_form_for @q,  html: { class: "search_form" }, url: manager_customers_path do |f| %>
+              <%= f.label :last_name_cont, '会員を検索' %>
+              <%= f.search_field :last_name_cont %>
+              <%= f.submit %>
+            <% end %>
+             </div>
+            </div>
+
+            <div class="row">
+            	<div class="col-md-11">
+			<table class="table table-hover table-inverse">
+				<thead>
+					<tr>
+						<th>会員番号</th>
+						<th>会員氏名</th>
+						<th>e-mail</th>
+						<th>最後のログイン</th>
+						<th>最終購入日</th>
+						<tbody>
+							<% @customers.each do |customer| %>
+							<tr>
+								<td><%= customer.id %></td>
+								<td><%= link_to customer.full_name, manager_customer_path(customer.id) %></td>
+								<td><%= customer.email %></td>
+								<td><%= customer.last_sign_in_at %></td>
+								<td></td>
+							</tr>
+							<% end %>
+						</tbody>
+					</tr>
+				</thead>
+			</table>
+			    <%= paginate @customers, :class=>"pagination" %>
+		    </div>
 		</div>
-	</div>
 </div>

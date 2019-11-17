@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+20.times do
+  gimei = Gimei.new
+  Customer.create!(
+    last_name: gimei.last.kanji,
+    first_name: gimei.first.kanji,
+    last_name_read: gimei.last.hiragana,
+    email: Faker::Internet.email,
+    postal_code: Faker::Address.postcode,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    address: gimei.address.kanji,
+    password: 123456
+)
+end
