@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :configure_permitted_parameters, if: :devise_controller?
   def index
   	@products = Product.all.order(created_at: :desc)
   	@products = Product.page(params[:page]).per(4)
