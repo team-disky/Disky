@@ -1,4 +1,5 @@
 <%= render partial: "layouts/manager_header" %>
+
 <div class="container">
 			<br>
 			<div class="row">
@@ -24,19 +25,19 @@
 						<th>e-mail</th>
 						<th>最後のログイン</th>
 						<th>最終購入日</th>
-						<tbody>
-							<% @customers.each do |customer| %>
-							<tr>
-								<td><%= customer.id %></td>
-								<td><%= link_to customer.full_name, manager_customer_path(customer.id) %></td>
+					</tr>
+				</thead>
+				<tbody>
+						<% @customers.each do |customer| %>
+						<tr>
+							<td><%= customer.id %></td>
+							<td><%= link_to customer.full_name, manager_customer_path(customer.id) %></td>
 								<td><%= customer.email %></td>
 								<td><%= customer.last_sign_in_at %></td>
 								<td></td>
-							</tr>
-							<% end %>
-						</tbody>
-					</tr>
-				</thead>
+						</tr>
+						<% end %>
+				</tbody>
 			</table>
 			    <%= paginate @customers, :class=>"pagination" %>
 		    </div>
