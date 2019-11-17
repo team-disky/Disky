@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse">
+<nav class="navbar-inverse">
   <div class="container">
     <div class="navbar-header">
       <a class="navbar-brand" href="/manager/products">Disky管理者画面</a>
@@ -6,8 +6,8 @@
     <ul class="nav navbar-nav navbar-right">
       <li class="active"><%#= link_to "ホーム", manager_products_path %></a></li>
       <li><%#= link_to "商品登録", new_manager_products_path %></li>
-      <li><%#= link_to "注文管理", manager_ordes_path %></li>
-      <li><%#= link_to "会員管理", manager_customers_path %></li>
+      <li><%= link_to "注文管理", manager_orders_path %></li>
+      <li><%= link_to "会員管理", manager_customers_path %></li>
       <li><%#= link_to "入庫履歴", manager_arrival_path %></li>
       <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">データ登録

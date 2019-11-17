@@ -12,6 +12,7 @@
    <h3>新しいアーティストを登録</h3>
 
    <!-- エラーメッセージ　-->
+   <br>
   <% if @artist.errors.any? %>
    <div id="error_explanation">
    <h4>入力した内容に誤りがあります</h4>
@@ -26,12 +27,12 @@
    <%= form_for(@artist, url: manager_artists_path) do |f| %>
 
    <div class="field">
-    <label for="artist_name">アーティスト名</label>
-    <%= f.text_field :name %>
+    <label for="artist_name"></label>
+    <%= f.text_field :name, :placeholder => "アーティスト" %>
    </div>
 
    <div class="actions">
-    <%= f.submit '登録', :class=>"btn-lg" %>
+    <%= f.submit '登録', :class=>"artist-registration-btn btn-lg" %>
    <% end %>
    </div>
   </div>

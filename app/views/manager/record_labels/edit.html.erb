@@ -1,6 +1,12 @@
 <%= render partial: "layouts/manager_header" %>
 
+<div class="container">
+	<div class="row">
+		<div class="col-md-4">
+      <h3>レーベル名を編集</h3>
+
 <!-- エラーメッセージ　-->
+<br>
 <% if @record_label.errors.any? %>
 <div id="error_explanation">
   <h4>入力した内容に誤りがあります</h4>
@@ -12,19 +18,21 @@
 </div>
 <% end %>
 
-<h3>レーベル名を編集</h3>
 <%= form_for(@record_label, url:"/manager/record_labels/#{@record_label.id}") do |f| %>
 
 <div class="field">
-	<label for="record_label_name">レーベル名</label>
+	<label for="record_label_name"></label>
     <%= f.text_field :name %>
 </div>
 
 <div class="actions">
-    <%= f.submit '保存' %>
+    <%= f.submit '保存', :class=> "label-update-btn btn-lg" %>
 </div>
 
 <% end %>
 
-<%= link_to "削除", manager_record_label_path(@record_label), method: :delete, data: { confirm: "「#{@record_label.name}」を削除します"} %>
-
+<%= link_to("削除", manager_record_label_path(@record_label), {method: :delete, data: { confirm: "「#{@record_label.name}」を削除します"}, class: "artist-destroy-btn btn-lg btn-danger"}) %>
+<h3 class="back-to-top"><%= link_to "レーベル一覧へ戻る", manager_record_labels_path %><h3>
+</div>
+</div>
+</div>
