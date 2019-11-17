@@ -1,0 +1,54 @@
+<h1>商品登録</h1>
+<%= form_for(@product, url: manager_products_path) do |f| %>
+	<% if @product.errors.any? %>
+   		<% @product.errors.full_messages.each do |message| %>
+        	<li><%= message %></li>
+      	<% end %>
+     <% end %>
+
+	<%= f.label "商品名(必須)" %>
+	<%= f.text_field :title %><br>
+
+	<%= f.label "商品画像" %>
+	<%= f.attachment_field :image %>
+
+	<%= f.label "アーティスト名" %>
+	<%= f.collection_select :artist_id, Artist.all, :id, :name %><br>
+
+	<%= f.label "レーベル名" %>
+	<%= f.collection_select :record_label_id, RecordLabel.all, :id, :name %><br>
+
+	<%= f.label "ジャンル" %>
+	<%= f.collection_select :category_id, Category.all, :id, :name %><br>
+
+	<%= f.label "フォーマット" %>
+	<%= f.select :format, [["シングル","0"],["アルバム","1"],["マキシシングル","2"],["複数アルバム","3"],["ミニアルバム","4"]] %><br>
+
+	<%= f.label "発売日" %>
+	<%= f.date_field :sales_date %><br>
+
+	<p>収録内容(必須)</p>
+	<%= f.nested_fields_for :discs, wrapper_tag: :div do |q| %>
+		<%= q.label "ディスク番号" %>
+		<%= q.number_field :number, :size=>"5" %>
+		<%= q.remove_nested_fields_link 'ディスクを削除' %>
+			<%= q.nested_fields_for :songs, wrapper_tag: :div do |s| %>
+				<%= s.label "曲名" %>
+				<%= s.text_field :title %>
+				<%= s.time_field :recording_time %>
+				<%= s.remove_nested_fields_link '削除' %>
+			<% end %>
+		<%= q.add_nested_fields_link :songs, '曲を追加' %><br>
+	<% end %>
+	<%= f.add_nested_fields_link :discs, 'ディスクを追加' %><br>
+
+
+	<%= f.label "価格(税抜)" %>
+	<%= f.text_field :price, :size=>"10" %>円<br>
+
+	<%= f.label "商品ステータス(必須)" %>
+	<%= f.select :status, [["販売中","0"],["販売停止中","1"]] %><br>
+
+	<%= f.submit "登録" %>
+
+<% end %>
