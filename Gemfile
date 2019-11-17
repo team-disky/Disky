@@ -76,3 +76,5 @@ gem 'jquery-rails'
 gem 'pry-byebug'
 
 gem 'rails-i18n', '~> 5.1'
+
+gem 'nested_form_fields'

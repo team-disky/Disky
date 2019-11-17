@@ -8,4 +8,6 @@ class Product < ApplicationRecord
 	belongs_to :category
 
 	attachment :image
+
+	accepts_nested_attributes_for :discs
 end
