@@ -1,3 +1,20 @@
 // Place all the styles related to the manager/products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+input[type="number"] {
+	width: 30px;
+}
+
+.product_title {
+	width: 200px;
+}
+
+.recording_time {
+	width: 50px;
+}
+
+strong {
+	color: red;
+}

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_13_031851) do
+ActiveRecord::Schema.define(version: 2019_11_17_100910) do
 
   create_table "arrivals", force: :cascade do |t|
     t.datetime "arrival_date"
@@ -114,11 +114,11 @@ ActiveRecord::Schema.define(version: 2019_11_13_031851) do
     t.integer "status", default: 0
     t.string "title"
     t.string "image_id"
-    t.datetime "sales_date"
     t.integer "price"
     t.boolean "active_flag", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "sales_date"
     t.index ["title"], name: "index_products_on_title"
   end
 
@@ -151,9 +151,10 @@ ActiveRecord::Schema.define(version: 2019_11_13_031851) do
     t.integer "disc_id"
     t.string "title"
     t.integer "number"
-    t.integer "recording_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "recording_time_minutes"
+    t.integer "recording_time_seconds"
   end
 
 end
