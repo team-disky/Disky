@@ -5,4 +5,14 @@ Rails.application.routes.draw do
   namespace :manager do
   resources :orders, :customers, :artists, :categories, :record_labels
 end
+
+
+namespace :manager do
+  	resources :products do
+  		resources :discs, only: [:create, :destroy] do
+  			resources :songs, only: [:create, :destroy]
+  		end
+  	end
+  end
+
 end
