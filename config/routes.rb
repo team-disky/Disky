@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'products/index'
-  get 'products/show'
   devise_for :managers, controllers: {
   	sessions: 'managers/sessions',
   	passwords: 'managers/passwords',
@@ -16,4 +14,7 @@ Rails.application.routes.draw do
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'products#index'
+  resources :products, :only => :show
+
+  get 'orders/select_payment' => 'orders#select_payment'
 end
