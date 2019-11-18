@@ -15,4 +15,11 @@ namespace :manager do
   	end
   end
 
+namespace :manager do
+	get 'products/:id/add_quantity' => 'products#add_quantity', as: 'product_add_quantity'
+end
+
+namespace :manager do
+	resources :arrivals, only: [:create, :index]
+end
 end

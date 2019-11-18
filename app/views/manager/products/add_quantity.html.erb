@@ -1,0 +1,40 @@
+<%= render partial: "layouts/manager_header" %>
+
+<div class="container">
+	<div class="row">
+		<h1>在庫追加</h1>
+		<div class="col-sm-6">
+			<%= attachment_image_tag @product, :image, size:'500x500', fallback: "no_image.png" %>
+		</div>
+		<div class="col-sm-6 product_main_text">
+			<h2 class="text-center"><%= @product.title %></h2>
+			<h3 class="text-right"><%= @product.artist.name %></h3>
+		</div>
+		<div class="col-sm-3">
+			<h4 class="text-center">フォーマット：<%= @product.format %></h4>
+			<h4 class="text-center">レーベル：<%= @product.record_label.name %></h4>
+			<h4 class="text-center">ジャンル：<%= @product.category.name %></h4>
+			<h4 class="text-center">発売日：<%= @product.sales_date %></h4>
+		</div>
+		<div class="col-sm-3">
+			<h4 class="text-center">税込価格：<%= @product.price %>円</h4>
+			<h4 class="text-center"><%= @product.status %></h4>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-3"></div>
+		<div class="col-sm-3">
+			<h3>現在の在庫：</h3>
+		</div>
+		<div class="col-sm-3">
+			<%= form_for(@arrival, url: manager_arrivals_path) do |f| %>
+				<%= f.hidden_field :product_id, :value => @product.id %>
+				<%= f.label "入荷日" %>
+				<%= f.date_select :date %>
+				<%= f.label "入荷個数" %>
+				<%= f.number_field :count %>
+				<%= f.submit "入荷を登録する" %>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_17_100910) do
+ActiveRecord::Schema.define(version: 2019_11_18_055801) do
 
   create_table "arrivals", force: :cascade do |t|
-    t.datetime "arrival_date"
     t.integer "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "date"
+    t.integer "count"
   end
 
   create_table "artists", force: :cascade do |t|

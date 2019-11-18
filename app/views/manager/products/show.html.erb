@@ -1,24 +1,62 @@
 <%= render partial: "layouts/manager_header" %>
 
 <div class="container">
+	<% if flash[:notice] %>
+  		<p><%= flash[:notice] %></p>
+	<% end %>
 	<div class="row">
 		<h1>商品情報</h1>
-		<div class="col">
-			<%= attachment_image_tag @product, :image %>
+		<div class="col-sm-6">
+			<%= attachment_image_tag @product, :image, size:'500x500', fallback: "no_image.png" %>
 		</div>
-		<div class="col">
-			<h2><%= @product.title %></h2>
-			<h3><%= @product.artist.name %></h3>
+		<div class="col-sm-6 product_main_text">
+			<h2 class="text-center"><%= @product.title %></h2>
+			<h3 class="text-right"><%= @product.artist.name %></h3>
 		</div>
-		<div class="col">
-			<%= @product.format %><br>
-			<%= @product.record_label.name %><br>
-			<%= @product.category.name %><br>
-			<%= @product.sales_date %><br>
+		<div class="col-sm-3">
+			<h4 class="text-center">フォーマット：<%= @product.format %></h4>
+			<h4 class="text-center">レーベル：<%= @product.record_label.name %></h4>
+			<h4 class="text-center">ジャンル：<%= @product.category.name %></h4>
+			<h4 class="text-center">発売日：<%= @product.sales_date %></h4>
 		</div>
-		<div class="col">
-			<p>税込価格：<%= @product.price %>円</p>
-			<%= @product.status %>
+		<div class="col-sm-3">
+			<h4 class="text-center">税込価格：<%= @product.price %>円</h4>
+			<h4 class="text-center"><%= @product.status %></h4>
+			<h4 class="text-center">在庫：</h4>
+			<%= link_to manager_product_add_quantity_path(@product.id) do %>
+				<button class="btn btn-success center-block">在庫を追加</button>
+			<% end %>
 		</div>
+	</div>
+	<div class="row">
+		<h2>収録内容</h2>
+		<% @discs.order(:number).each do |disc| %>
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="col-sm-3">Disc<%= disc.number %></th>
+					<th class="col-sm-6">タイトル</th>
+					<th class="col-sm-4">収録時間</th>
+				</tr>
+			</thead>
+			<% disc.songs.order(:number).each do |song| %>
+			<tbody>
+				<tr>
+					<td></td>
+					<td><%= song.number %>. <%= song.title %></td>
+					<td><%= song.recording_time_minutes %>分<%= song.recording_time_seconds %>秒</td>
+				</tr>
+			</tbody>
+			<% end %>
+		</table>
+		<% end %>
+		<div class="col-sm-4"></div>
+			<%= link_to manager_products_path do %>
+				<button class="col-sm-1 btn btn-warning center-block">戻る</button>
+			<% end %>
+		<div class="col-sm-1"></div>
+			<%= link_to edit_manager_product_path(@product.id) do %>
+				<button class="col-sm-1 btn btn-info center-block">編集</button>
+			<% end %>
 	</div>
 </div>
