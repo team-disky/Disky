@@ -72,7 +72,12 @@
 				</tbody>
 			</table>
 			<div class="action-row">
-				<%= f.submit "登録" %>
+				<div class="col-sm-4"></div>
+				<%= link_to manager_products_path do %>
+					<button class="col-sm-2 btn btn-warning">キャンセル</button>
+				<% end %>
+				<div class="col-sm-1"></div>
+				<%= f.submit "登録", class:"col-sm-2 btn btn-primary" %>
 			</div>
 			<% end %>
 
