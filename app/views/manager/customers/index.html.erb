@@ -31,7 +31,7 @@
 						<% @customers.each do |customer| %>
 						<tr>
 							<td><%= customer.id %></td>
-							<td><%= link_to customer.full_name, manager_customer_path(customer.id), style: "color:#0000ff;text-decoration:none" %></td>
+							<td><%= link_to customer.full_name, manager_customer_path(customer.id), style: "color:black;text-decoration:none" %></td>
 								<td><%= customer.email %></td>
 								<td><%= customer.last_sign_in_at %></td>
 								<td></td>

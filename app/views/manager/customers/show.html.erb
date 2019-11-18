@@ -28,11 +28,41 @@
 
         <ul>
         <div class="col-md-3">
+        <ul>
         <%= @customer.postal_code %>
         <br>
         <%= @customer.address %>
+        <br>
+        <%= @customer.full_name %>
         </div>
         </ul>
+
+         <ul>
+        <div class="col-md-3">
+        <% @registration_addresses.each do |registration_address| %>
+        <%= registration_address.postal_code %>
+        <br>
+        <%= registration_address.address %>
+        <br>
+        <%= registration_address.name %>
         </div>
-    </div>
+        <% end %>
+        </ul>
+
+
+         <ul>
+        <div class="col-md-3">
+        <% @orders.each do |order| %>
+        <%= order.status %>
+        <br>
+        <%= order.created_at %>
+        <br>
+        <%= order.id %>
+        <br>
+        <%= order.subtotal_amount %>
+        <br>
+        </div>
+        </ul>
+        <% end %>
+
 </div>
