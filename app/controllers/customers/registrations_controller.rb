@@ -23,6 +23,7 @@ class Customers::RegistrationsController < Devise::RegistrationsController
       return
     else
       if @customer.save
+        sign_up(resource_name, resource)
         redirect_to root_path
         return
       end
