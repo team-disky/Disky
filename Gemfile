@@ -70,7 +70,7 @@ gem "refile-mini_magick"
 
 gem 'kaminari','~> 1.1.1'
 
-gem 'bootstrap-sass', '~> 3.4.1'
+gem 'bootstrap', '~> 4.1.1'
 gem 'jquery-rails'
 
 gem 'pry-byebug'
@@ -81,3 +81,5 @@ gem 'faker'
 gem 'gimei'
 
 gem 'kaminari-bootstrap', '~> 3.0.1'
+
+gem 'font-awesome-sass', '~> 5.4.1'

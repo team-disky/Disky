@@ -19,5 +19,7 @@ Rails.application.routes.draw do
   root to: 'products#index'
   resources :products, :only => :show
 
+  resources :cart_products
+
   get 'orders/select_payment' => 'orders#select_payment'
 end
