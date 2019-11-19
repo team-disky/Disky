@@ -77,9 +77,13 @@ gem 'pry-byebug'
 
 gem 'rails-i18n', '~> 5.1'
 
+
+gem 'nested_form_fields'
+
 gem 'faker'
 gem 'gimei'
 
 gem 'kaminari-bootstrap', '~> 3.0.1'
 
 gem 'font-awesome-sass', '~> 5.4.1'
+

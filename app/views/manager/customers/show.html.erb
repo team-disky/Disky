@@ -1,0 +1,68 @@
+<%= render partial: "layouts/manager_header" %>
+
+<div class="container">
+	<br>
+	<div class="row">
+		<div class="col-lg-12">
+			<h3>会員情報</h3>
+			<h4><%= link_to "編集", edit_manager_customer_path %></h4>
+		<div class="col-md-3">
+		<ul>
+			<li>顧客ID</li>
+			<li>氏名</li>
+			<li>ふりがな</li>
+			<li>メールアドレス</li>
+			<li>電話番号</li>
+		</ul>
+		</div>
+
+        <div class="col-md-9">
+        <ul>
+        	<li><%= @customer.id %></li>
+            <li><%= @customer.full_name %></li>
+            <li><%= @customer.last_name_read %></li>
+            <li><%= @customer.email %></li>
+            <li><%= @customer.phone_number %></li>
+        </ul>
+        </div>
+
+        <ul>
+        <div class="col-md-3">
+        <ul>
+        <%= @customer.postal_code %>
+        <br>
+        <%= @customer.address %>
+        <br>
+        <%= @customer.full_name %>
+        </div>
+        </ul>
+
+        <ul>
+        <div class="col-md-3">
+        <% @registration_addresses.each do |registration_address| %>
+        <%= registration_address.postal_code %>
+        <br>
+        <%= registration_address.address %>
+        <br>
+        <%= registration_address.name %>
+        </div>
+        <% end %>
+        </ul>
+
+
+         <ul>
+        <div class="col-md-3">
+        <% @orders.each do |order| %>
+        <%= order.status %>
+        <br>
+        <%= order.created_at %>
+        <br>
+        <%= order.id %>
+        <br>
+        <%= order.subtotal_amount %>
+        <br>
+        </div>
+        </ul>
+        <% end %>
+
+</div>

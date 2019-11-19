@@ -9,9 +9,14 @@ class Customer < ApplicationRecord
   has_many :registration_addresses
   has_many :cart_products
 
+
+  def full_name
+  	last_name + first_name
+
   #論理削除テスト
   def active_for_authentication?
 	 super && self.active?
+
   end
 
 end

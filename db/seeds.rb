@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 #仮ユーザー
 20.times do
   gimei = Gimei.new
@@ -96,3 +97,4 @@ end
 		recording_time: Faker::Number.between(from: 300, to: 500)
 		)
 end
+

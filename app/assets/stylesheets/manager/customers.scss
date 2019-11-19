@@ -1,0 +1,22 @@
+// Place all the styles related to the manager/customers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul {
+  list-style: none;
+}
+
+input[type="search"] {
+    width: 250px;
+    height: 30px;
+}
+
+.search_form {
+    position:relative;
+    bottom:35px;
+	float:right;
+}
+
+
+
+

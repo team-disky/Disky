@@ -1,0 +1,30 @@
+<%= render partial: "layouts/manager_header" %>
+
+<div class="container">
+	<br>
+	<div class="row">
+		<div class="col-lg-12">
+			<h3>受注詳細</h3>
+		<div class="col-md-3">
+		<ul>
+			<li>ステータス</li>
+			<li>注文番号</li>
+			<li>注文者</li>
+			<li>指定された</li>
+			<li>支払い方法</li>
+		</ul>
+		</div>
+
+　　　　　<div class="col-md-9">
+        <ul>
+        	<li><%= @order.status %></li>
+            <li><%= @order.id %></li>
+            <li><%= @order.contractee_name %></li>
+            <li><%= @order.destination_address %></li>
+            <li><%= @order.payment_method %></li>
+        </ul>
+        </div>
+
+    　　　</div>
+    </div>
+</div>

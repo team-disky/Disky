@@ -1,0 +1,2 @@
+module Manager::RecordLabelsHelper
+end
