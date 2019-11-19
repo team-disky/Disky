@@ -13,26 +13,15 @@
  *= require_tree .
  *= require_self
  */
-    @import "bootstrap-sprockets";  /*ここを追加*/
     @import "bootstrap";            /*ここを追加*/
-
- /*ページネーション自体のデザイン*/
-.pagination>li>a {
-  border: none;     /*枠線をなくす*/
-  color: #696969;   /*文字の色を変える*/
+    @import 'font-awesome-sprockets';
+    @import 'font-awesome';
+a {
+  text-decoration: none;
 }
 
-/* 表示しているページ番号のデザイン */
-.pagination>.active>a {
-  background: #93c9ff;     /*背景の色を変える*/
-  border-radius: 15px;     /*角を丸くする*/
-}
-
-/*ホバー時のデザイン*/
-.pagination>li>a:hover {
-  border-radius: 15px;    /*角を丸くする*/
-}
-
-.disc-box{
-	text-align:center;
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
 }
