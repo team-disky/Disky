@@ -2,34 +2,34 @@
 
 <div class="container">
 	<% if flash[:notice] %>
-  		<p><%= flash[:notice] %></p>
+  		<h3><font color="skyblue"><%= flash[:notice] %></font></h3>
 	<% end %>
 	<div class="row">
-		<h1>商品情報</h1>
+		<h1 class="dashed-line">商品情報</h1>
 		<div class="col-sm-6">
-			<%= attachment_image_tag @product, :image, size:'500x500', fallback: "no_image.png" %>
+			<%= attachment_image_tag @product, :image, size:'500x500', fallback: "no_image.png", class:"border" %>
 		</div>
 		<div class="col-sm-6 product_main_text">
-			<h2 class="text-center"><%= @product.title %></h2>
+			<h2 class="text-center under-line"><%= @product.title %></h2>
 			<h3 class="text-right"><%= @product.artist.name %></h3>
 		</div>
 		<div class="col-sm-3">
-			<h4 class="text-center">フォーマット：<%= @product.format %></h4>
-			<h4 class="text-center">レーベル：<%= @product.record_label.name %></h4>
-			<h4 class="text-center">ジャンル：<%= @product.category.name %></h4>
+			<h4 class="text-center under-line">フォーマット：<%= @product.format %></h4>
+			<h4 class="text-center under-line">レーベル：<%= @product.record_label.name %></h4>
+			<h4 class="text-center under-line">ジャンル：<%= @product.category.name %></h4>
 			<h4 class="text-center">発売日：<%= @product.sales_date %></h4>
 		</div>
 		<div class="col-sm-3">
-			<h4 class="text-center">税込価格：<%= @product.price %>円</h4>
-			<h4 class="text-center"><%= @product.status %></h4>
-			<h4 class="text-center">在庫：</h4>
+			<h4 class="text-center under-line">税込価格：<%= @product.price %>円</h4>
+			<h4 class="text-center under-line"><%= @product.status %></h4>
+			<h4 class="text-center under-line">在庫：<%= @product.stock %></h4>
 			<%= link_to manager_product_add_quantity_path(@product.id) do %>
 				<button class="btn btn-success center-block">在庫を追加</button>
 			<% end %>
 		</div>
 	</div>
 	<div class="row">
-		<h2>収録内容</h2>
+		<h2 class="dashed-line">収録内容</h2>
 		<% @discs.order(:number).each do |disc| %>
 		<table class="table">
 			<thead>

@@ -2,25 +2,53 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.products{
 
-input[type="number"] {
-	width: 30px;
+	input[type="number"] {
+		width: 30px;
+	}
+
+	.product_title {
+		width: 300px;
+		height: 40px;
+	}
+
+	.recording_time {
+		width: 50px;
+		height: 30px;
+	}
+
+	strong {
+		color: red;
+	}
+
+	.product_main_text {
+		margin-top: 60px;
+		margin-bottom: 100px;
+	}
+
+	.product_price {
+		width: 100px;
+		height: 30px;
+	}
+
+	.song_title {
+		width: 300px;
+		height: 30px;
+	}
+
+	.under-line {
+		padding: 8px;
+		border-bottom: solid 1px silver;
+	}
+
+	.dashed-line {
+		padding: 10px;
+		border-bottom: dashed 2px silver;
+		margin-bottom: 30px;
+	}
+
+	.border {
+		border: solid 1px silver;
+	}
 }
-
-.product_title {
-	width: 200px;
-}
-
-.recording_time {
-	width: 50px;
-}
-
-strong {
-	color: red;
-}
-
-.product_main_text {
-	margin-top: 60px;
-	margin-bottom: 100px;
-}
-

@@ -16,7 +16,7 @@ class Manager::ProductsController < ApplicationController
 	end
 
 	def index
-		@products = Product.all
+		@products = Product.page(params[:page]).per(10)
 	end
 
 	def show
