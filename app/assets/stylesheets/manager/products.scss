@@ -5,7 +5,7 @@
 .products{
 
 	input[type="number"] {
-		width: 30px;
+		width: 40px;
 	}
 
 	.product_title {
@@ -50,5 +50,15 @@
 
 	.border {
 		border: solid 1px silver;
+	}
+
+	.caution {
+		color: red;
+		display: inline-block;
+	}
+
+	.new {
+		display: inline-block;
+		margin-right: 20px;
 	}
 }

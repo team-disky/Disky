@@ -1,8 +1,8 @@
 <%= render partial: "layouts/manager_header" %>
 
 <div class="container">
-	<div class="field row">
-		<h1>商品登録</h1><strong> &#x203B;は必須項目です</strong>
+	<div class="row">
+		<h1 class="new">商品登録</h1><h4 class="caution"> &#x203B;は必須項目です</h4>
 			<%= form_for(@product, url: manager_products_path) do |f| %>
 				<% if @product.errors.any? %>
    				<% @product.errors.full_messages.each do |message| %>
@@ -42,22 +42,22 @@
 				</tr>
 				<tr>
 					<th>収録内容<strong>&#x203B;</strong></th>
-					<td><%= f.add_nested_fields_link :discs, 'ディスクを追加' %>
+					<td><%= f.add_nested_fields_link :discs, 'ディスクを追加', class:"btn btn-success" %>
 							<%= f.nested_fields_for :discs do |q| %>
 							<%= q.label "ディスク番号" %><strong>&#x203B;</strong>
-							<%= q.number_field :number %>
-							<%= q.remove_nested_fields_link 'ディスクを削除' %>
+							<%= q.number_field :number, min:1 %>
+							<%= q.remove_nested_fields_link 'ディスクを削除', class:"btn btn-danger" %>
 								<%= q.nested_fields_for :songs do |s| %>
 									<%= s.label "曲順" %><strong>&#x203B;</strong>
-									<%= s.number_field :number %>
+									<%= s.number_field :number, min:1 %>
 									<%= s.label "曲名" %><strong>&#x203B;</strong>
 									<%= s.text_field :title, class:"song_title" %>
 									<%= s.label "収録時間" %><strong>&#x203B;</strong>
 									<%= s.text_field :recording_time_minutes, class:"recording_time" %>分
 									<%= s.text_field :recording_time_seconds, class:"recording_time" %>秒
-								<%= s.remove_nested_fields_link '曲を削除' %>
+								<%= s.remove_nested_fields_link '曲を削除', class:"btn btn-danger" %>
 								<% end %>
-								<%= q.add_nested_fields_link :songs, '曲を追加' %>
+								<%= q.add_nested_fields_link :songs, '曲を追加', class:"btn btn-info" %>
 						<% end %>
 					</td>
 				</tr>

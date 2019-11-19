@@ -1,8 +1,10 @@
 <%= render partial: "layouts/manager_header" %>
 
 <div class="container">
+	<div class="row">
+		<h1 class="new">商品編集</h1><h4 class="caution">&#x203B;は必須項目です</h4>
+	</div>
 	<div class="field row">
-		<h1>商品編集</h1><strong>&#x203B;は必須項目です</strong>
 			<%= form_for(@product, url: manager_product_path) do |f| %>
 				<% if @product.errors.any? %>
    				<% @product.errors.full_messages.each do |message| %>
