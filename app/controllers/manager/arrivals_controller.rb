@@ -4,6 +4,8 @@ class Manager::ArrivalsController < ApplicationController
 		@arrival = Arrival.new(arrival_params)
 		if @arrival.save
 		redirect_to manager_product_path(@arrival.product_id)
+		else
+			render 'products/add_quantity'
 		end
 	end
 

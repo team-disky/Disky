@@ -10,4 +10,19 @@ class Product < ApplicationRecord
 	attachment :image
 
 	accepts_nested_attributes_for :discs
+
+	enum status:{販売中:0,販売停止中:1}
+	enum format:{シングル:0,アルバム:1,マキシシングル:2,複数アルバム:3,ミニアルバム:4}
+
+	def total_arrival
+		Arrival.where(product_id: id).sum(:count)
+	end
+
+	def total_purchased_product
+		PurchasedProduct.where(product_id: id).sum(:count)
+	end
+
+	def stock
+		total_arrival - total_purchased_product
+	end
 end

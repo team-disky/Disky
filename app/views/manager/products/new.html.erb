@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="field row">
-		<h1>商品登録</h1><strong>&#x203B;は必須項目です</strong>
+		<h1>商品登録</h1><strong> &#x203B;は必須項目です</strong>
 			<%= form_for(@product, url: manager_products_path) do |f| %>
 				<% if @product.errors.any? %>
    				<% @product.errors.full_messages.each do |message| %>
@@ -34,7 +34,7 @@
 				</tr>
 				<tr>
 					<th><%= f.label "フォーマット" %><strong>&#x203B;</strong></th>
-					<td colspan="2"><%= f.select :format, [["シングル","0"],["アルバム","1"],["マキシシングル","2"],["複数アルバム","3"],["ミニアルバム","4"]] %></td>
+					<td colspan="2"><%= f.select :format, [["シングル","シングル"],["アルバム","アルバム"],["マキシシングル","マキシシングル"],["複数アルバム","複数アルバム"],["ミニアルバム","ミニアルバム"]] %></td>
 				</tr>
 				<tr>
 					<th><%= f.label "発売日" %><strong>&#x203B;</strong></th>
@@ -51,7 +51,7 @@
 									<%= s.label "曲順" %><strong>&#x203B;</strong>
 									<%= s.number_field :number %>
 									<%= s.label "曲名" %><strong>&#x203B;</strong>
-									<%= s.text_field :title %><br>
+									<%= s.text_field :title, class:"song_title" %>
 									<%= s.label "収録時間" %><strong>&#x203B;</strong>
 									<%= s.text_field :recording_time_minutes, class:"recording_time" %>分
 									<%= s.text_field :recording_time_seconds, class:"recording_time" %>秒
@@ -63,11 +63,11 @@
 				</tr>
 				<tr>
 					<th><%= f.label "価格(税抜)" %><strong>&#x203B;</strong></th>
-					<td colspan="2"><%= f.text_field :price, :size=>"10" %>円</td>
+					<td colspan="2"><%= f.text_field :price, class:"product_price" %>円</td>
 				</tr>
 				<tr>
 					<th><%= f.label "商品ステータス" %><strong>&#x203B;</strong></th>
-					<td colspan="2"><%= f.select :status, [["販売中","0"],["販売停止中","1"]] %></td>
+					<td colspan="2"><%= f.select :status, [["販売中","販売中"],["販売停止中","販売停止中"]] %></td>
 				</tr>
 				</tbody>
 			</table>
