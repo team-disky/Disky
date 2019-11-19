@@ -8,9 +8,12 @@ class Manager::CustomersController < ApplicationController
 
 	def show
 		@customer = Customer.find(params[:id])
+		@registration_addresses = @customer.registration_addresses
+		@orders = @customer.orders
 	end
 
 	def edit
+		@customer = Customer.find(params[:id])
 	end
 
 	def update
@@ -19,9 +22,9 @@ class Manager::CustomersController < ApplicationController
 	def destroy
 	end
 
-	private
-	def customer_params
-		params.require(:customer).permit(:last_name, :email, :phone_number)
-    end
+	#private
+	#def customer_params
+		#params.require(:customer).permit(:last_name, :email, :phone_number)
+    #end
 
 end
