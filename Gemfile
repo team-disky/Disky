@@ -78,5 +78,6 @@ gem 'pry-byebug'
 gem 'rails-i18n', '~> 5.1'
 
 gem 'faker'
+gem 'gimei'
 
 gem 'kaminari-bootstrap', '~> 3.0.1'

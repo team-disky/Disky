@@ -6,6 +6,54 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+#仮ユーザー
+20.times do
+  gimei = Gimei.new
+
+  Customer.create!(
+    last_name: gimei.last.kanji,
+    first_name: gimei.first.kanji,
+    last_name_read: gimei.last.hiragana,
+    first_name_read: gimei.first.hiragana,
+    email: Faker::Internet.email,
+    postal_code: Faker::Address.postcode,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    address: gimei.address.kanji + '3-20-14',
+    password: 123456
+  )
+end
+
+#登録住所
+4.times do
+  gimei = Gimei.new
+  RegistrationAddress.create!(
+    name: gimei.last.kanji + gimei.first.kanji,
+    phone_number: Faker::PhoneNumber.cell_phone,
+    postal_code: Faker::Address.postcode,
+    address: gimei.address.kanji + '3-20-14',
+    customer_id: 1
+  )
+end
+
+#購入履歴
+5.times do
+  gimei = Gimei.new
+
+  Order.create!(
+    customer_id: 1,
+    status: Faker::Number.between(from: 0, to: 2),
+    payment_method: Faker::Number.between(from: 0, to: 2),
+    subtotal_amount: Faker::Number.between(from: 1000, to: 5000),
+    total_amount: Faker::Number.between(from: 1000, to: 5000),
+    contractee_name: gimei.name.kanji,
+    contractee_phone_number: Faker::PhoneNumber.cell_phone,
+    postal_code: Faker::Address.postcode,
+    destination_name: gimei.name.kanji,
+    destination_address: gimei.address.kanji + '3-20-14',
+    destination_phone_number: Faker::PhoneNumber.cell_phone
+  )
+end
+
 20.times do
 	Artist.create!(
 		name: Faker::Music.band)

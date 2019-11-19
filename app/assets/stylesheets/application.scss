@@ -13,8 +13,16 @@
  *= require_tree .
  *= require_self
  */
-    @import "bootstrap-sprockets";  /*ここを追加*/
-    @import "bootstrap";            /*ここを追加*/
+
+ @import "bootstrap-sprockets";  /*ここを追加*/
+ @import "bootstrap";            /*ここを追加*/
+
+ /*リセットcss*/
+*{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+}
 
  /*ページネーション自体のデザイン*/
 .pagination>li>a {

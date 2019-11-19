@@ -1,4 +1,9 @@
 <%= render 'products/header' %>
+
+<% if customer_signed_in? %>
+<%= link_to "マイページへ", customer_path(current_customer) %>
+<% end %>
+
 <% if customer_signed_in? %>
   <li class="">
     <%= link_to ' logout', destroy_customer_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %>

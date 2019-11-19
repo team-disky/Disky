@@ -8,4 +8,10 @@ class Customer < ApplicationRecord
   has_many :orders
   has_many :registration_addresses
   has_many :cart_products
+
+  #論理削除テスト
+  def active_for_authentication?
+	 super && self.active?
+  end
+
 end

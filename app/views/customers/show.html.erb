@@ -1,0 +1,109 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<h2>Myページ</h2>
+		</div>
+		<div class="col-md-2">
+			<%= link_to "編集",edit_customer_path, class: "btn btn-success" %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<span>ID </span>
+		</div>
+		<div class="col-md-4">
+			<%= @customer.id %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<span>名前</span>
+		</div>
+		<div class="col-md-4">
+			<%= @customer.last_name %>
+			<%= @customer.first_name %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<span>フリガナ</span>
+		</div>
+		<div class="col-md-4">
+			<%= @customer.last_name_read %>
+			<%= @customer.first_name_read %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<span>メールアドレス</span>
+		</div>
+		<div class="col-md-4">
+			<%= @customer.email %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
+			<span>電話番号</span>
+		</div>
+		<div class="col-md-4">
+			<%= @customer.phone_number %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2 addresses-box">
+			<%= @customer.postal_code %></br>
+			<%= @customer.address %></br>
+			<%= @customer.last_name %>
+			<%= @customer.first_name %>
+		</div>
+		<% @customer.registration_addresses.each do |sub| %>
+		<div class="col-md-2 addresses-box">
+			<%= sub.postal_code %></br>
+			<%= sub.address %></br>
+			<%= sub.name %>
+		</div>
+		<% end %>
+	</div>
+	<div class="row">
+		<div class="row">
+			<h2>購入履歴一覧</h2>
+		</div>
+		<div class="row">
+			<table class="table">
+				<% @customer.orders.each do |order| %>
+				<tr>
+					<td><%= order.status %></td>
+					<td>
+						<span class="lr-space">
+							購入日時：<%= order.created_at %>
+						</span>
+					</td>
+					<td>
+						<span class="lr-space">
+							注文番号：<%= order.id %>
+						</span>
+					</td>
+					<td>
+						<span class="lr-space">
+							小計：<%= order.total_amount %> 円(税込)
+						</span>
+					</td>
+					<td>
+						<span class="lr-space">
+							送付先氏名：<%= order.destination_name %>
+						</span>
+					</td>
+					<td>
+						<span class="lr-space">
+							支払い方法：<%= order.payment_method %>
+						</span>
+					</td>
+				</tr>
+				<% end %>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<%= link_to "退会する", customer_leave_path(@customer), class: "btn btn-success" %>
+	</div>
+</div>
