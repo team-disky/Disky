@@ -1,2 +1,61 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<%= render 'products/header' %>
+
+<div class="container cd-info">
+	<div class="row">
+		<div class="col-md-6">
+			<p>CDジャケット画像</p>
+			<%= attachment_image_tag @product, :image, :fill, 400, 400, format:'jpeg', fallback: "no_image.png", size:'400x400', class: 'JacketImage' %>
+        </div>
+        <div class="col-md-4">
+			<p>タイトル</p>
+			<h2><%= @product.title %></h2>
+			<p>アーティスト名</p>
+			<h3><%= @product.artist.name %></h3>
+			<div class="row">
+				<div class="col-md-6 cd-info">
+					<p>レーベル名</p>
+					<%= @product.record_label.name %>
+					<p>ジャンル</p>
+					<%= @product.category.name %>
+					<p>発売日</p>
+					<%= @product.sales_date.strftime("%Y年%m月%d日") %>
+			    </div>
+	            <div class="col-md-6 cd-info">
+					<p>価格</p>
+					<%= @product.price %>
+					<p>ステータス</p>
+					<%= @product.status %>
+					<p>数量</p>
+					<%= form_for @cart_product, url: cart_products_path do |f| %>
+					<%= f.hidden_field :customer_id, :value => current_customer.id %>
+					<%= f.hidden_field :product_id, :value => @product.id %>
+					<%= f.number_field :count %>
+				    <%= f.submit 'カートに入れる' %>
+				    <% end %>
+				</div>
+        </div>
+    </div>
+</div>
+
+	<h2>収録内容</h2>
+	<% @product.discs.order(:number).each do |disc| %>
+	  <p>ディスクナンバー</p>
+	  <%= disc.number %>
+      <table class="table table-stripe">
+      	<thread>
+      		<th>曲番号</th>
+      		<th>タイトル</th>
+      		<th>収録時間</th>
+      	</thread>
+	    <tbody>
+	  <% disc.songs.order(:number).each do |song| %>
+	    	<tr>
+	    		<td><%= song.number %></td>
+	    		<td><%= song.title %></td>
+			    <td><%= song.recording_time / 60 %>分
+			    <%= song.recording_time % 60 %>秒</td>
+			</tr>
+	  <%end%>
+	    </tbody>
+	    </table>
+    <%end%>

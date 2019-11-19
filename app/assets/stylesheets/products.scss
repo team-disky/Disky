@@ -1,3 +1,47 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.new_arrival{
+	display:inline-block;
+	float:left;
+}
+
+.JacketImage{border: 2px grey solid;
+}
+
+.cd-info{
+	padding-top:100px;
+}
+
+.kirikae{
+	text-align:center;
+	color:silver;
+}
+
+.top-banner{
+	background-image: url(/assets/disky_sample.png);
+	height:500px;
+	background-size:cover;
+}
+
+ /*ページネーション自体のデザイン*/
+.pagination>li>a {
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {
+  border-radius: 15px;    /*角を丸くする*/
+}
+
+.disc-box{
+	text-align:center;
+}
