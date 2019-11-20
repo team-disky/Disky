@@ -8,6 +8,8 @@ class Customer < ApplicationRecord
   has_many :registration_addresses
   has_many :cart_products
 
+  accepts_nested_attributes_for :registration_addresses
+
   def full_name
   	last_name + first_name
   end

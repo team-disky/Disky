@@ -2,8 +2,59 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-md-6">
-			<h1>Hello World</h1>
+		<div class="col-md-12">
+			<h3>会員情報編集</h3>
+
+			<div class="col-md-3">
+		    <ul>
+			<li>顧客ID</li>
+			<li>氏名</li>
+			<li>ふりがな</li>
+			<li>メールアドレス</li>
+			<li>電話番号</li>
+		　　 </ul>
+		    </div>
+
+        <%= form_for(@customer, url:"customers/#{@customer.id}") do |f|%>
+		    <div class="col-md-9">
+            <ul>
+            <li><%= @customer.id %></li>
+        	<li><%= f.text_field :last_name %>
+            <%= f.text_field :first_name %></li>
+            <li><%= f.text_field :last_name_read %>
+            <%#= f.text_field :first_name_read %></li>
+            <li><%= f.text_field :email %></li>
+            <li><%= f.text_field :phone_number %></li>
+            </ul>
+            </div>
+
+            <ul>
+            <div class="col-md-3">
+            <ul>
+            <%= f.text_field :postal_code %>
+            <br>
+            <%= f.text_field :address %>
+            <br>
+            <%= @customer.full_name %>
+            </div>
+            </ul>
+
+        <% end %>
+
+           <ul>
+           <div class="col-md-3">
+           <% @registration_addresses.each do |registration_address| %>
+           <%= form.fields_for :registration_address do |f|%>
+           <%= f.text_field :postal_code %>
+           <br>
+           <%= f.text_field :address %>
+           <br>
+           <%#= f.text_field :name %>
+           </div>
+           <% end %>
+           <% end %>
+           </ul>
+
 		</div>
 	</div>
 </div>
