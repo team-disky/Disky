@@ -52,8 +52,8 @@
 	    	<tr>
 	    		<td><%= song.number %></td>
 	    		<td><%= song.title %></td>
-			    <td><%= song.recording_time / 60 %>分
-			    <%= song.recording_time % 60 %>秒</td>
+			    <td><%= song.recording_time_minutes %>分
+			    <%= song.recording_time_seconds %>秒</td>
 			</tr>
 	  <%end%>
 	    </tbody>

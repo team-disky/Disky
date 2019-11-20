@@ -6,11 +6,11 @@
 		<table class="table table-hover table-inverse">
 			<thead>
 				<tr>
-					<th class="col-sm-1">番号</th>
-					<th class="col-sm-2">商品画像</th>
-					<th class="col-sm-4">商品名</th>
-					<th class="col-sm-2">入荷数</th>
-					<th class="col-sm-2">入荷日</th>
+					<th>番号</th>
+					<th>商品画像</th>
+					<th>商品名</th>
+					<th>入荷数</th>
+					<th>入荷日</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -23,6 +23,7 @@
 					<td><%= arrival.date %></td>
 				</tr>
 				<% end %>
+				<%= paginate @products, class:"paginate" %>
 			</tbody>
 		</table>
 	</div>

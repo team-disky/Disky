@@ -94,7 +94,8 @@ end
 		disc_id:  Faker::Number.between(from: 1, to: 40),
 		title: Faker::Book.title,
 		number: Faker::Number.between(from: 1, to: 4),
-		recording_time: Faker::Number.between(from: 300, to: 500)
+		recording_time_minutes: Faker::Number.between(from: 1, to: 5),
+    recording_time_seconds: Faker::Number.between(from: 1, to: 60)
 		)
 end
 
