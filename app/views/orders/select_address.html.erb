@@ -1,0 +1,20 @@
+<h2>お届け先住所の確認</h2>
+
+------------------------------------------------------
+<%= form_for @order, url: {action: 'select_payment'} do |f| %>
+ <p><%= @customer.fullname %></p>
+<p>ログインユーザーの電話番号:<%= @customer.phone_number %></p>
+<p>ログインユーザーの郵便番号:<%= @customer.postal_code %></p>
+<p>ログインユーザーの住所:<%= @customer.address %></p>
+
+<%= f.submit %>
+-------------------------------------------------------
+
+<% @customer.registration_addresses.each do |address| %>
+<p>登録配達先氏名:<%= address.name %></P>
+<p>登録先番号:<%=address.phone_number%></p>
+<p><%= address.postal_code %></p>
+<p><%= address.address %></p>
+<%= link_to "この住所に届ける", orders_select_payment_path(postal_code: address.postal_code, destination_name: address.name, destination_address: address.address, destination_phone_number: address.phone_number) %>
+---------------------------------------------------
+<%end%>

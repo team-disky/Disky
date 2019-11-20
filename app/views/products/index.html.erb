@@ -1,4 +1,4 @@
-<%= render 'products/header' %>
+<!--<%= render 'products/header' %>
 
 <% if customer_signed_in? %>
 <%= link_to "マイページへ", customer_path(current_customer) %>
@@ -12,28 +12,36 @@
   <li class="">
     <%= link_to " Home", root_path, class: "glyphicon glyphicon-home" %>
   </li>
-<% end %>
+  <% end %>
+
+<div class="top-banner"></div>-->
 
 
-<div class="top-banner"></div>
 
-<h2>商品一覧ページ</h2>
-<h3>新着商品</h3>
-<div class ="row">
-		<% @products.each do |product| %>
-			<%= link_to product_path(product) do %>
-			<div class="col-md-3 disc-box">
-					<%= attachment_image_tag product, :image, :fill, 200, 200, format:'jpeg', fallback: "no_image.png", size:'300x300', class: "JacketImage" %>
-						<h3><%= product.title %></h3>
-			            <h4><%= product.artist.name %></h4>
-			            <h5><%= product.price %>yen</h5>
-						<p>商品ステータス</p>
-						<%= product.status %>
-						<p>-------------------------------</p>
-			</div>
-			<% end %>
-		<%end%>
-				<div class="kirikae">
-				  <%= paginate @products %>
-			    </div>
+<div class="container-fluid">
+
+
+
+	<h2>商品一覧ページ</h2>
+
+
+		<h3>新着商品</h3>
+			<div class ="row">
+				<% @products.each do |product| %>
+					<%= link_to product_path(product) do %>
+						<div class="col-md-3 disc-box">
+							<%= attachment_image_tag product, :image, :fill, 200, 200, format:'jpeg', fallback: "no_image.png", size:'300x300', class: "img-thumbnail" %>
+								<h3><%= product.title %></h3>
+					            <h4><%= product.artist.name %></h4>
+					            <h5><%= product.price %>yen</h5>
+								<p>商品ステータス</p>
+								<%= product.status %>
+								<p>-------------------------------</p>
+						</div>
+					<% end %>
+				<%end%>
+						<div class="kirikae">
+						  <%= paginate @products %>
+					    </div>
+	</div>
 </div>
