@@ -12,6 +12,7 @@ class Customer < ApplicationRecord
 
   def full_name
   	last_name + first_name
+  end
 
   #論理削除テスト
   def active_for_authentication?
