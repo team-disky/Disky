@@ -2,15 +2,15 @@
 
 <div class="container">
 	<div class="row">
-		<h1 class="dashed-line">入荷履歴</h1>
+		<h1 class="page-title">入荷履歴</h1>
 		<table class="table table-hover table-inverse">
 			<thead>
 				<tr>
-					<th class="col-sm-1">番号</th>
-					<th class="col-sm-2">商品画像</th>
-					<th class="col-sm-4">商品名</th>
-					<th class="col-sm-2">入荷数</th>
-					<th class="col-sm-2">入荷日</th>
+					<th class="table-active">商品番号</th>
+					<th class="table-active">商品画像</th>
+					<th class="table-active">商品名</th>
+					<th class="table-active">入荷数</th>
+					<th class="table-active">入荷日</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -25,5 +25,10 @@
 				<% end %>
 			</tbody>
 		</table>
+	</div>
+	<div class="row">
+		<div class="col"></div>
+		<%= paginate @arrivals %>
+		<div class="col"></div>
 	</div>
 </div>

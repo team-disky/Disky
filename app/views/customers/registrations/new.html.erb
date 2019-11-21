@@ -1,29 +1,69 @@
-<h2>Sign up</h2>
+<div class="container">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <h2 class="text-center">アカウントを作成する</h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: {action: 'confirm'}) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="row">
+      <div class="field col-md-2">
+        <%= f.label :last_name %><br />
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "苗字", placeholder: "姓" %>
+      </div>
+      <div class="field col-md-2">
+        <%= f.label :first_name %><br />
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "名前", placeholder: "名" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :last_name_read %><br />
+      <%= f.text_field :last_name_read, autofocus: true, autocomplete: "last_name_read", placeholder: "セイ" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label :first_name_read %><br />
+      <%= f.text_field :first_name_read, autofocus: true, autocomplete: "first_name_read", placeholder: "メイ" %>
+    </div>
 
-<%= render "customers/shared/links" %>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メール" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :phone_number %><br />
+      <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: "電話番号" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :postal_code %><br />
+      <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "郵便番号" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :address %><br />
+      <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder: "住所" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <% end %><br />
+      <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード" %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "確認用パスワード" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "入力内容を確認", class: "btn btn-success" %>
+    </div>
+  <% end %>
+
+  <%= render "customers/shared/links" %>
+
+</div>

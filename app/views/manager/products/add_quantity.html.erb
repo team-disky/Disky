@@ -1,40 +1,53 @@
 <%= render partial: "layouts/manager_header" %>
 
 <div class="container">
-	<div class="row">
-		<h1 class="dashed-line">在庫追加</h1>
-		<div class="col-sm-6">
-			<%= attachment_image_tag @product, :image, size:'500x500', fallback: "no_image.png", class:"border" %>
-		</div>
-		<div class="col-sm-6 product_main_text">
-			<h2 class="text-center under-line"><%= @product.title %></h2>
-			<h3 class="text-right"><%= @product.artist.name %></h3>
-		</div>
-		<div class="col-sm-3">
-			<h4 class="text-center under-line">フォーマット：<%= @product.format %></h4>
-			<h4 class="text-center under-line">レーベル：<%= @product.record_label.name %></h4>
-			<h4 class="text-center under-line">ジャンル：<%= @product.category.name %></h4>
-			<h4 class="text-center">発売日：<%= @product.sales_date %></h4>
-		</div>
-		<div class="col-sm-3">
-			<h4 class="text-center under-line">税込価格：<%= @product.price %>円</h4>
-			<h4 class="text-center"><%= @product.status %></h4>
-		</div>
+	<div class="row page-title">
+		<h1>在庫追加</h1>
 	</div>
-	<div class="row select-quantity">
-		<div class="col-sm-3"></div>
-		<div class="col-sm-3">
-			<h3>現在の在庫：<%= @product.stock %></h3>
+		<div class="row">
+			<div class="col-sm-6">
+				<%= attachment_image_tag @product, :image, size:'500x500', fallback: "no_image.png", class:"img-thumbnail" %>
+			</div>
+			<div class="col-sm-6">
+				<div class="row under-line product-show">
+					<h2 class="mx-auto"><%= @product.title %></h2>
+				</div>
+				<div class="row artist_name">
+					<div class="col">
+						<div class="float-right">
+							<h3 class="text-right"><%= @product.artist.name %></h3>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6 product-menu">
+						<p class="text-center under-line">フォーマット：<%= @product.format %></p>
+						<p class="text-center under-line">レーベル：<%= @product.record_label.name %></p>
+						<p class="text-center under-line">ジャンル：<%= @product.category.name %></p>
+						<p class="text-center">発売日：<%= @product.sales_date %></p>
+					</div>
+					<div class="col-sm-6 product-menu">
+						<p class="text-center under-line">税込価格：<%= @product.price %>円</p>
+						<p class="text-center"><%= @product.status %></p>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="col-sm-3">
-			<%= form_for(@arrival, url: manager_arrivals_path) do |f| %>
-				<%= f.hidden_field :product_id, :value => @product.id %>
-				<%= f.label "入荷日" %>
-				<%= f.date_select :date %>
-				<%= f.label "入荷個数" %>
-				<%= f.number_field :count, min:1 %>
-				<%= f.submit "入荷を登録する", class:"btn btn-primary" %>
-			<% end %>
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-sm-3 select-quantity">
+				<h3>現在の在庫：<%= @product.stock %></h3>
+			</div>
+			<div class="col-sm-3 select-quantity">
+				<%= form_for(@arrival, url: manager_arrivals_path) do |f| %>
+					<%= f.hidden_field :product_id, :value => @product.id %>
+					<%= f.label "入荷日" %>
+					<%= f.date_select :date %>
+					<%= f.label "入荷個数" %>
+					<%= f.number_field :count, min:1 %>
+					<%= f.submit "入荷を登録する", class:"btn btn-primary" %>
+				<% end %>
+			</div>
+			<div class="col"></div>
 		</div>
-	</div>
 </div>

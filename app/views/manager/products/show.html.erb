@@ -4,39 +4,53 @@
 	<% if flash[:notice] %>
   		<h3><font color="skyblue"><%= flash[:notice] %></font></h3>
 	<% end %>
-	<div class="row">
-		<h1 class="dashed-line">商品情報</h1>
-		<div class="col-sm-6">
-			<%= attachment_image_tag @product, :image, size:'500x500', fallback: "no_image.png", class:"border" %>
-		</div>
-		<div class="col-sm-6 product_main_text">
-			<h2 class="text-center under-line"><%= @product.title %></h2>
-			<h3 class="text-right"><%= @product.artist.name %></h3>
-		</div>
-		<div class="col-sm-3">
-			<h4 class="text-center under-line">フォーマット：<%= @product.format %></h4>
-			<h4 class="text-center under-line">レーベル：<%= @product.record_label.name %></h4>
-			<h4 class="text-center under-line">ジャンル：<%= @product.category.name %></h4>
-			<h4 class="text-center">発売日：<%= @product.sales_date %></h4>
-		</div>
-		<div class="col-sm-3">
-			<h4 class="text-center under-line">税込価格：<%= @product.price %>円</h4>
-			<h4 class="text-center under-line"><%= @product.status %></h4>
-			<h4 class="text-center under-line">在庫：<%= @product.stock %></h4>
-			<%= link_to manager_product_add_quantity_path(@product.id) do %>
-				<button class="btn btn-success center-block">在庫を追加</button>
-			<% end %>
-		</div>
+	<div class="row page-title">
+		<h1>商品情報</h1>
 	</div>
 	<div class="row">
-		<h2 class="dashed-line">収録内容</h2>
-		<% @discs.order(:number).each do |disc| %>
+		<div class="col-sm-6">
+			<%= attachment_image_tag @product, :image, size:'500x500', fallback: "no_image.png", class:"img-thumbnail" %>
+		</div>
+		<div class="col-sm-6">
+			<div class="row under-line product-show">
+				<h2 class="mx-auto"><%= @product.title %></h2>
+			</div>
+			<div class="row artist_name">
+				<div class="col">
+					<div class="float-right">
+						<h3><%= @product.artist.name %></h3>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 product-menu">
+					<p class="text-center under-line">フォーマット：<%= @product.format %></p>
+					<p class="text-center under-line">レーベル：<%= @product.record_label.name %></p>
+					<p class="text-center under-line">ジャンル：<%= @product.category.name %></p>
+					<p class="text-center">発売日：<%= @product.sales_date %></p>
+				</div>
+				<div class="col-sm-6 product-menu">
+					<p class="text-center under-line">税込価格：<%= @product.price %>円</p>
+					<p class="text-center under-line"><%= @product.status %></p>
+					<p class="text-center under-line">在庫：<%= @product.stock %></p>
+					<%= link_to manager_product_add_quantity_path(@product.id) do %>
+						<button class="btn btn-outline-success d-block mx-auto">在庫を追加</button>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row page-title">
+		<h2>収録内容</h2>
+	</div>
+	<% @discs.order(:number).each do |disc| %>
+	<div class="row">
 		<table class="table">
 			<thead>
 				<tr>
-					<th class="col-sm-3">Disc<%= disc.number %></th>
-					<th class="col-sm-6">タイトル</th>
-					<th class="col-sm-4">収録時間</th>
+					<th class="table-active" style="width:30%">Disc<%= disc.number %></th>
+					<th class="table-active" style="width:50%">タイトル</th>
+					<th class="table-active" style="width:20%">収録時間</th>
 				</tr>
 			</thead>
 			<% disc.songs.order(:number).each do |song| %>
@@ -49,14 +63,20 @@
 			</tbody>
 			<% end %>
 		</table>
-		<% end %>
-		<div class="col-sm-4"></div>
+	</div>
+	<% end %>
+	<div class="row">
+		<div class="col"></div>
+		<div class="col-sm-2">
 			<%= link_to manager_products_path do %>
-				<button class="col-sm-1 btn btn-warning center-block">戻る</button>
+				<button class="btn btn-warning btn-lg btn-block">戻る</button>
 			<% end %>
-		<div class="col-sm-1"></div>
+		</div>
+		<div class="col-sm-2">
 			<%= link_to edit_manager_product_path(@product.id) do %>
-				<button class="col-sm-1 btn btn-info center-block">編集</button>
+				<button class="btn btn-primary btn-lg btn-block">編集</button>
 			<% end %>
+		</div>
+		<div class="col"></div>
 	</div>
 </div>

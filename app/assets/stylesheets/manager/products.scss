@@ -8,6 +8,26 @@
 		width: 40px;
 	}
 
+	.page-title {
+		margin-top: 30px;
+		margin-bottom: 20px;
+	}
+
+
+
+	.temp th {
+		width: 30%;
+	}
+
+	.product-show {
+		margin-top: 20px;
+	}
+
+	.product-menu {
+		margin-top: 30px;
+		font-size: 18px;
+	}
+
 	.product_title {
 		width: 300px;
 		height: 40px;
@@ -22,7 +42,12 @@
 		color: red;
 	}
 
-	.product_main_text {
+	.artist_name {
+		margin-top: 10px;
+		margin-bottom: 50px;
+	}
+
+	.product_info {
 		margin-top: 60px;
 		margin-bottom: 100px;
 	}
@@ -54,11 +79,16 @@
 
 	.caution {
 		color: red;
-		display: inline-block;
+		margin-top: 50px;
+		margin-left: 10px;
 	}
 
 	.new {
 		display: inline-block;
 		margin-right: 20px;
+	}
+
+	.select-quantity {
+		margin-top: 50px;
 	}
 }

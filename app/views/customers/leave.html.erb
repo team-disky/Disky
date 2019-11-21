@@ -1,0 +1,17 @@
+<div class="container">
+	<div class="row">
+		<%= form_for @customer do |f| %>
+			<div class="row">
+				<p>Mail</p>
+				<%= f.email_field :email, value:"",autofocus: true, autocomplete: "email" %>
+			</div>
+
+			<div class="row">
+			    <p>Pass Word</p>
+			    <%= f.password_field :password, autocomplete: "current-password" %>
+			</div>
+
+			<%= f.submit "退会する", name: 'leave', data: {confirm: "本当に退会しますか？"}, class: "btn btn-success" %>
+		<% end %>
+	</div>
+</div>

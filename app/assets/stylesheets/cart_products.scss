@@ -1,0 +1,29 @@
+// Place all the styles related to the cart_products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.cart_products {
+
+	.cart_item{
+		border:1px solid grey;
+		padding:30px 0;
+	}
+
+	.nakami{
+		height:145px;
+	}
+
+	th{
+		text-align:center !important;
+	}
+
+	td{
+		text-align:center;
+		vertical-align:middle !important;
+	}
+
+	.delete{
+		color:red;
+	}
+
+}

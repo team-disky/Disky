@@ -1,0 +1,50 @@
+<div class ="container">
+		<section class="row">
+			<div class="col-md-9">
+				<h2>カート内容</h2>
+				<table class="table table-hover">
+					<thead class="thead-dark">
+						<th>Disc</th>
+						<th>Name</th>
+						<th>Artist</th>
+						<th>Price</th>
+						<th>Quantity</th>
+						<th>Remove</th>
+					</thead>
+	                <tbody>
+                    <% total = 0 %>
+	                	<% @cart_products.each do |cart_product| %>
+    	                	<tr class="nakami">
+      	                	<td><%= attachment_image_tag cart_product.product, :image, :fill, 120, 120, format:'jpeg', fallback: "no_image.png", size:'120x120', class: 'JacketImage' %></td>
+      	                	<td><p><%= cart_product.product.title %></p></td>
+      	                	<td><%= cart_product.product.artist.name %></td>
+                          <td><%= cart_product.product.price %></td>
+      	                	<td>
+                            <%= form_for cart_product, url: cart_product_path(cart_product.id), method: :patch do |f| %>
+                                  <%= f.number_field :count %>
+                                  <%= f.submit "数量の変更を確定" %>
+                            <% end %>
+                          </td>
+                          <td>
+                            <%= link_to cart_product_path(cart_product.id), method: :delete do %>
+                            <p><i class="fas fa-minus-circle fa-3x delete"></i></p>
+                            <% end %>
+                           </td>
+	                      </tr>
+
+                        <%
+                        item_amount = cart_product.product.price * cart_product.count
+                        total += item_amount
+
+                        %>
+	                  <% end %>
+	                </tbody>
+                </table>
+</div>
+                <div class ="col-md-2">
+                  <h2>商品小計</h2>
+                  <%= total %>
+                </div>
+              </div>
+      </section>
+</div>

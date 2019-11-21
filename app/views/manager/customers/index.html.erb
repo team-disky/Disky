@@ -4,14 +4,14 @@
 			<br>
 			<div class="row">
 			 <div class="col-md-11">
-
 			<h3>会員情報</h3>
 
-			<%= search_form_for @q,  html: { class: "search_form" }, url: manager_customers_path do |f| %>
+            <%= search_form_for @q,  html: { class: "search_form" }, url: manager_customers_path do |f| %>
               <%= f.label :last_name_cont, '会員を検索' %>
               <%= f.search_field :last_name_cont %>
               <%= f.submit %>
             <% end %>
+
              </div>
             </div>
 
@@ -28,10 +28,10 @@
 					</tr>
 				</thead>
 				<tbody>
-						<% @customers.each do |customer| %>
+						<%  @customers.each do |customer| %>
 						<tr>
 							<td><%= customer.id %></td>
-							<td><%= link_to customer.full_name, manager_customer_path(customer.id), style: "color:#0000ff;text-decoration:none" %></td>
+							<td><%= link_to customer.full_name, manager_customer_path(customer.id), style: "color:black;text-decoration:none" %></td>
 								<td><%= customer.email %></td>
 								<td><%= customer.last_sign_in_at %></td>
 								<td></td>
