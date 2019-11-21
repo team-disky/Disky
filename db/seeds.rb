@@ -32,7 +32,7 @@ end
     phone_number: Faker::PhoneNumber.cell_phone,
     postal_code: Faker::Address.postcode,
     address: gimei.address.kanji + '3-20-14',
-    customer_id: 1
+    customer_id: 21
   )
 end
 

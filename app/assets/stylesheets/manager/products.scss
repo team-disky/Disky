@@ -5,13 +5,27 @@
 .products{
 
 	input[type="number"] {
-		width: 30px;
+		width: 40px;
+	}
+
+	.page-title {
+		margin-top: 30px;
+		margin-bottom: 20px;
 	}
 
 
 
 	.temp th {
-		width: 33%;
+		width: 30%;
+	}
+
+	.product-show {
+		margin-top: 20px;
+	}
+
+	.product-menu {
+		margin-top: 30px;
+		font-size: 18px;
 	}
 
 	.product_title {
@@ -28,7 +42,12 @@
 		color: red;
 	}
 
-	.product_main_text {
+	.artist_name {
+		margin-top: 10px;
+		margin-bottom: 50px;
+	}
+
+	.product_info {
 		margin-top: 60px;
 		margin-bottom: 100px;
 	}
@@ -56,5 +75,20 @@
 
 	.border {
 		border: solid 1px silver;
+	}
+
+	.caution {
+		color: red;
+		margin-top: 50px;
+		margin-left: 10px;
+	}
+
+	.new {
+		display: inline-block;
+		margin-right: 20px;
+	}
+
+	.select-quantity {
+		margin-top: 50px;
 	}
 }

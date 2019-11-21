@@ -1,3 +1,18 @@
 // Place all the styles related to the manager/arrivals controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.arrivals {
+
+	.dashed-line {
+		padding: 10px;
+		border-bottom: dashed 2px silver;
+		margin-bottom: 30px;
+	}
+
+	.page-title {
+		margin-top: 30px;
+		margin-bottom: 20px;
+	}
+}

@@ -11,11 +11,11 @@
 						<th>Quantity</th>
 						<th>Remove</th>
 					</thead>
-	                <tbody>
-                    <% total = 0 %>
-	                	<% @cart_products.each do |cart_product| %>
+	          <tbody>
+              <% subtotal = 0 %>
+	             <% @cart_products.each do |cart_product| %>
     	                	<tr class="nakami">
-      	                	<td><%= attachment_image_tag cart_product.product, :image, :fill, 120, 120, format:'jpeg', fallback: "no_image.png", size:'120x120', class: 'JacketImage' %></td>
+      	                	<td><%= attachment_image_tag cart_product.product, :image, :fill, 120, 120, format:'jpeg', fallback: "no_image.png", size:'120x120', class: 'img-thumbnail' %></td>
       	                	<td><p><%= cart_product.product.title %></p></td>
       	                	<td><%= cart_product.product.artist.name %></td>
                           <td><%= cart_product.product.price %></td>
@@ -31,20 +31,16 @@
                             <% end %>
                            </td>
 	                      </tr>
-
-                        <%
-                        item_amount = cart_product.product.price * cart_product.count
-                        total += item_amount
-
-                        %>
-	                  <% end %>
-	                </tbody>
-                </table>
-</div>
-                <div class ="col-md-2">
-                  <h2>商品小計</h2>
-                  <%= total %>
-                </div>
-              </div>
-      </section>
+                        <% total = cart_product.product.price * cart_product.count
+                           subtotal += total %>
+	             <% end %>
+	          </tbody>
+        </table>
+    </div>
+    <div class ="col-md-2">
+      <h2>商品小計</h2>
+      <%= subtotal %>
+      <%= link_to "レジに進む", select_address_path %>
+    </div>
+  </section>
 </div>

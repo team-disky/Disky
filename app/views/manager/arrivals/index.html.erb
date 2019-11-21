@@ -2,15 +2,15 @@
 
 <div class="container">
 	<div class="row">
-		<h1>入荷履歴</h1>
+		<h1 class="page-title">入荷履歴</h1>
 		<table class="table table-hover table-inverse">
 			<thead>
 				<tr>
-					<th>番号</th>
-					<th>商品画像</th>
-					<th>商品名</th>
-					<th>入荷数</th>
-					<th>入荷日</th>
+					<th class="table-active">商品番号</th>
+					<th class="table-active">商品画像</th>
+					<th class="table-active">商品名</th>
+					<th class="table-active">入荷数</th>
+					<th class="table-active">入荷日</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -20,11 +20,15 @@
 					<td><%= link_to attachment_image_tag(arrival.product, :image, size:'40x40', fallback: "no_image.png"), manager_product_path(arrival.product.id) %></td>
 					<td><%= link_to arrival.product.title, manager_product_path(arrival.product.id) %></td>
 					<td><%= arrival.count %></td>
-					<td><%= arrival.date %></td>
+					<td><%= arrival.date.strftime("%Y年%m月%d日") %></td>
 				</tr>
 				<% end %>
-				<%= paginate @products, class:"paginate" %>
 			</tbody>
 		</table>
+	</div>
+	<div class="row">
+		<div class="col"></div>
+		<%= paginate @arrivals %>
+		<div class="col"></div>
 	</div>
 </div>

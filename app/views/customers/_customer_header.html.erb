@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Disky</a>
+    </div>
+    <ul class="navbar-nav mr-auto">
+      <% if customer_signed_in? %>
+        <li class="nav-link">
+          <div class= "d-flex align-items-center"><%= link_to ' Home',root_path, class: "align-middle" %></div>
+        </li>
+        <li class="nav-link">
+          <%= link_to customer_path(current_customer) do %>
+            <%= current_customer.last_name %>さん<br>マイページへ
+          <% end %>
+        </li>
+        <li class="nav-link ">
+          カートを見る
+        </li>
+        <li class="nav-link">
+        <%= link_to ' logout', destroy_customer_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %>
+      　</li>
+      <% else %>
+        <li class="nav-link">
+          <%= link_to " Home", root_path, class: "glyphicon glyphicon-home" %>
+        </li>
+        <li class="nav-link">
+          <%= link_to " Sign up",new_customer_registration_path, :class => "glyphicon glyphicon-edit" %>
+        </li>
+        <li class="nav-link">
+          <%= link_to " Log in",new_customer_session_path, :class => "glyphicon glyphicon-log-in" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>

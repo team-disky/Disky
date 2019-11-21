@@ -1,52 +1,53 @@
 <%= render partial: "layouts/manager_header" %>
 
 <div class="container">
-	<div class="field row">
-		<h1>商品編集</h1><strong>&#x203B;は必須項目です</strong>
+	<div class="row">
+		<h1 class="page-title">商品編集</h1><strong class="caution">&#x203B;は必須項目です</strong>
+	</div>
 			<%= form_for(@product, url: manager_product_path) do |f| %>
 				<% if @product.errors.any? %>
    				<% @product.errors.full_messages.each do |message| %>
         			<li><%= message %></li>
       			<% end %>
      			<% end %>
-
-     		<table class="table">
+     		<div class="row">
+     		<table class="table temp">
      			<tbody>
 				<tr>
-					<th class="col-sm-3"><%= f.label "商品名" %><strong>&#x203B;</strong></th>
-					<td class="col-sm-10" colspan="2"><%= f.text_field :title, class:"product_title" %><td>
+					<th scope="col"><%= f.label "商品名" %><strong>&#x203B;</strong></th>
+					<td><%= f.text_field :title, class:"product_title" %></td>
 				</tr>
 				<tr>
-					<th><%= f.label "商品画像" %></th>
-					<td colspan="2"><%= f.attachment_field :image %></td>
+					<th scope="row"><%= f.label "商品画像" %></th>
+					<td><%= f.attachment_field :image %></td>
 				</tr>
 				<tr>
-					<th><%= f.label "アーティスト名" %><strong>&#x203B;</strong></th>
-					<td colspan="2"><%= f.collection_select :artist_id, Artist.all, :id, :name %></td>
+					<th scope="row"><%= f.label "アーティスト名" %><strong>&#x203B;</strong></th>
+					<td><%= f.collection_select :artist_id, Artist.all, :id, :name %></td>
 				</tr>
 				<tr>
-					<th><%= f.label "レーベル名" %><strong>&#x203B;</strong></th>
-					<td colspan="2"><%= f.collection_select :record_label_id, RecordLabel.all, :id, :name %></td>
+					<th scope="row"><%= f.label "レーベル名" %><strong>&#x203B;</strong></th>
+					<td><%= f.collection_select :record_label_id, RecordLabel.all, :id, :name %></td>
 				</tr>
 				<tr>
-					<th><%= f.label "ジャンル" %><strong>&#x203B;</strong></th>
-					<td colspan="2"><%= f.collection_select :category_id, Category.all, :id, :name %></td>
+					<th scope="row"><%= f.label "ジャンル" %><strong>&#x203B;</strong></th>
+					<td><%= f.collection_select :category_id, Category.all, :id, :name %></td>
 				</tr>
 				<tr>
-					<th><%= f.label "フォーマット" %><strong>&#x203B;</strong></th>
-					<td colspan="2"><%= f.select :format, [["シングル","シングル"],["アルバム","アルバム"],["マキシシングル","マキシシングル"],["複数アルバム","複数アルバム"],["ミニアルバム","ミニアルバム"]] %></td>
+					<th scope="row"><%= f.label "フォーマット" %><strong>&#x203B;</strong></th>
+					<td><%= f.select :format, [["シングル","シングル"],["アルバム","アルバム"],["マキシシングル","マキシシングル"],["複数アルバム","複数アルバム"],["ミニアルバム","ミニアルバム"]] %></td>
 				</tr>
 				<tr>
-					<th><%= f.label "発売日" %><strong>&#x203B;</strong></th>
-					<td colspan="2"><%= f.date_select :sales_date %></td>
+					<th scope="row"><%= f.label "発売日" %><strong>&#x203B;</strong></th>
+					<td><%= f.date_select :sales_date %></td>
 				</tr>
 				<tr>
-					<th>収録内容<strong>&#x203B;</strong></th>
-					<td><%= f.add_nested_fields_link :discs, 'ディスクを追加' %>
+					<th scope="row">収録内容<strong>&#x203B;</strong></th>
+					<td><%= f.add_nested_fields_link :discs, 'ディスクを追加', class:"btn btn-outline-success" %>
 							<%= f.nested_fields_for :discs do |q| %>
 							<%= q.label "ディスク番号" %><strong>&#x203B;</strong>
 							<%= q.number_field :number, min:1 %>
-							<%= q.remove_nested_fields_link 'ディスクを削除' %>
+							<%= q.remove_nested_fields_link 'ディスクを削除', class:"btn btn-outline-danger" %>
 								<%= q.nested_fields_for :songs do |s| %>
 									<%= s.label "曲順" %><strong>&#x203B;</strong>
 									<%= s.number_field :number, min:1 %>
@@ -55,35 +56,41 @@
 									<%= s.label "収録時間" %><strong>&#x203B;</strong>
 									<%= s.text_field :recording_time_minutes, class:"recording_time" %>分
 									<%= s.text_field :recording_time_seconds, class:"recording_time" %>秒
-								<%= s.remove_nested_fields_link '曲を削除' %>
+								<%= s.remove_nested_fields_link '曲を削除', class:"btn btn-outline-danger" %>
 								<% end %>
-								<%= q.add_nested_fields_link :songs, '曲を追加' %>
+								<%= q.add_nested_fields_link :songs, '曲を追加', class:"btn btn-outline-info" %>
 						<% end %>
 					</td>
 				</tr>
 				<tr>
-					<th><%= f.label "価格(税抜)" %><strong>&#x203B;</strong></th>
-					<td colspan="2"><%= f.text_field :price %>円</td>
+					<th scope="row"><%= f.label "価格(税抜)" %><strong>&#x203B;</strong></th>
+					<td><%= f.text_field :price, class:"product_price" %>円</td>
 				</tr>
 				<tr>
-					<th><%= f.label "商品ステータス" %><strong>&#x203B;</strong></th>
-					<td colspan="2"><%= f.select :status, [["販売中","販売中"],["販売停止中","販売停止中"]] %></td>
+					<th scope="row"><%= f.label "商品ステータス" %><strong>&#x203B;</strong></th>
+					<td><%= f.select :status, [["販売中","販売中"],["販売停止中","販売停止中"]] %></td>
 				</tr>
 				</tbody>
 			</table>
-			<div class="row">
-				<div class="col-sm-4"></div>
-				<%= link_to manager_product_path(@product.id) do %>
-					<btton class="col-sm-2 btn btn-warning">キャンセル</btton>
-				<% end %>
-				<div class="col-sm-1"></div>
-				<%= f.submit "編集内容を保存", class:"col-sm-2 btn btn-primary" %>
 			</div>
-			<% end %>
+			<div class="row">
+				<div class="col"></div>
+				<div calss="col-cm-2">
+					<%= link_to manager_product_path(@product.id) do %>
+						<btton class="btn btn-warning btn-block">キャンセル</btton>
+					<% end %>
+				</div>
+				<div class="col-sm-2">
+					<%= f.submit "編集内容を保存", class:"btn btn-primary btn-block" %>
+				</div>
+				<div class="col"></div>
+			</div>
+		<% end %>
 		<div class="row">
 			<div class="col-sm-8"></div>
-			<button class="btn btn-danger center-block">商品を削除</button>
+			<div class="col">
+				<button class="btn btn-danger">商品を削除</button>
+			</div>
 		</div>
-
 	</div>
 </div>

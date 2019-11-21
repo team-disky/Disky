@@ -9,9 +9,7 @@ class Customer < ApplicationRecord
   has_many :registration_addresses
   has_many :cart_products
 
-
-  accepts_nested_attributes_for :registration_addresses
-
+  accepts_nested_attributes_for :registration_addresses, allow_destroy: true
 
   def full_name
   	last_name + first_name
@@ -21,6 +19,10 @@ class Customer < ApplicationRecord
   def active_for_authentication?
 	 super && self.active?
 
+  end
+
+  def fullname
+    last_name + first_name
   end
 
 end

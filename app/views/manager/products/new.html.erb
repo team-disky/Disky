@@ -2,7 +2,7 @@
 
 <div class="container">
 	<div class="row">
-		<h1>商品登録</h1><strong> &#x203B;は必須項目です</strong>
+		<h1 class="page-title">商品登録</h1><strong class="caution"> &#x203B;は必須項目です</strong>
 	</div>
 			<%= form_for(@product, url: manager_products_path) do |f| %>
 				<% if @product.errors.any? %>
@@ -43,11 +43,11 @@
 				</tr>
 				<tr>
 					<th scope="row">収録内容<strong>&#x203B;</strong></th>
-					<td><%= f.add_nested_fields_link :discs, 'ディスクを追加' %>
+					<td><%= f.add_nested_fields_link :discs, 'ディスクを追加', class:"btn btn-outline-success" %>
 							<%= f.nested_fields_for :discs do |q| %>
 							<%= q.label "ディスク番号" %><strong>&#x203B;</strong>
 							<%= q.number_field :number, min:1 %>
-							<%= q.remove_nested_fields_link 'ディスクを削除' %>
+							<%= q.remove_nested_fields_link 'ディスクを削除', class:"btn btn-outline-danger" %>
 								<%= q.nested_fields_for :songs do |s| %>
 									<%= s.label "曲順" %><strong>&#x203B;</strong>
 									<%= s.number_field :number, min:1 %>
@@ -56,9 +56,9 @@
 									<%= s.label "収録時間" %><strong>&#x203B;</strong>
 									<%= s.text_field :recording_time_minutes, class:"recording_time" %>分
 									<%= s.text_field :recording_time_seconds, class:"recording_time" %>秒
-								<%= s.remove_nested_fields_link '曲を削除' %>
+								<%= s.remove_nested_fields_link '曲を削除', class:"btn btn-outline-danger" %>
 								<% end %>
-								<%= q.add_nested_fields_link :songs, '曲を追加' %>
+								<%= q.add_nested_fields_link :songs, '曲を追加', class:"btn btn-outline-info" %>
 						<% end %>
 					</td>
 				</tr>
@@ -73,12 +73,17 @@
 				</tbody>
 			</table>
 			</div>
-			<div class="action-row">
-				<%= link_to manager_products_path do %>
-					<button class="col-sm-2 btn btn-warning">キャンセル</button>
-				<% end %>
-				<div class="col-sm-1"></div>
-					<%= f.submit "登録", class:"col-sm-2 btn btn-primary" %>
+			<div class="row">
+				<div class="col"></div>
+				<div class="col-sm-2">
+					<%= link_to manager_products_path do %>
+						<button class="btn btn-warning btn-block">キャンセル</button>
+					<% end %>
+				</div>
+				<div class="col-sm-2">
+					<%= f.submit "登録", class:"btn btn-primary btn-block" %>
+				</div>
+				<div class="col"></div>
 			</div>
 		<% end %>
 </div>
