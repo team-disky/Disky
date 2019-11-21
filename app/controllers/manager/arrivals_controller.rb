@@ -11,7 +11,7 @@ class Manager::ArrivalsController < ApplicationController
 
 
 	def index
-		@arrivals = Arrival.all
+		@arrivals = Arrival.page(params[:page]).per(10)
 	end
 
 
