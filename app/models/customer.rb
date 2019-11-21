@@ -16,4 +16,8 @@ class Customer < ApplicationRecord
 	 super && self.active?
   end
 
+  def fullname
+    last_name + first_name
+  end
+
 end
