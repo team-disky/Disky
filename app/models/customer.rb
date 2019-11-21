@@ -9,6 +9,8 @@ class Customer < ApplicationRecord
   has_many :registration_addresses
   has_many :cart_products
 
+  accepts_nested_attributes_for :registration_addresses, allow_destroy: true
+
   #論理削除テスト
   def active_for_authentication?
 	 super && self.active?
