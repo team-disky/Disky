@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
 #仮ユーザー
 20.times do
   gimei = Gimei.new
@@ -93,6 +94,17 @@ end
 		disc_id:  Faker::Number.between(from: 1, to: 40),
 		title: Faker::Book.title,
 		number: Faker::Number.between(from: 1, to: 4),
-		recording_time: Faker::Number.between(from: 300, to: 500)
+		recording_time_minutes: Faker::Number.between(from: 1, to: 5),
+    recording_time_seconds: Faker::Number.between(from: 1, to: 60)
 		)
 end
+
+15.times do
+  PurchasedProduct.create!(
+    order_id: Faker::Number.between(from: 1, to: 10),
+    product_id: Faker::Number.between(from: 1, to: 10),
+    price: Faker::Number.between(from: 1000, to: 5000),
+    count: Faker::Number.between(from: 1, to: 3)
+    )
+end
+

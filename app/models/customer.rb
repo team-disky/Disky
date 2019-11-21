@@ -11,9 +11,14 @@ class Customer < ApplicationRecord
 
   accepts_nested_attributes_for :registration_addresses, allow_destroy: true
 
+  def full_name
+  	last_name + first_name
+  end
+
   #論理削除テスト
   def active_for_authentication?
 	 super && self.active?
+
   end
 
   def fullname

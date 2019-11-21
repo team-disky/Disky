@@ -1,0 +1,34 @@
+<%= render partial: "layouts/manager_header" %>
+
+<div class="container">
+	<div class="row">
+		<h1 class="page-title">入荷履歴</h1>
+		<table class="table table-hover table-inverse">
+			<thead>
+				<tr>
+					<th class="table-active">商品番号</th>
+					<th class="table-active">商品画像</th>
+					<th class="table-active">商品名</th>
+					<th class="table-active">入荷数</th>
+					<th class="table-active">入荷日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @arrivals.each do |arrival| %>
+				<tr>
+					<td><%= arrival.product_id %></td>
+					<td><%= link_to attachment_image_tag(arrival.product, :image, size:'40x40', fallback: "no_image.png"), manager_product_path(arrival.product.id) %></td>
+					<td><%= link_to arrival.product.title, manager_product_path(arrival.product.id) %></td>
+					<td><%= arrival.count %></td>
+					<td><%= arrival.date %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="row">
+		<div class="col"></div>
+		<%= paginate @arrivals %>
+		<div class="col"></div>
+	</div>
+</div>

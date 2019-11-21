@@ -21,6 +21,28 @@ Rails.application.routes.draw do
   get 'customers/:id/edit_password' => 'customers#edit_password', as: 'customer_edit_password'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  namespace :manager do
+  resources :orders, :customers, :artists, :categories, :record_labels
+end
+
+
+namespace :manager do
+  	resources :products do
+  		resources :discs, only: [:create, :destroy] do
+  			resources :songs, only: [:create, :destroy]
+  		end
+  	end
+  end
+
+namespace :manager do
+	get 'products/:id/add_quantity' => 'products#add_quantity', as: 'product_add_quantity'
+end
+
+namespace :manager do
+	resources :arrivals, only: [:create, :index]
+end
+
   root to: 'products#index'
   resources :products, :only => :show
 

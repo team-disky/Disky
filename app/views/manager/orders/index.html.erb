@@ -1,0 +1,43 @@
+<%= render partial: "layouts/manager_header" %>
+
+<div class="container">
+			<br>
+			<div class="row">
+			 <div class="col-md-11">
+
+			<h3>受注管理</h3>
+
+			<%#= search_form_for @q,  html: { class: "search_form" }, url: manager_customers_path do |f| %>
+              <%#= f.label :last_name_cont, '会員を検索' %>
+              <%#= f.search_field :last_name_cont %>
+              <%#= f.submit %>
+            <%# end %>
+             </div>
+            </div>
+
+            <div class="row">
+            	<div class="col-md-11">
+			<table class="table table-hover table-inverse">
+				<thead>
+					<tr>
+						<th>ステータス</th>
+						<th>注文番号</th>
+						<th>注文者</th>
+						<th>注文日時</th>
+					</tr>
+				</thead>
+				<tbody>
+						<% @orders.each do |order| %>
+						<tr>
+							<td><%= order.status %></td>
+							<td><%= link_to order.id, manager_order_path(order.id), style: "color:black;text-decoration:none" %></td>
+								<td><%= order.contractee_name %></td>
+								<td><%= order.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
+						</tr>
+						<% end %>
+				</tbody>
+			</table>
+			    <%= paginate @orders, :class=>"pagination" %>
+		    </div>
+		</div>
+</div>
