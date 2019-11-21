@@ -13,8 +13,14 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+
 //= require_tree .
-//= require jquery
+
+//= require jquery3
+//= require popper
+
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require nested_form_fields
+
+number_with_delimiter(12345678)

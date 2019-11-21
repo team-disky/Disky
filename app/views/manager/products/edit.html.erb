@@ -34,7 +34,7 @@
 				</tr>
 				<tr>
 					<th><%= f.label "フォーマット" %><strong>&#x203B;</strong></th>
-					<td colspan="2"><%= f.select :format, [["シングル","0"],["アルバム","1"],["マキシシングル","2"],["複数アルバム","3"],["ミニアルバム","4"]] %></td>
+					<td colspan="2"><%= f.select :format, [["シングル","シングル"],["アルバム","アルバム"],["マキシシングル","マキシシングル"],["複数アルバム","複数アルバム"],["ミニアルバム","ミニアルバム"]] %></td>
 				</tr>
 				<tr>
 					<th><%= f.label "発売日" %><strong>&#x203B;</strong></th>
@@ -45,11 +45,11 @@
 					<td><%= f.add_nested_fields_link :discs, 'ディスクを追加' %>
 							<%= f.nested_fields_for :discs do |q| %>
 							<%= q.label "ディスク番号" %><strong>&#x203B;</strong>
-							<%= q.number_field :number %>
+							<%= q.number_field :number, min:1 %>
 							<%= q.remove_nested_fields_link 'ディスクを削除' %>
 								<%= q.nested_fields_for :songs do |s| %>
 									<%= s.label "曲順" %><strong>&#x203B;</strong>
-									<%= s.number_field :number %>
+									<%= s.number_field :number, min:1 %>
 									<%= s.label "曲名" %><strong>&#x203B;</strong>
 									<%= s.text_field :title %><br>
 									<%= s.label "収録時間" %><strong>&#x203B;</strong>
@@ -67,7 +67,7 @@
 				</tr>
 				<tr>
 					<th><%= f.label "商品ステータス" %><strong>&#x203B;</strong></th>
-					<td colspan="2"><%= f.select :status, [["販売中","0"],["販売停止中","1"]] %></td>
+					<td colspan="2"><%= f.select :status, [["販売中","販売中"],["販売停止中","販売停止中"]] %></td>
 				</tr>
 				</tbody>
 			</table>
