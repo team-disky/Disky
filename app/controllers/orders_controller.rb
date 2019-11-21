@@ -1,4 +1,8 @@
 class OrdersController < ApplicationController
+	def login_required
+    redirect_to new_user_session_path unless current_user
+    end
+
 	def show
 		#購入履歴詳細を表示する
 	end
@@ -29,12 +33,27 @@ class OrdersController < ApplicationController
 	end
 
 	def create
+		#オーダー情報を保存、カート情報をpurchased_productsに保存
 		#入力されたものを持ってきていれる
 		@order = Order.new(order_params)
 		#保存が成功した場合、注文完了画面へ遷移させる
 		if @order.save
-		  redirect_to root_path
+			current_customer.cart_products.each do |cart_product|
+				purchased_product = PurchasedProduct.new
+				purchased_product.order_id = @order.id
+				purchased_product.product_id = cart_product.product_id
+				purchased_product.count = cart_product.count
+				purchased_product.price = cart_product.product.price
+				purchased_product.save
+				cart_product.destroy
+		    end
+		  redirect_to complete_path(@order)
 		end
+	end
+
+	def complete
+		#注文完了画面を表示させる
+		@order = Order.find(params[:id])
 	end
 
 	private

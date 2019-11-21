@@ -21,16 +21,14 @@ Rails.application.routes.draw do
 
   resources :cart_products
 
-  resource :orders
+  get 'orders/select_address' => 'orders#select_address', as: "select_address"
 
-  get 'orders/select_address' => 'orders#select_address'
+  post 'orders/select_payment' => 'orders#select_payment', as: "select_payment"
 
-  post 'orders/select_payment' => 'orders#select_payment'
+  post 'orders/confirm' => 'orders#confirm', as: "confirm"
 
-  post 'orders/confirm' => 'orders#confirm'
+  get 'orders/:id/complete' => 'orders#complete', as: "complete"
 
-  get 'orders/:id/complete' => 'orders#complete'
-
-  post 'orders/select_payment' => 'orders#select_payment'
+  resources :orders
 
 end

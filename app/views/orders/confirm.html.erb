@@ -40,11 +40,6 @@
 	          <tbody>
               <% subtotal = 0 %>
 	             <% @cart_products.each do |cart_product| %>
-	               <%= f.fields_for :purchased_products do |i| %>
-                     <%= i.hidden_field :product_id, :value => cart_product.product_id %>
-                     <%= i.hidden_field :price, :value => cart_product.product.price %>
-                     <%= i.hidden_field :count, :value => cart_product.count %>
-                   <% end %>
     	                  <tr class="nakami">
       	                	<td><%= attachment_image_tag cart_product.product, :image, :fill, 120, 120, format:'jpeg', fallback: "no_image.png", size:'120x120', class: 'img-thumbnail' %></td>
       	                	<td><p><%= cart_product.product.title %></p></td>
