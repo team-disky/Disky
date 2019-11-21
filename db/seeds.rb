@@ -99,3 +99,12 @@ end
 		)
 end
 
+15.times do
+  PurchasedProduct.create!(
+    order_id: Faker::Number.between(from: 1, to: 10),
+    product_id: Faker::Number.between(from: 1, to: 10),
+    price: Faker::Number.between(from: 1000, to: 5000),
+    count: Faker::Number.between(from: 1, to: 3)
+    )
+end
+

@@ -32,7 +32,7 @@
 							<td><%= order.status %></td>
 							<td><%= link_to order.id, manager_order_path(order.id), style: "color:black;text-decoration:none" %></td>
 								<td><%= order.contractee_name %></td>
-								<td><%= order.created_at %></td>
+								<td><%= order.created_at.strftime('%Y年%m月%d日 %H:%M') %></td>
 						</tr>
 						<% end %>
 				</tbody>

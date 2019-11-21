@@ -14,6 +14,8 @@ class Manager::CustomersController < ApplicationController
 
 	def edit
 		@customer = Customer.find(params[:id])
+		#@customer.build_registration_address
+		@registration_addresses = @customer.registration_addresses
 	end
 
 	def update
