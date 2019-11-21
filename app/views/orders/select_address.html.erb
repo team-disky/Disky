@@ -1,0 +1,33 @@
+<h2>お届け先住所の確認</h2>
+
+------------------------------------------------------
+<p><%= @customer.fullname %></p>
+<p>ログインユーザーの電話番号:<%= @customer.phone_number %></p>
+<p>ログインユーザーの郵便番号:<%= @customer.postal_code %></p>
+<p>ログインユーザーの住所:<%= @customer.address %></p>
+
+<%= form_for @order, url: {action: 'select_payment'} do |f| %>
+<%= f.hidden_field :destination_name, :value => @customer.fullname %>
+<%= f.hidden_field :destination_phone_number, :value=> @customer.phone_number %>
+<%= f.hidden_field :postal_code, :value => @customer.postal_code %>
+<%= f.hidden_field :destination_address, :value => @customer.address %>
+<%= f.submit 'この住所に届ける' %>
+<%end%>
+-------------------------------------------------------
+
+<% @customer.registration_addresses.each do |address| %>
+<p>登録配達先氏名:<%= address.name %></P>
+<p>登録先番号:<%=address.phone_number%></p>
+<p>登録先郵便番号<%= address.postal_code %></p>
+<p>登録先住所<%= address.address %></p>
+
+
+<%= form_for @order, url: {action: 'select_payment'} do |f| %>
+<%= f.hidden_field :destination_name, :value => address.name %>
+<%= f.hidden_field :destination_phone_number, :value=> address.phone_number %>
+<%= f.hidden_field :postal_code, :value => address.postal_code %>
+<%= f.hidden_field :destination_address, :value => address.address %>
+<%= f.submit 'この住所に届ける' %>
+<%end%>
+---------------------------------------------------
+<%end%>

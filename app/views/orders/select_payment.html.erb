@@ -1,4 +1,16 @@
 <h2>お支払方法の選択</h2>
 
-<%= check_box_tag :test1 %>
-<%= label_tag :test1, "朝は苦手だ" %>
+<%= form_for @order, url: {action: 'confirm'} do |f| %>
+  <%= f.radio_button :payment_method, "クレジットカード" %>
+  <%= f.label :payment_method, "クレジットカード", {value: "クレジットカード"} %>
+  <%= f.radio_button :payment_method, "銀行振込" %>
+  <%= f.label :payment_method, "銀行振込", {value: "銀行振込"} %>
+  <%= f.radio_button :payment_method, "代引き" %>
+  <%= f.label :payment_method, "代引き", {value: "代引き"} %>
+  <%= f.submit "確認画面へ進む" %>
+
+	<%= f.hidden_field :destination_name %>
+	<%= f.hidden_field :destination_phone_number %>
+	<%= f.hidden_field :postal_code %>
+    <%= f.hidden_field :destination_address %>
+<% end %>
