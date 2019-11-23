@@ -25,4 +25,7 @@ class Customer < ApplicationRecord
     last_name + first_name
   end
 
+  default_scope -> { order(created_at: :desc) }
+
+
 end
