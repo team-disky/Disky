@@ -1,11 +1,19 @@
 # frozen_string_literal: true
 
-class Customers::SessionsController < Devise::SessionsController
+class Managers::SessionsController < Devise::SessionsController
+
+  def after_sign_in_path_for(resource)
+    manager_products_path
+  end
+
+  def after_sign_out_path_for(resource)
+    new_manager_session_path
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
   def new
-    super
+     super
   end
 
   # POST /resource/sign_in
@@ -14,10 +22,10 @@ class Customers::SessionsController < Devise::SessionsController
   end
 
   # DELETE /resource/sign_out
-  def destroy
+   def destroy
     super
-  end
-
+    flash[:destroy] = "お疲れ様でした！"
+   end
 
   # protected
 
