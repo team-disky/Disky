@@ -56,6 +56,6 @@ end
 
   get 'orders/:id/complete' => 'orders#complete', as: "complete"
 
-  resources :orders
+  resources :orders, only: [:show, :create]
 
 end

@@ -27,7 +27,7 @@ class CustomersController < ApplicationController
 	  @customer = current_customer
 	  if params[:leave]
 	  	if @customer.email == quit_params[:email] && @customer.valid_password?(quit_params[:password])
-	  		@customer.update(active:false)
+	  		@customer.update(active: false)
 	  		redirect_to root_path
 	  	else
 	  		render :leave
