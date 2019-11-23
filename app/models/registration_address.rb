@@ -4,4 +4,5 @@ class RegistrationAddress < ApplicationRecord
 	def fullname
 		last_name + full_name
 	end
+
 end

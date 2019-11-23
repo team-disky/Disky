@@ -24,6 +24,7 @@ class Managers::SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
    def destroy
     super
+    flash[:destroy] = "お疲れ様でした！"
    end
 
   # protected

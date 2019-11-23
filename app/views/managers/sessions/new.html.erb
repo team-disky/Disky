@@ -3,6 +3,14 @@
 <section class="slice slice-lg sct-color-1">
   <div class="container">
     <div class="row">
+      <div class="col-lg-12">
+        <% if flash[:destroy] %>
+          <p id="notice"><%= flash[:destroy] %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col-lg-12 col-lg-offset-4">
 
         <div class="form-user style-1 rounded has-shadow-1">
