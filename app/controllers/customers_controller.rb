@@ -15,6 +15,10 @@ class CustomersController < ApplicationController
 	  @customer = current_customer
 	end
 
+	def edit_password
+	  @customer = current_customer
+	end
+
 	def leave
 	  @customer = current_customer
 	end
@@ -23,10 +27,29 @@ class CustomersController < ApplicationController
 	  @customer = current_customer
 	  if params[:leave]
 	  	if @customer.email == quit_params[:email] && @customer.valid_password?(quit_params[:password])
-	  		@customer.update(active:false)
+	  		@customer.update(active: false)
 	  		redirect_to root_path
 	  	else
 	  		render :leave
+	  	end
+	  elsif params[:edit_pass]
+	  	if @customer.valid_password?(password_params[:current_password])
+	  		if password_params[:password] == password_params[:password_confirmation]
+	  			if @customer.update(password: password_params[:password])
+	  				@customer.update(password_confirmation: password_params[:password_confirmation])
+	  				flash[:notice] = "パスワードを変更しました。再度ログインしてください。"
+	  				redirect_to new_customer_session_path
+	  			else
+	  				flash[:error] = "Passwordは6文字以上で入力してください"
+	  				render :edit_password
+	  			end
+	  		else
+	  			flash[:error] = "新パスワードと新規確認用パスワードが一致しません"
+	  			render :edit_password
+	  		end
+	  	else
+	  		flash[:error] = "現在のパスワードが一致しません"
+	  		render :edit_password
 	  	end
 	  else
 	  	if @customer.update(customer_params)
@@ -39,10 +62,15 @@ class CustomersController < ApplicationController
 
 	private
   	def customer_params
-    	params.require(:customer).permit(:password, :password_confirmation, :email, :last_name, :first_name, :last_name_read, :first_name_read, :phone_number, :postal_code, :address, )
+    	params.require(:customer).permit(:password, :password_confirmation, :email, :last_name, :first_name, :last_name_read, :first_name_read, :phone_number, :postal_code, :address,
+    		registration_addresses_attributes: [:id, :name,:postal_code, :phone_number, :address, :customer_id, :_destroy])
   	end
   	def quit_params
     	params.require(:customer).permit(:email, :password)
+  	end
+
+  	def password_params
+    	params.require(:customer).permit(:current_password, :password, :password_confirmation)
   	end
 
 end

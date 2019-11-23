@@ -5,4 +5,8 @@ class Order < ApplicationRecord
 	enum status: {受付: 0,商品準備中: 1,出荷済み: 2}
 	enum payment_method: {クレジットカード: 0,銀行振込: 1,代引き: 2}
 
+	accepts_nested_attributes_for :purchased_products
+
+  	default_scope -> { order(created_at: :desc) }
+
 end

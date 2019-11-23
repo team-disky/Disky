@@ -1,26 +1,27 @@
 <%= render partial: "layouts/manager_header" %>
 
 <div class="container">
-			<br>
-			<div class="row">
-			 <div class="col-md-11">
+	<br>
+	<div class="row">
+		<div class="col-md-11">
 			<h3>会員情報</h3>
 
-            <%= search_form_for @q,  html: { class: "search_form" }, url: manager_customers_path do |f| %>
-              <%= f.label :last_name_cont, '会員を検索' %>
-              <%= f.search_field :last_name_cont %>
-              <%= f.submit %>
-            <% end %>
+			<%= search_form_for @q,  html: { class: "search_form" }, url: manager_customers_path do |f| %>
+			<%= f.label :last_name_cont, '会員を検索' %>
+			<%= f.search_field :last_name_cont %>
+			<%= f.submit %>
+			<% end %>
 
-             </div>
-            </div>
+		</div>
+	</div>
 
-            <div class="row">
-            	<div class="col-md-11">
+	<div class="row">
+		<div class="col-md-11">
 			<table class="table table-hover table-inverse">
 				<thead>
 					<tr>
 						<th>会員番号</th>
+						<th></th>
 						<th>会員氏名</th>
 						<th>e-mail</th>
 						<th>最後のログイン</th>
@@ -28,18 +29,31 @@
 					</tr>
 				</thead>
 				<tbody>
-						<%  @customers.each do |customer| %>
-						<tr>
-							<td><%= customer.id %></td>
-							<td><%= link_to customer.full_name, manager_customer_path(customer.id), style: "color:black;text-decoration:none" %></td>
-								<td><%= customer.email %></td>
-								<td><%= customer.last_sign_in_at %></td>
-								<td></td>
-						</tr>
+					<% @customers.each do |customer| %>
+					<tr>
+						<td><%= customer.id %></td>
+
+						<% if customer.active == false %>
+						<td>退会済</td>
+						<% else %>
+						<td></td>
 						<% end %>
+
+						<td><%= link_to customer.full_name, manager_customer_path(customer.id), style: "color:black;text-decoration:none" %></td>
+						<td><%= customer.email %></td>
+						<td><%= customer.current_sign_in_at %></td>
+
+						<% if customer.orders.present? %>
+							<td><%= customer.orders.order(:created_at).last.created_at.in_time_zone('Tokyo').strftime('%Y年%m月%d日 %H:%M') %></td>
+						<% else %>
+							<td>購入はありません</td>
+						<% end %>
+
+					</tr>
+					<% end %>
 				</tbody>
 			</table>
-			    <%= paginate @customers, :class=>"pagination" %>
-		    </div>
+			<%= paginate @customers, :class=>"pagination" %>
 		</div>
+	</div>
 </div>

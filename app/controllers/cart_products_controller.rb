@@ -31,9 +31,6 @@ class CartProductsController < ApplicationController
 		redirect_to cart_products_path
 	end
 
-	def select_adress
-	end
-
 	private
 
 	def cart_product_params
