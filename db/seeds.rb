@@ -5,12 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-
 #仮ユーザー
 20.times do
   gimei = Gimei.new
-
   Customer.create!(
     last_name: gimei.last.kanji,
     first_name: gimei.first.kanji,
@@ -23,7 +20,6 @@
     password: 123456
   )
 end
-
 #登録住所
 4.times do |n|
   3.times do
@@ -37,12 +33,10 @@ end
   )
   end
 end
-
 #購入履歴
 20.times do |n|
   gimei = Gimei.new
   random = Random.new()
-
   random.rand(5).times do
     Order.create!(
       customer_id: n + 1,
@@ -59,41 +53,35 @@ end
     )
   end
 end
-
 20.times do
-	Artist.create!(
-		name: Faker::Music.band)
+    Artist.create!(
+        name: Faker::Music.band)
 end
-
 20.times do
-	Category.create!(
-		name: Faker::Music.genre)
+    Category.create!(
+        name: Faker::Music.genre)
 end
-
 20.times do
-	RecordLabel.create!(
-		name: Faker::Company.name)
+    RecordLabel.create!(
+        name: Faker::Company.name)
 end
-
 disc_id = 1
 40.times do |n|
-	Product.create!(
-		artist_id: Faker::Number.between(from: 1, to: 20),
-		record_label_id: Faker::Number.between(from: 1, to: 20),
-		category_id: Faker::Number.between(from: 1, to: 20),
-		format: Faker::Number.between(from: 1, to: 4),
-		title: Faker::Music.album,
-		sales_date: Faker::Date.between_except(from: 30.year.ago, to: Date.today, excepted: Date.today),
-		price: Faker::Number.between(from: 1000, to: 2000),
-		)
-
+    Product.create!(
+        artist_id: Faker::Number.between(from: 1, to: 20),
+        record_label_id: Faker::Number.between(from: 1, to: 20),
+        category_id: Faker::Number.between(from: 1, to: 20),
+        format: Faker::Number.between(from: 1, to: 4),
+        title: Faker::Music.album,
+        sales_date: Faker::Date.between_except(from: 30.year.ago, to: Date.today, excepted: Date.today),
+        price: Faker::Number.between(from: 1000, to: 2000),
+        )
   random = Random.new()
   (random.rand(3) + 1).times do |d|
     Disc.create!(
       number: d + 1,
       product_id: n + 1,
       )
-
       random2 = Random.new()
       (random2.rand(9) + 1).times do |s|
         Song.create!(
@@ -107,7 +95,6 @@ disc_id = 1
     disc_id += 1
   end
 end
-
 15.times do |n|
   PurchasedProduct.create!(
     order_id: n + 1 ,
@@ -116,7 +103,6 @@ end
     count: Faker::Number.between(from: 1, to: 3)
     )
 end
-
 18.times do |n|
   Arrival.create!(
     product_id: n + 1 ,
@@ -124,7 +110,6 @@ end
     count: Faker::Number.between(from: 5, to: 50)
     )
 end
-
 20.times do |n|
   random = Random.new()
   (random.rand(4) + 1).times do
