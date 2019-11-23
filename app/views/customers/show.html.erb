@@ -71,13 +71,12 @@
 		<% end %>
 	</div>
 	<div class="row">
-		<div class="row">
-			<h2>購入履歴一覧</h2>
-		</div>
-		<div class="row">
-			<table class="table">
-				<% @customer.orders.each do |order| %>
-				<tr>
+		<h2>購入履歴一覧</h2>
+	</div>
+	<div class="row">
+		<table class="table">
+			<% @customer.orders.each do |order| %>
+				<tr data-href="<%= order_path(order.id) %>">
 					<td><%= order.status %></td>
 					<td>
 						<span class="lr-space">
@@ -105,10 +104,10 @@
 						</span>
 					</td>
 				</tr>
-				<% end %>
-			</table>
-		</div>
+			<% end %>
+		</table>
 	</div>
+
 	<div class="row">
 		<div class="col-md-12">
 			<div class="float-right">
@@ -117,3 +116,5 @@
 		</div>
 	</div>
 </div>
+
+
