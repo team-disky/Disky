@@ -1,9 +1,16 @@
-<h2>ご注文ありがとうございました。<h2>
+<div class="container">
+	<div class="row">
+		<div class="card text-center">
+		<h2>ご注文ありがとうございました。</h2>
 
-<p>ご注文番号<p>
+		<p>ご注文番号</p>
+		  <%= @order.id %>
 
-<p>このページは大切に保管願います。<p>
-	<p>ご注文内容確認メールが24時間以内に届かない場合は<p>
-		<p>disky@cd.comまでご連絡お願いいたします。</p>
+		<p>このページは大切に保管願います。</p>
+			<p>ご注文内容確認メールが24時間以内に届かない場合は</p>
+				<p>disky@cd.comまでご連絡お願いいたします。</p>
 
-		<%= link_to("トップに戻る", root_path ) %>
+        <%= link_to("トップに戻る", root_path ) %>
+        </div>
+    </div>
+</div>

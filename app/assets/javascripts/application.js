@@ -18,9 +18,9 @@
 //= require_tree .
 //= require nested_form_fields
 
+
 //画面を表示したときにreadyでjsを読み込ませる
 $(document).ready(function(){
 	$("tr[data-href]").click(function(){
 		window.location = $(this).data("href");
 	});
-});

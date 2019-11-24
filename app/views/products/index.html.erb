@@ -1,26 +1,56 @@
 <%= render 'customers/customer_header' %>
+<!-- <div id="carouselIndicators" class="carousel slide carousel-fade" data-ride="carousel">
+	<ol class="carousel-indicators">
+		<li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+		<li data-target="#carouselIndicators" data-slide-to="1"></li>
+		<li data-target="#carouselIndicators" data-slide-to="2"></li>
+	</ol>
 
-<div class="container-fluid">
+	<div class="carousel-inner">
+		<div class="carousel-item active">
+			<img class="d-block w-100" alt="First slide" src="assets/slide1.png">
+		</div>
+		<div class="carousel-item">
+			<img class="d-block w-100" alt="Second slide" src="assets/slide2.png">
+		</div>
+		<div class="carousel-item">
+			<img class="d-block w-100" alt="Third slide" src="assets/slide3.png">
+		</div>
+    </div>
 
-	<h2>商品一覧ページ</h2>
+    <a class="carousel-control-prev" href="#carouselControls" role="botton" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">前に戻る</span>
+    </a>
 
-		<h3>新着商品</h3>
-			<div class ="row">
+    <a class="carousel-control-next" href="#carouselControls" role="botton" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">次に送る</span>
+    </a>
+</div> -->
+<div class="container">
+			<div class ="row justify-content-center">
 				<div class="card-deck">
 				<% @products.each do |product| %>
-				  <div class="card text-center">
+				<div class="col-md-3">
+				  <div class="card text-center product-item ">
 					<%= link_to product_path(product.id) do %>
-							<%= attachment_image_tag product, :image, :fill, 200, 200, format:'jpeg', fallback: "no_image.png", size:'300x300', class:"card-img-top" %>
+							<%= attachment_image_tag product, :image, :fill, 300, 300, format:'jpeg', fallback: "no_image.png", size:'300x300', class:"card-img-top border-bottom boder-secondary" %>
 								<div class="card-body">
-								<h3 class="card-title"><%= product.title %></h3>
+								<h3 class="card-title font-italic"><%= product.title %></h3>
                                 <ul class="list-group list-group-flush" >
-					            <li class="list-group-item"><%= product.artist.name %></li>
+					            <li class="list-group-item font-italic"><%= product.artist.name %></li>
 					            <li class="list-group-item"><%= product.price %>yen</li>
-								<li class="list-group-item"><span class="badge badge-primary"><%= product.status %></span></li>
+					            <% if product.status == "販売中" %>
+								  <li class="list-group-item"><span class="badge badge-primary"><%= product.status %></span></li>
+								<% elsif product.status == "販売停止中" %>
+								　<li class="list-group-item"><span class="badge badge-danger"><%= product.status %></span></li>
+								<% end %>
 							    </ul>
 								</div>
 					<% end %>
 				  </div>
+				</div>
 				<%end%>
 			</div>
 		</div>
@@ -28,4 +58,3 @@
 						  <%= paginate @products %>
 					    </div>
 	</div>
-</div>
