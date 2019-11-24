@@ -23,3 +23,9 @@
 
 //= require jquery_ujs
 //= require nested_form_fields
+
+$(document).ready(function(){
+    $("tr[data-href]").click(function(){
+        window.location = $(this).data("href");
+    });
+});

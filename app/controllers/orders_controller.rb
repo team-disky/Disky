@@ -47,12 +47,13 @@ class OrdersController < ApplicationController
 				purchased_product.save
 				cart_product.destroy
 		    end
-		  redirect_to complete_path(@order)
+		  redirect_to complete_path(@order.id)
 		end
 	end
 
 	def complete
 		#注文完了画面を表示させる
+		#URLから注文番号を持ってくる
 		@order = Order.find(params[:id])
 	end
 
