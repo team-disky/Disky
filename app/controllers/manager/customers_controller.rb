@@ -8,8 +8,7 @@ class Manager::CustomersController < ApplicationController
 
 	def index
 		@q = Customer.ransack(params[:q])
-		@customers = Customer.all
-		@customers = Customer.page(params[:page]).per(10)
+		@customers = @q.result(distict: true).page(params[:page]).per(10)
 	end
 
 	def show
