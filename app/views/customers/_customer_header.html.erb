@@ -19,7 +19,7 @@
         <li class="nav-link">
         <%= link_to ' logout', destroy_customer_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %>
       　</li>
-      <% else %>
+      <% elsif %>
         <li class="nav-link">
           <%= link_to " Home", root_path, class: "glyphicon glyphicon-home" %>
         </li>

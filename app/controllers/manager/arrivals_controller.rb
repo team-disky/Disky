@@ -10,7 +10,13 @@ class Manager::ArrivalsController < ApplicationController
 	def create
 		@arrival = Arrival.new(arrival_params)
 		if @arrival.save
-		redirect_to manager_product_path(@arrival.product_id)
+			if @arrival.date <= Date.today
+				flash[:add_quantity] = "在庫を追加しました。"
+				redirect_to manager_product_path(@arrival.product_id)
+			else
+				flash[:add_quantity] = "入荷を登録しました。"
+				redirect_to manager_product_path(@arrival.product_id)
+			end
 		else
 			render 'products/add_quantity'
 		end
@@ -18,7 +24,9 @@ class Manager::ArrivalsController < ApplicationController
 
 
 	def index
-		@arrivals = Arrival.page(params[:page]).per(10)
+		#@arrivals = Arrival.order(id: "DESC").page(params[:page]).per(10)
+		@q = Arrival.ransack(params[:q])
+		@arrivals = @q.result(distincy: true).order(id: "DESC").page(params[:page]).per(10)
 	end
 
 
