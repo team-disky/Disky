@@ -28,7 +28,7 @@
 				</thead>
 				<tbody>
 						<% @orders.each do |order| %>
-						<tr>
+						<tr data-href="<%= manager_order_path(order.id) %>">
 							<td><%= order.status %></td>
 							<td><%= link_to order.id, manager_order_path(order.id), style: "color:black;text-decoration:none" %></td>
 								<td><%= order.contractee_name %></td>

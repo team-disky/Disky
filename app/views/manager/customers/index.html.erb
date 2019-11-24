@@ -30,7 +30,7 @@
 				</thead>
 				<tbody>
 					<% @customers.each do |customer| %>
-					<tr>
+					<tr data-href="<%= manager_customer_path(customer.id) %>">
 						<td><%= customer.id %></td>
 
 						<% if customer.active == false %>

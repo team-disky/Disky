@@ -20,6 +20,7 @@ class Manager::OrdersController < ApplicationController
 		order = Order.find(params[:id])
 		order.update(order_params)
 		redirect_to manager_order_path(order)
+		flash[:update] = "受注ステータスを変更しました！"
 	end
 
 	private
