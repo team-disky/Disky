@@ -15,7 +15,8 @@ class Product < ApplicationRecord
 	enum format:{シングル:0,アルバム:1,マキシシングル:2,複数アルバム:3,ミニアルバム:4}
 
 	def total_arrival
-		Arrival.where(product_id: id).sum(:count)
+		#Arrival.where(product_id: id).sum(:count)
+		Arrival.where('date <= ?', Date.today).where(product_id: id).sum(:count)
 	end
 
 	def total_purchased_product
