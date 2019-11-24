@@ -16,14 +16,16 @@ class Manager::ProductsController < ApplicationController
 		@product = Product.new(product_params)
 		@product.price = (@product.price*1.1).round(0)
 		if @product.save
-		redirect_to manager_product_path(@product.id)
+		redirect_to manager_product_add_quantity_path(@product.id)
 		else
 			render :new
 		end
 	end
 
 	def index
-		@products = Product.page(params[:page]).per(10)
+		@q = Product.ransack(params[:q])
+		@products = @q.result(distinct: true).where(active_flag: true).page(params[:page]).per(10)
+		#@products = Product.where(active_flag: true).page(params[:page]).per(10)
 	end
 
 	def show
@@ -38,12 +40,16 @@ class Manager::ProductsController < ApplicationController
 
 	def update
 		@product = Product.find(params[:id])
-		params[:product][:price] = (params[:product][:price].to_i*1.1).round(0).to_s
-		if @product.update(product_params)
-		flash[:notice] = "内容を編集しました。"
-		redirect_to manager_product_path(@product.id)
-		else
-		render action: :edit
+		if params[:leave]
+			@product.update(active_flag:false)
+			redirect_to manager_products_path
+		else params[:product][:price] = (params[:product][:price].to_i*1.1).round(0).to_s
+			if @product.update(product_params)
+				flash[:notice] = "内容を編集しました。"
+				redirect_to manager_product_path(@product.id)
+			else
+				render action: :edit
+			end
 		end
 	end
 

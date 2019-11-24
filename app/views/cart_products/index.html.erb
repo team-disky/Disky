@@ -21,7 +21,7 @@
                           <td><%= cart_product.product.price %></td>
       	                	<td>
                             <%= form_for cart_product, url: cart_product_path(cart_product.id), method: :patch do |f| %>
-                                  <%= f.number_field :count %>
+                                  <%= f.number_field :count, min:1, max:cart_product.product.stock %>
                                   <%= f.submit "数量の変更を確定" %>
                             <% end %>
                           </td>
