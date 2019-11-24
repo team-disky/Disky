@@ -1,10 +1,16 @@
 class OrdersController < ApplicationController
-	def login_required
-    redirect_to new_user_session_path unless current_user
-    end
+	before_action :authenticate_customer!
+  	before_action :correct_user
+
+  	def correct_user
+      @order = Order.find(params[:id])
+      redirect_to root_path unless @order.customer_id == current_customer.id
+  	end
 
 	def show
 		#購入履歴詳細を表示する
+		@order = Order.find(params[:id])
+		@customer = Customer.find(@order.customer_id)
 	end
 
 	def select_address
@@ -58,7 +64,6 @@ class OrdersController < ApplicationController
 	end
 
 	private
-
 	def select_address_params
 		params.require(:order).permit(:destination_name, :destination_phone_number, :postal_code, :destination_address)
 	end

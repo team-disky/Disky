@@ -21,8 +21,12 @@ class Customer < ApplicationRecord
 
   end
 
+
   def fullname
     last_name + first_name
   end
+
+  default_scope -> { order(created_at: :desc) }
+
 
 end

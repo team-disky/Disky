@@ -24,7 +24,7 @@
 						<p class="text-center under-line">フォーマット：<%= @product.format %></p>
 						<p class="text-center under-line">レーベル：<%= @product.record_label.name %></p>
 						<p class="text-center under-line">ジャンル：<%= @product.category.name %></p>
-						<p class="text-center">発売日：<%= @product.sales_date %></p>
+						<p class="text-center">発売日：<%= @product.sales_date.strftime("%Y年%m月%d日") %></p>
 					</div>
 					<div class="col-sm-6 product-menu">
 						<p class="text-center under-line">税込価格：<%= @product.price %>円</p>
