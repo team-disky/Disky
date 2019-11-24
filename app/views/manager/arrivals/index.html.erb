@@ -15,7 +15,7 @@
 			</thead>
 			<tbody>
 				<% @arrivals.each do |arrival| %>
-				<tr>
+				<tr data-href="<%= manager_product_path(arrival.product.id) %>">
 					<td><%= arrival.product_id %></td>
 					<td><%= link_to attachment_image_tag(arrival.product, :image, size:'40x40', fallback: "no_image.png"), manager_product_path(arrival.product.id) %></td>
 					<td><%= link_to arrival.product.title, manager_product_path(arrival.product.id) %></td>

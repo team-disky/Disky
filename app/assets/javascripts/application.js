@@ -10,16 +10,17 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
-
-//= require_tree .
-
 //= require jquery3
-//= require popper
-
-//= require bootstrap-sprockets
-
 //= require jquery_ujs
+//= require activestorage
+//= require popper
+//= require bootstrap-sprockets
+//= require_tree .
 //= require nested_form_fields
+
+//画面を表示したときにreadyでjsを読み込ませる
+$(document).ready(function(){
+	$("tr[data-href]").click(function(){
+		window.location = $(this).data("href");
+	});
+});

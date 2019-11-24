@@ -85,12 +85,11 @@
 				</div>
 				<div class="col"></div>
 			</div>
-		<% end %>
-		<div class="row">
-			<div class="col-sm-8"></div>
-			<div class="col">
-				<button class="btn btn-danger">商品を削除</button>
+			<div class="row">
+				<div class="col-sm-8"></div>
+				<div class="col">
+					<%= f.submit "商品を削除", name: 'leave', data: {confirm: "本当に削除しますか？"}, class:"btn btn-danger" %>
+				</div>
 			</div>
-		</div>
-	</div>
+			<% end %>
 </div>
