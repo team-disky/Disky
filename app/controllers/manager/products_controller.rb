@@ -23,7 +23,9 @@ class Manager::ProductsController < ApplicationController
 	end
 
 	def index
-		@products = Product.where(active_flag: true).page(params[:page]).per(10)
+		@q = Product.ransack(params[:q])
+		@products = @q.result(distinct: true).where(active_flag: true).page(params[:page]).per(10)
+		#@products = Product.where(active_flag: true).page(params[:page]).per(10)
 	end
 
 	def show
