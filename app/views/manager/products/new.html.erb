@@ -43,7 +43,7 @@
 				</tr>
 				<tr>
 					<th scope="row">収録内容<strong>&#x203B;</strong></th>
-					<td><%= f.add_nested_fields_link :discs, 'ディスクを追加', class:"btn btn-outline-success" %>
+					<td><%= f.add_nested_fields_link :discs, 'ディスクを追加', data:{limit: 5}, class:"btn btn-outline-success" %>
 							<%= f.nested_fields_for :discs do |q| %>
 							<%= q.label "ディスク番号" %><strong>&#x203B;</strong>
 							<%= q.number_field :number, min:1 %>
@@ -87,3 +87,29 @@
 			</div>
 		<% end %>
 </div>
+
+<script>
+	$(function() {
+
+  $(document).on('nested:fieldAdded', function(e) {
+    var link = $(e.currentTarget.activeElement);
+    if (!link.data('limit')) {
+      return;
+    }
+    if (link.siblings('.fields:visible').length >= link.data('limit')) {
+      link.hide();
+    }
+  });
+
+  $(document).on('nested:fieldRemoved', function(e) {
+    var link = $(e.target).siblings('a.add_nested_fields');
+    if (!link.data('limit')) {
+      return;
+    }
+    if (link.siblings('.fields:visible').length < link.data('limit')) {
+      link.show();
+    }
+  });
+
+})
+</script>
