@@ -11,7 +11,7 @@ class Manager::ArrivalsController < ApplicationController
 
 
 	def index
-		@arrivals = Arrival.page(params[:page]).per(10)
+		@arrivals = Arrival.order(id: "DESC").page(params[:page]).per(10)
 	end
 
 
