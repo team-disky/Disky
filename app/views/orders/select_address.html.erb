@@ -1,33 +1,54 @@
-<h2>お届け先住所の確認</h2>
+<%= render 'customers/customer_header' %>
 
-------------------------------------------------------
-<p><%= @customer.fullname %></p>
-<p>ログインユーザーの電話番号:<%= @customer.phone_number %></p>
-<p>ログインユーザーの郵便番号:<%= @customer.postal_code %></p>
-<p>ログインユーザーの住所:<%= @customer.address %></p>
+<div class="container">
 
-<%= form_for @order, url: {action: 'select_payment'} do |f| %>
-<%= f.hidden_field :destination_name, :value => @customer.fullname %>
-<%= f.hidden_field :destination_phone_number, :value=> @customer.phone_number %>
-<%= f.hidden_field :postal_code, :value => @customer.postal_code %>
-<%= f.hidden_field :destination_address, :value => @customer.address %>
-<%= f.submit 'この住所に届ける' %>
-<%end%>
--------------------------------------------------------
+	<h2>お届け先住所の確認</h2>
 
-<% @customer.registration_addresses.each do |address| %>
-<p>登録配達先氏名:<%= address.name %></P>
-<p>登録先番号:<%=address.phone_number%></p>
-<p>登録先郵便番号<%= address.postal_code %></p>
-<p>登録先住所<%= address.address %></p>
+	<div class="row">
+		<div class="col-sm-3">
+			<div class="card border border-secondary">
+				<div class="card-body text-left">
+					<h4 class="card-title"><%= @customer.fullname %></h4>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item"><%= @customer.phone_number %></li>
+						<li class="list-group-item"><%= @customer.postal_code %></li>
+					    <li class="list-group-item"><%= @customer.address %></li>
 
 
-<%= form_for @order, url: {action: 'select_payment'} do |f| %>
-<%= f.hidden_field :destination_name, :value => address.name %>
-<%= f.hidden_field :destination_phone_number, :value=> address.phone_number %>
-<%= f.hidden_field :postal_code, :value => address.postal_code %>
-<%= f.hidden_field :destination_address, :value => address.address %>
-<%= f.submit 'この住所に届ける' %>
-<%end%>
----------------------------------------------------
-<%end%>
+						<%= form_for @order, url: {action: 'select_payment'} do |f| %>
+						<%= f.hidden_field :destination_name, :value => @customer.fullname %>
+						<%= f.hidden_field :destination_phone_number, :value=> @customer.phone_number %>
+						<%= f.hidden_field :postal_code, :value => @customer.postal_code %>
+						<%= f.hidden_field :destination_address, :value => @customer.address %>
+						<li class="list-group-item"><%= f.submit 'この住所に届ける', class: "btn btn-outline-primary" %></li>
+				    </ul>
+					<%end%>
+				</div>
+			</div>
+	    </div>
+
+		<% @customer.registration_addresses.each do |address| %>
+		<div class="col-sm-3">
+		<div class="card border border-secondary">
+			<div class="card-body text-left">
+				<h4 class="card-title"><%= address.name %></h4>
+				<ul class="list-group list-group-flush">
+				<li class="list-group-item"><%=address.phone_number%></li>
+				<li class="list-group-item"><%= address.postal_code %></li>
+				<li class="list-group-item"><%= address.address %></li>
+
+
+				<%= form_for @order, url: {action: 'select_payment'} do |f| %>
+				<%= f.hidden_field :destination_name, :value => address.name %>
+				<%= f.hidden_field :destination_phone_number, :value=> address.phone_number %>
+				<%= f.hidden_field :postal_code, :value => address.postal_code %>
+				<%= f.hidden_field :destination_address, :value => address.address %>
+				<li class="list-group-item"><%= f.submit 'この住所に届ける', class: "btn btn-outline-primary" %></li>
+			    </ul>
+			</div>
+		<%end%>
+	    </div>
+	    </div>
+		<%end%>
+    </div>
+</div>
