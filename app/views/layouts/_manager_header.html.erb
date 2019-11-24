@@ -4,47 +4,42 @@
 
   <a class="navbar-brand" href="/manager/products">Disky管理者画面</a>
 
+  <div class="collapse navbar-collapse" id="navbarNav">
+
   <% if manager_signed_in? %>
 
-  <ul class="navbar-nav mr-auto">
 
     <li class="nav-item"><%= link_to "お客様画面へ", root_path,style: "color:white;text-decoration:none" %>
     </li>
 
-
-
     <li class="nav-item"><%= link_to "ログアウト", destroy_manager_session_path, method: :delete, style: "color:white;text-decoration:none" %>
     </li>
 
-  </ul>
+  </div>
 
-  <ul class="navbar-nav">
     <li class="nav-item">
-      <li><%= link_to "商品登録", new_manager_product_path,style: "color:white;text-decoration:none" %></li>
-    </li>
+      <%= link_to "ホーム", manager_products_path,style: "color:white;text-decoration:none" %></li>
     <li class="nav-item">
-      <li><%= link_to "注文管理", manager_orders_path,style: "color:white;text-decoration:none" %></li>
-    </li>
+      <%= link_to "商品登録", new_manager_product_path,style: "color:white;text-decoration:none" %></li>
     <li class="nav-item">
-      <li><%= link_to "会員管理", manager_customers_path,style: "color:white;text-decoration:none" %></li>
-    </li>
-    <li class="nav-item">
-        <li><%= link_to "入荷履歴", manager_arrivals_path,style: "color:white;text-decoration:none" %></li>
-    </li>
+      <%= link_to "注文管理", manager_orders_path,style: "color:white;text-decoration:none" %></li>
 
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
+    <li class="nav-item">
+      <%= link_to "会員管理", manager_customers_path,style: "color:white;text-decoration:none" %></li>
+
+    <li class="nav-item">
+      <%= link_to "入荷履歴", manager_arrivals_path,style: "color:white;text-decoration:none" %></li>
+
+    <div class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" style="color:white;text-decoration:none">
         データ登録
       </a>
-      <div class="dropdown-menu">
-        <%= link_to "アーティスト", manager_artists_path %>
-        <%= link_to "ジャンル", manager_categories_path %>
-        <%= link_to "レーベル", manager_record_labels_path %>
+      <div class="dropdown-menu" style="text-align: center">
+        <p><%= link_to "アーティスト", manager_artists_path,style: "color:black;text-decoration:none" %></p>
+        <p><%= link_to "ジャンル", manager_categories_path,style: "color:black;text-decoration:none" %></p>
+        <p><%= link_to "レーベル", manager_record_labels_path,style: "color:black;text-decoration:none" %></p>
       </div>
-    </li>
-  </ul>
-
-
+    </div>
 
   <% else %>
 

@@ -7,8 +7,8 @@ class Manager::OrdersController < ApplicationController
     end
 
 	def index
-		@orders = Order.all
-		@orders = Order.page(params[:page]).per(10)
+		@q = Order.ransack(params[:q])
+		@orders = @q.result(distinct: true).page(params[:page]).per(10)
 	end
 
 	def show

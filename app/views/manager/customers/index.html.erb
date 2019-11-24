@@ -5,12 +5,14 @@
 	<div class="row">
 		<div class="col-md-11">
 			<h3>会員情報</h3>
+			<div class="search col-md-4">
 
-			<%= search_form_for @q,  html: { class: "search_form" }, url: manager_customers_path do |f| %>
-			<%= f.label :last_name_cont, '会員を検索' %>
-			<%= f.search_field :last_name_cont %>
+			<%= search_form_for(@q, url: manager_customers_path) do |f| %>
+			<%= f.search_field :last_name_or_first_name, :placeholder=> "会員を検索" %>
 			<%= f.submit %>
 			<% end %>
+
+			</div>
 
 		</div>
 	</div>
@@ -18,7 +20,7 @@
 	<div class="row">
 		<div class="col-md-11">
 			<table class="table table-hover table-inverse">
-				<thead>
+				<thead class="table-active">
 					<tr>
 						<th>会員番号</th>
 						<th></th>
