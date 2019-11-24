@@ -1,14 +1,14 @@
 class OrdersController < ApplicationController
 	before_action :authenticate_customer!
-  	before_action :correct_user
-
-  	def correct_user
-      @order = Order.find(params[:id])
-      redirect_to root_path unless @order.customer_id == current_customer.id
-  	end
 
 	def show
 		#購入履歴詳細を表示する
+		before_action :correct_user
+
+  			def correct_user
+      			@order = Order.find(params[:id])
+      			redirect_to root_path unless @order.customer_id == current_customer.id
+  			end
 		@order = Order.find(params[:id])
 		@customer = Customer.find(@order.customer_id)
 	end
