@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require_tree .
 //= require nested_form_fields
+//= require cocoon
 
 //画面を表示したときにreadyでjsを読み込ませる
 $(document).ready(function(){

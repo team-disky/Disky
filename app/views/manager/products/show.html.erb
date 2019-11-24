@@ -1,8 +1,11 @@
 <%= render partial: "layouts/manager_header" %>
 
 <div class="container">
-	<% if flash[:notice] %>
-  		<h3><font color="skyblue"><%= flash[:notice] %></font></h3>
+	<% if flash[:update] %>
+  		<h3><font color="skyblue"><%= flash[:update] %></font></h3>
+	<% end %>
+	<% if flash[:add_quantity] %>
+  		<h3><font color="skyblue"><%= flash[:add_quantity] %></font></h3>
 	<% end %>
 	<div class="row page-title">
 		<h1>商品情報</h1>

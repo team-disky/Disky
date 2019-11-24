@@ -86,3 +86,5 @@ gem 'kaminari-bootstrap', '~> 3.0.1'
 
 gem 'font-awesome-sass', '~> 5.4.1'
 
+gem 'cocoon'
+

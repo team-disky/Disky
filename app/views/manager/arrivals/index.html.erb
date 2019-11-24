@@ -2,15 +2,23 @@
 
 <div class="container">
 	<div class="row">
-		<h1 class="page-title">入荷履歴</h1>
+		<h1 class="page-title col">入荷履歴</h1>
+		<div class="col"></div>
+		<div class="serch col">
+		<%= search_form_for(@q, url: manager_arrivals_path) do |f| %>
+  			<%= f.search_field :product_title_or_product_artist_name_cont, :placeholder => "商品名またはアーティスト名" %>
+
+  			<%= f.submit "検索", class:"btn btn-primary btn-sm" %>
+  		<% end %>
+  		</div>
 		<table class="table table-hover table-inverse">
-			<thead>
+			<thead class="table-active">
 				<tr>
-					<th class="table-active">商品番号</th>
-					<th class="table-active">商品画像</th>
-					<th class="table-active">商品名</th>
-					<th class="table-active">入荷数</th>
-					<th class="table-active">入荷日</th>
+					<th style="width: 10%">商品番号</th>
+					<th style="width: 15%">商品画像</th>
+					<th style="width: 40%">商品名</th>
+					<th style="width: 15%">入荷数</th>
+					<th style="width: 20%">入荷日</th>
 				</tr>
 			</thead>
 			<tbody>

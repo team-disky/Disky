@@ -24,7 +24,7 @@ class Manager::ProductsController < ApplicationController
 
 	def index
 		@q = Product.ransack(params[:q])
-		@products = @q.result(distinct: true).where(active_flag: true).page(params[:page]).per(10)
+		@products = @q.result(distinct: true).where(active_flag: true).order(id: "DESC").page(params[:page]).per(10)
 		#@products = Product.where(active_flag: true).page(params[:page]).per(10)
 	end
 
@@ -45,7 +45,7 @@ class Manager::ProductsController < ApplicationController
 			redirect_to manager_products_path
 		else params[:product][:price] = (params[:product][:price].to_i*1.1).round(0).to_s
 			if @product.update(product_params)
-				flash[:notice] = "内容を編集しました。"
+				flash[:update] = "内容を編集しました。"
 				redirect_to manager_product_path(@product.id)
 			else
 				render action: :edit
