@@ -1,71 +1,98 @@
-<h2>注文内容確認</h2>
-<%= form_for @order do |f| %>
-	<%= f.hidden_field :customer_id, :value => @customer.id %>
-	<!--ステータスは空でいいかな？ -->
-	<%= f.hidden_field :destination_name %>
-	<%= f.hidden_field :destination_phone_number %>
-	<%= f.hidden_field :postal_code %>
-    <%= f.hidden_field :destination_address %>
-    <%= f.hidden_field :payment_method %>
-    <%= f.hidden_field :contractee_name, :value => @customer.fullname %>
-    <%= f.hidden_field :contractee_phone_number, :value => @customer.phone_number %>
+<div class="container">
+  <h2>注文内容確認</h2>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <%= form_for @order do |f| %>
+        	<%= f.hidden_field :customer_id, :value => @customer.id %>
+        	<!--ステータスは空でいいかな？ -->
+        	<%= f.hidden_field :destination_name %>
+        	<%= f.hidden_field :destination_phone_number %>
+        	<%= f.hidden_field :postal_code %>
+            <%= f.hidden_field :destination_address %>
+            <%= f.hidden_field :payment_method %>
+            <%= f.hidden_field :contractee_name, :value => @customer.fullname %>
+            <%= f.hidden_field :contractee_phone_number, :value => @customer.phone_number %>
+          <div class="card-deck">
+            <div class="card text-center border border-secondary">
+              <div class="card-header"><h4>送付先</h4></div>
+              <div class="card-body">
+                <h4 class="card-title"><%= @order.destination_name %></h4>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><%= @order.destination_phone_number %></li>
+                  <li class="list-group-item"><%= @order.postal_code %></li>
+                  <li class="list-group-item"><%= @order.destination_address %></li>
+                </ul>
+              </div>
+            </div>
+            <div class="card text-center payment_card border border-secondary">
+              <div class="card-header"><h4>支払い方法</h4></div>
+              <div class="card-body">
+              <h4 class="card-title"><%= @order.payment_method %></h4>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+        <h2>カート内容</h2>
 
-<h3>送付先</h3>
-
-<p>送付先氏名：<%= @order.destination_name %><p>
-<p>送付先電話番号:<%= @order.destination_phone_number %></p>
-<p>送付先郵便番号:<%= @order.postal_code %></p>
-<p>送付先住所:<%= @order.destination_address %>
-
--------------------------------------------------
-
-<h3>支払い方法<%= @order.payment_method %></h3>
-
--------------------------------------------------
-
-<h2>カート内容</h2>
-
-<div class ="container">
-		<section class="row">
-			<div class="col-md-9">
-				<h2>カート内容</h2>
-				<table class="table table-hover">
-					<thead class="thead-dark">
-						<th>Disc</th>
-						<th>Name</th>
-						<th>Artist</th>
-						<th>Price</th>
-						<th>Quantity</th>
-					</thead>
-	          <tbody>
+        <table class="table table-hover border border-secondary">
+          <thead class="thead-dark">
+            <th>Disc</th>
+            <th>Name</th>
+            <th>Artist</th>
+            <th>Price</th>
+            <th>Quantity</th>
+          </thead>
+            <tbody>
               <% subtotal = 0 %>
-	             <% @cart_products.each do |cart_product| %>
-    	                  <tr class="nakami">
-      	                	<td><%= attachment_image_tag cart_product.product, :image, :fill, 120, 120, format:'jpeg', fallback: "no_image.png", size:'120x120', class: 'img-thumbnail' %></td>
-      	                	<td><p><%= cart_product.product.title %></p></td>
-      	                	<td><%= cart_product.product.artist.name %></td>
-                          　<td><%= cart_product.product.price %></td>
-      	                	<td><%= cart_product.count %></td>
-	                      </tr>
-	                      <% total = cart_product.product.price * cart_product.count
-	                         subtotal += total %>
-	             <% end %>
-	          </tbody>
+               <% @cart_products.each do |cart_product| %>
+                        <tr class="nakami">
+                          <td>
+                            <%= link_to product_path(cart_product.product.id) do %>
+                            <%= attachment_image_tag cart_product.product, :image, :fill, 120, 120, format:'jpeg', fallback: "no_image.png", size:'120x120', class: 'img-thumbnail' %>
+                            <% end %>
+                          </td>
+                          <td>
+                            <%= link_to cart_product.product.title, product_path(cart_product.product.id)%>
+                          </td>
+                          <td><%= cart_product.product.artist.name %></td>
+                          <td><p><%= cart_product.product.price %>yen</p></td>
+                          <td>
+                            <%= cart_product.count %>
+                          </td>
+                        </tr>
+                        <% total = cart_product.product.price * cart_product.count
+                           subtotal += total %>
+               <% end %>
+            </tbody>
         </table>
+      </div>
     </div>
-    <div class ="col-md-2">
-      <h2>商品小計</h2>
-      <%= subtotal %>
-      <%= f.hidden_field :subtotal_amount, :value => subtotal %>
-      <% postage = 500 %>
-      <h2>注文合計<h2>
-      <% postage = 500 %>
-      <!-- 送料は空でいいかな？-->
-      <%= subtotal + postage %>
-      <% total = subtotal + postage %>
-      <%= f.hidden_field :total_amount, :value => total %>
-      <%= f.submit "注文を確定する" %>
-      <%end%>
+    <div class ="col-md-4">
+      <div class="card border border-secondary">
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <h5>商品小計</h5>
+                <strong><h2><%= subtotal %>yen</h2></strong>
+                <%= f.hidden_field :subtotal_amount, :value => subtotal %>
+              </li>
+              <% postage = 500 %>
+              <li class="list-group-item">
+                <h5>注文合計</h5>
+              <% postage = 500 %>
+              <!-- 送料は空でいいかな？-->
+              <strong><h2><%= subtotal + postage %>yen</h2></strong>
+              </li>
+              <% total = subtotal + postage %>
+              <%= f.hidden_field :total_amount, :value => total %>
+              <li>
+              <%= f.submit "注文を確定する", :class => "btn btn-danger btn-block" %>
+              <%end%>
+              </li>
+          </ul>
+        </div>
+      </div>
     </div>
-  </section>
 </div>

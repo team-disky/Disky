@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
 
   def index
   	@products = Product.all.order(created_at: :desc)
-  	@products = Product.page(params[:page]).per(4)
+  	@products = Product.page(params[:page]).per(12)
   end
 
   def show

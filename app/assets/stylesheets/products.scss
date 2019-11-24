@@ -1,47 +1,106 @@
 // Place all the styles related to the Products controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-.new_arrival{
-	display:inline-block;
-	float:left;
+/* .slider{
+    width: 70vw;
+    height: calc(70vw * 1.61);
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
 }
 
-.JacketImage{border: 2px grey solid;
+.slider__content{
+    min-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(100%);
 }
 
-.cd-info{
-	padding-top:100px;
+.slider__content:nth-child(1){
+    animation: sliderAnime 6s ease-in-out infinite;
+    z-index: 6;
 }
 
-.kirikae{
-	text-align:center;
-	color:silver;
+.slider__content:nth-child(2){
+    animation: sliderAnime2 6s ease-in-out 1s infinite;
+    z-index: -1;
 }
 
-.top-banner{
-	background-image: url(/assets/disky_sample.png);
-	height:500px;
-	background-size:cover;
+.slider__content:nth-child(3){
+    animation: sliderAnime2 6s ease-in-out 3s infinite;
+    z-index: -1;
 }
 
- /*ページネーション自体のデザイン*/
-.pagination>li>a {
-  border: none;     /*枠線をなくす*/
-  color: #696969;   /*文字の色を変える*/
+@keyframes sliderAnime{
+    0%{
+        z-index: 5;
+        transform: translateX(0);
+    }
+    16.6%{
+        transform: translateX(0);
+    }
+    33.3%{
+        transform: translateX(-100%);
+    }
+    50%{
+        z-index: -1;
+        transform: translateX(-100%);
+    }
+    66.6%{
+        transform: translateX(100%);
+    }
+    83.2%{
+        z-index: 5;
+        transform: translateX(100%);
+    }
+    100%{
+        z-index: 5;
+        transform: translateX(0);
+    }
 }
 
-/* 表示しているページ番号のデザイン */
-.pagination>.active>a {
-  background: #93c9ff;     /*背景の色を変える*/
-  border-radius: 15px;     /*角を丸くする*/
+@keyframes sliderAnime2{
+    0%{
+        z-index: 5;
+        transform: translateX(100%);
+    }
+    16.6%{
+        transform: translateX(0);
+    }
+    33.3%{
+        transform: translateX(0);
+    }
+    50%{
+        transform: translateX(-100%);
+    }
+    66.6%{
+        z-index: -1;
+        transform: translateX(-100%);
+    }
+    83.2%{
+        transform: translateX(100%);
+    }
+    100%{
+        z-index: 5;
+        transform: translateX(100%);
+    }
 }
 
-/*ホバー時のデザイン*/
-.pagination>li>a:hover {
-  border-radius: 15px;    /*角を丸くする*/
+.slider__img{
+    max-width: 100%;
+    min-width: 100%;
 }
 
-.disc-box{
-	text-align:center;
+.carousel-item{
+	transition: transform .2s ease;
+}
+*/
+
+.product-item{
+	width:300px;
+}
+
+.content-card{
+	margin: 0 30px 30px 30px;
 }

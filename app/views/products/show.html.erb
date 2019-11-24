@@ -1,66 +1,89 @@
 <%= render 'customers/customer_header' %>
 
-<div class="container-fluid cd-info">
+<div class="container">
 	<div class="row">
-		<div class="col-md-6">
-			<p>CDジャケット画像</p>
-			<%= attachment_image_tag @product, :image, :fill, 400, 400, format:'jpeg', fallback: "no_image.png", size:'400x400', class: 'JacketImage' %>
-        </div>
-        <div class="col-md-4">
-			<p>タイトル</p>
-			<h2><%= @product.title %></h2>
-			<p>アーティスト名</p>
-			<h3><%= @product.artist.name %></h3>
-			<div class="row">
-				<div class="col-md-6 cd-info">
-					<p>レーベル名</p>
-					<%= @product.record_label.name %>
-					<p>ジャンル</p>
-					<%= @product.category.name %>
-					<p>発売日</p>
-					<%= @product.sales_date.strftime("%Y年%m月%d日") %>
-			    </div>
-	            <div class="col-md-6 cd-info">
-					<p>価格</p>
-					<%= @product.price %>
-					<p>ステータス</p>
-					<%= @product.status %>
-					<p>数量</p>
-					<% if customer_signed_in? %>
-						<%= form_for @cart_product, url: cart_products_path do |f| %>
-						<%= f.hidden_field :customer_id, :value => current_customer.id %>
-						<%= f.hidden_field :product_id, :value => @product.id %>
-						<%= f.number_field :count, min:1, max:@product.stock %>
-					    <%= f.submit 'カートに入れる', :class =>"btn btn-primary" %>
-					    <% end %>
-					<% else %>
-					    <input type ="number">
-					    <%= link_to "ログインが必要です", new_customer_session_path %>
-				    <% end %>
-				</div>
-        </div>
-    </div>
-</div>
+			<div class="col-md-6 ">
+				<%= attachment_image_tag @product, :image, :fill, 500, 500, format:'jpeg', fallback: "no_image.png", size:'500x500' %>
+	        </div>
+	        <div class="col-md-6">
+				<h4 class="display-4"><%= @product.title %></h4>
+				<h5 class="display-4"><%= @product.artist.name %></h5>
+				<div class="row align-items-center">
+					<div class="col-md-6 align-self-start">
+						<table class="table">
+							<tbody>
+								<tr>
+						          <th>レーベル</th>
+						          <td><%= @product.record_label.name %></td>
+						        </tr>
+						        <tr>
+						          <th>ジャンル</th>
+						          <td><%= @product.category.name %></td>
+						        </tr>
+						        <tr>
+						          <th>発売日</th>
+						          <td><%= @product.sales_date %></td>
+						        </tr>
+					        </tbody>
+					    </table>
+				    </div>
+		            <div class="col-md-6">
+						<div class="card border-secondary">
+							<div class="card-body">
+								<ul class="list-group list-group-flush">
+							        <li class="list-group-item"><h5>価格</h5>
+							        <strong><h3><%= @product.price %>yen</h3></strong></li>
 
-	<h2>収録内容</h2>
-	<% @product.discs.order(:number).each do |disc| %>
-	  <p>ディスクナンバー</p>
-	  <%= disc.number %>
-      <table class="table table-stripe">
-      	<thread>
-      		<th>曲番号</th>
-      		<th>タイトル</th>
-      		<th>収録時間</th>
-      	</thread>
-	    <tbody>
-	  <% disc.songs.order(:number).each do |song| %>
-	    	<tr>
-	    		<td><%= song.number %></td>
-	    		<td><%= song.title %></td>
-			    <td><%= song.recording_time_minutes %>分
-			    <%= song.recording_time_seconds %>秒</td>
-			</tr>
-	  <%end%>
-	    </tbody>
-	    </table>
-    <%end%>
+							        <li class="list-group-item"><h5>ステータス</h5>
+
+								        <% if @product.status == "販売中" %>
+									    	<h5><span class="badge badge-primary"><%= @product.status %></span></h5>
+									    <% elsif @product.status == "販売停止中" %>
+									　		<h5><span class="badge badge-danger"><%= @product.status %></span></h5>
+									    <% end %>
+							        </li>
+
+									<% if customer_signed_in? %>
+										<%= form_for @cart_product, url: cart_products_path do |f| %>
+										<%= f.hidden_field :customer_id, :value => current_customer.id %>
+										<%= f.hidden_field :product_id, :value => @product.id %>
+                                    <li class="list-group-item"><h5>数量</h5>
+									<p><%= f.number_field :count %></p></li>
+									<li class="list-group-item">
+									<%= f.submit 'カートに入れる', :class =>"btn btn-primary d-block" %>
+									    <% end %>
+									</li>
+									<% else %>
+										<h5 class="card-title">数量</h5>
+									    <input type ="number">
+									    <%= link_to "ログインが必要です", new_customer_session_path, :class=>"btn btn-danger" %>
+								    <% end %>
+								</ul>
+					        </div>
+					    </div>
+					</div>
+				</div>
+		    </div>
+    </div>
+	<div class="row">
+				<% @product.discs.order(:number).each do |disc| %>
+			      <table class="table table-striped">
+			      	<thead class="thead-dark">
+			      		<th>Disc<%= disc.number %></th>
+			      		<th>タイトル</th>
+			      		<th>収録時間</th>
+			      	</thead>
+				    <tbody>
+				  <% disc.songs.order(:number).each do |song| %>
+				    	<tr>
+				    		<td><%= song.number %></td>
+				    		<td><%= song.title %></td>
+						    <td><%= song.recording_time_minutes %>分
+						    <%= song.recording_time_seconds %>秒</td>
+						</tr>
+				  <%end%>
+				    </tbody>
+				    </table>
+			    <%end%>
+	</div>
+</div>
