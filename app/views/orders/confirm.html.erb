@@ -1,10 +1,11 @@
 <%= render 'customers/customer_header' %>
 
 <div class="container">
-  <h2 class="pt-5">注文内容確認</h2>
+  <div class="row">
+    <h2 class="pt-5">注文内容確認</h2>
+  </div>
   <div class="row py-5">
     <div class="col-md-8">
-      <div class="row">
         <%= form_for @order do |f| %>
         	<%= f.hidden_field :customer_id, :value => @customer.id %>
         	<!--ステータスは空でいいかな？ -->
@@ -15,7 +16,8 @@
             <%= f.hidden_field :payment_method %>
             <%= f.hidden_field :contractee_name, :value => @customer.fullname %>
             <%= f.hidden_field :contractee_phone_number, :value => @customer.phone_number %>
-        <div class ="card-deck">
+      <div class="row">
+<!--         <div class ="card-deck"> -->
           <div class="col-md-6">
             <div class="card text-center border border-secondary">
               <div class="card-header"><h4>送付先</h4></div>
@@ -37,7 +39,7 @@
               </div>
             </div>
           </div>
-        </div>
+<!--         </div> -->
       </div>
       <div class="row pt-5">
         <h2 class="pb-5">カート内容</h2>
