@@ -2,8 +2,7 @@ class ProductsController < ApplicationController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def index
-  	@products = Product.all.order(created_at: :desc)
-  	@products = Product.page(params[:page]).per(12)
+  	@products = Product.where(active_flag: true).where(status: "販売中").page(params[:page]).per(12)
   end
 
   def show
