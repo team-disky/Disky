@@ -2,18 +2,26 @@
 <%= render partial: "layouts/manager_header" %>
 
 <div class="container">
+    <% if @customer.active == false %>
+    <td style="color:red;">※この会員は既に退会しています</td>
+    <% else %>
+    <td></td>
+    <% end %>
+
     <div class="row">
         <div class="col-md-6">
+            <br>
             <h2>会員情報</h2>
         </div>
         <div class="col-md-2">
+            <br>
             <%= link_to "編集",edit_manager_customer_path, class: "btn btn-success" %>
             <%= link_to "戻る",manager_customers_path, class: "btn btn-success" %>
         </div>
     </div>
     <div class="row">
         <div class="col-md-2">
-            <span>ID </span>
+            <span>ID: </span>
         </div>
         <div class="col-md-4">
             <%= @customer.id %>
@@ -21,7 +29,7 @@
     </div>
     <div class="row">
         <div class="col-md-2">
-            <span>名前</span>
+            <span>名前: </span>
         </div>
         <div class="col-md-4">
             <%= @customer.last_name %>
@@ -30,7 +38,7 @@
     </div>
     <div class="row">
         <div class="col-md-2">
-            <span>フリガナ</span>
+            <span>フリガナ: </span>
         </div>
         <div class="col-md-4">
             <%= @customer.last_name_read %>
@@ -39,7 +47,7 @@
     </div>
     <div class="row">
         <div class="col-md-2">
-            <span>メールアドレス</span>
+            <span>メールアドレス: </span>
         </div>
         <div class="col-md-4">
             <%= @customer.email %>
@@ -47,29 +55,32 @@
     </div>
     <div class="row">
         <div class="col-md-2">
-            <span>電話番号</span>
+            <span>電話番号: </span>
         </div>
         <div class="col-md-4">
             <%= @customer.phone_number %>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2 addresses-box">
+        <div class="col-md-2 addresses-box" style="background-color: lightgray;">
+            <span>〒:</span>
             <%= @customer.postal_code %></br>
             <%= @customer.address %></br>
             <%= @customer.last_name %>
             <%= @customer.first_name %>
         </div>
         <% @customer.registration_addresses.each do |sub| %>
-        <div class="col-md-2 addresses-box">
+        <div class="col-md-2 addresses-box" style="background-color: lightgray;">
+            <span>〒:</span>
             <%= sub.postal_code %></br>
             <%= sub.address %></br>
             <%= sub.name %>
         </div>
         <% end %>
     </div>
+    <br>
     <div class="row">
-        <div class="row">
+        <div class="col-md-6">
             <h2>購入履歴一覧</h2>
         </div>
         <div class="row">
@@ -108,3 +119,5 @@
         </div>
     </div>
 </div>
+
+<%= render partial: "layouts/manager_footer" %>

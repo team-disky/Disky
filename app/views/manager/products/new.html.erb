@@ -7,7 +7,7 @@
 			<%= form_for(@product, url: manager_products_path) do |f| %>
 				<% if @product.errors.any? %>
    				<% @product.errors.full_messages.each do |message| %>
-        			<li><%= message %></li>
+        			<li style="color:red"><%= message %></li>
       			<% end %>
      			<% end %>
      		<div class="row">
@@ -23,19 +23,19 @@
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "アーティスト名" %><strong>&#x203B;</strong></th>
-					<td><%= f.collection_select :artist_id, Artist.all, :id, :name %></td>
+					<td><%= f.collection_select :artist_id, Artist.all, :id, :name, :prompt => "選択してください" %></td>
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "レーベル名" %><strong>&#x203B;</strong></th>
-					<td><%= f.collection_select :record_label_id, RecordLabel.all, :id, :name %></td>
+					<td><%= f.collection_select :record_label_id, RecordLabel.all, :id, :name, :prompt => "選択してください" %></td>
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "ジャンル" %><strong>&#x203B;</strong></th>
-					<td><%= f.collection_select :category_id, Category.all, :id, :name %></td>
+					<td><%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "選択してください" %></td>
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "フォーマット" %><strong>&#x203B;</strong></th>
-					<td><%= f.select :format, [["シングル","シングル"],["アルバム","アルバム"],["マキシシングル","マキシシングル"],["複数アルバム","複数アルバム"],["ミニアルバム","ミニアルバム"]] %></td>
+					<td><%= f.select :format, [["シングル","シングル"],["アルバム","アルバム"],["マキシシングル","マキシシングル"],["複数アルバム","複数アルバム"],["ミニアルバム","ミニアルバム"]], :prompt => "選択してください" %></td>
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "発売日" %><strong>&#x203B;</strong></th>
@@ -76,40 +76,16 @@
 			<div class="row">
 				<div class="col"></div>
 				<div class="col-sm-2">
-					<%= link_to manager_products_path do %>
-						<button class="btn btn-warning btn-block">キャンセル</button>
+					<%= link_to manager_products_path, method: :GET do %>
+						<button class="btn btn-warning btn-block blank">キャンセル</button>
 					<% end %>
 				</div>
 				<div class="col-sm-2">
-					<%= f.submit "登録", class:"btn btn-primary btn-block" %>
+					<%= f.submit "登録", class:"btn btn-primary btn-block blank" %>
 				</div>
 				<div class="col"></div>
 			</div>
 		<% end %>
 </div>
 
-<script>
-	$(function() {
-
-  $(document).on('nested:fieldAdded', function(e) {
-    var link = $(e.currentTarget.activeElement);
-    if (!link.data('limit')) {
-      return;
-    }
-    if (link.siblings('.fields:visible').length >= link.data('limit')) {
-      link.hide();
-    }
-  });
-
-  $(document).on('nested:fieldRemoved', function(e) {
-    var link = $(e.target).siblings('a.add_nested_fields');
-    if (!link.data('limit')) {
-      return;
-    }
-    if (link.siblings('.fields:visible').length < link.data('limit')) {
-      link.show();
-    }
-  });
-
-})
-</script>
+<%= render partial: "layouts/manager_footer" %>

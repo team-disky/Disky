@@ -36,18 +36,21 @@
 		<div class="row">
 			<div class="col"></div>
 			<div class="col-sm-3 select-quantity">
-				<h3>現在の在庫：<%= @product.stock %></h3>
+				<h4 class="now-quantity">現在の在庫：<%= @product.stock %></h4>
 			</div>
 			<div class="col-sm-3 select-quantity">
 				<%= form_for(@arrival, url: manager_arrivals_path) do |f| %>
 					<%= f.hidden_field :product_id, :value => @product.id %>
 					<%= f.label "入荷日" %>
 					<%= f.date_select :date %>
-					<%= f.label "入荷個数" %>
-					<%= f.number_field :count, min:1 %>
+					<div class="center-line"></div>
+					<%= f.label "入荷個数", class:"blank-more" %>
+					<%= f.number_field :count, min:1, value:1 %>
 					<%= f.submit "入荷を登録する", class:"btn btn-primary" %>
 				<% end %>
 			</div>
 			<div class="col"></div>
 		</div>
 </div>
+
+<%= render partial: "layouts/manager_footer" %>
