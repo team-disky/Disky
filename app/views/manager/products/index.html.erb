@@ -2,27 +2,35 @@
 
 <div class="container">
 	<div class="row">
-		<h1 class="page-title">商品管理</h1>
+		<h1 class="page-title col">商品管理</h1>
+		<div class="col"></div>
+		<div class="serch col">
+		<%= search_form_for(@q, url: manager_products_path) do |f| %>
+  			<%= f.search_field :title_or_artist_name_cont, :placeholder => "商品名またはアーティスト名" %>
+
+  			<%= f.submit "検索", class:"btn btn-primary btn-sm" %>
+  		<% end %>
+  		</div>
 		<table class="table table-hover table-inverse">
-			<thead>
+			<thead class="table-active">
 				<tr>
-					<th class="table-active">番号</th>
-					<th class="table-active">商品画像</th>
-					<th class="table-active">商品名</th>
-					<th class="table-active">価格(税込)</th>
-					<th class="table-active">在庫数</th>
-					<th class="table-active">ステータス</th>
+					<th style="width: 10%">商品番号</th>
+					<th style="width: 15%">商品画像</th>
+					<th style="width: 40%">商品名</th>
+					<th style="width: 15%">価格(税込)</th>
+					<th style="width: 10%">  在庫数</th>
+					<th style="width: 10%">ステータス</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% @products.each do |product| %>
-					<tr>
+					<tr data-href="<%= manager_product_path(product.id) %>">
 						<td><%= product.id %></td>
 						<td><%= link_to attachment_image_tag(product, :image, size:'40x40', fallback: "no_image.png", class:"img-thumbnail"), manager_product_path(product.id) %></td>
 						<td><%= link_to product.title, manager_product_path(product.id) %></td>
 						<td>￥<%= product.price %></td>
 						<td><%= product.stock %></td>
-						<td><%= product.status %></td>
+						<td style="text-align: center"><%= product.status %></td>
 					</tr>
 				<% end %>
 			</tbody>

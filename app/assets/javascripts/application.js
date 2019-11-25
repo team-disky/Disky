@@ -19,6 +19,7 @@
 
 //= require nested_form_fields
 //= require cocoon
+
 //= require_tree .
 
 
@@ -27,7 +28,7 @@ $(document).ready(function(){
 	$("tr[data-href]").click(function(){
 		window.location = $(this).data("href");
 	});
-
+  
 	//customer側編集画面のcocoon用js
 	$(function() {
   	// limits the number of categories

@@ -73,9 +73,9 @@
             <h2>購入履歴一覧</h2>
         </div>
         <div class="row">
-            <table class="table">
+            <table class="table table-hover">
                 <% @orders.each do |order| %>
-                <tr>
+                <tr data-href="<%= manager_order_path(order.id) %>">
                     <td><%= order.status %></td>
                     <td>
                         <span class="lr-space">
@@ -84,7 +84,7 @@
                     </td>
                     <td>
                         <span class="lr-space">
-                            注文番号：<%= link_to order.id,manager_order_path(order.id) %>
+                            注文番号：<%= order.id %>
                         </span>
                     </td>
                     <td>

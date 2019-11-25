@@ -1,6 +1,8 @@
+<%= render 'customers/customer_header' %>
+
 <div class="container">
-  <h2>注文内容確認</h2>
-  <div class="row">
+  <h2 class="pt-5">注文内容確認</h2>
+  <div class="row py-5">
     <div class="col-md-8">
       <div class="row">
         <%= form_for @order do |f| %>
@@ -13,7 +15,8 @@
             <%= f.hidden_field :payment_method %>
             <%= f.hidden_field :contractee_name, :value => @customer.fullname %>
             <%= f.hidden_field :contractee_phone_number, :value => @customer.phone_number %>
-          <div class="card-deck">
+        <div class ="card-deck">
+          <div class="col-md-6">
             <div class="card text-center border border-secondary">
               <div class="card-header"><h4>送付先</h4></div>
               <div class="card-body">
@@ -25,6 +28,8 @@
                 </ul>
               </div>
             </div>
+          </div>
+          <div class="col-md-6">
             <div class="card text-center payment_card border border-secondary">
               <div class="card-header"><h4>支払い方法</h4></div>
               <div class="card-body">
@@ -32,9 +37,10 @@
               </div>
             </div>
           </div>
+        </div>
       </div>
-      <div class="row">
-        <h2>カート内容</h2>
+      <div class="row pt-5">
+        <h2 class="pb-5">カート内容</h2>
 
         <table class="table table-hover border border-secondary">
           <thead class="thead-dark">
@@ -75,19 +81,21 @@
           <ul class="list-group list-group-flush">
               <li class="list-group-item">
                 <h5>商品小計</h5>
-                <strong><h2><%= subtotal %>yen</h2></strong>
+                <strong><h2><%= subtotal %>&nbsp;yen</h2></strong>
                 <%= f.hidden_field :subtotal_amount, :value => subtotal %>
               </li>
               <% postage = 500 %>
               <li class="list-group-item">
+                <h5>送料</h5>
+                <h2><%= postage %>&nbsp;yen</h2>
+              </li>
+              <li class="list-group-item">
                 <h5>注文合計</h5>
-              <% postage = 500 %>
-              <!-- 送料は空でいいかな？-->
-              <strong><h2><%= subtotal + postage %>yen</h2></strong>
+              <strong><h2><%= subtotal + postage %>&nbsp;yen</h2></strong>
               </li>
               <% total = subtotal + postage %>
               <%= f.hidden_field :total_amount, :value => total %>
-              <li>
+              <li class="list-group-item">
               <%= f.submit "注文を確定する", :class => "btn btn-danger btn-block" %>
               <%end%>
               </li>
@@ -95,4 +103,5 @@
         </div>
       </div>
     </div>
+  </div>
 </div>
