@@ -14,12 +14,14 @@ class Manager::ProductsController < ApplicationController
 
 	def create
 		@product = Product.new(product_params)
+		if @product.price != nil
 		@product.price = (@product.price*1.1).round(0)
-		if @product.save
-		redirect_to manager_product_add_quantity_path(@product.id)
-		else
-			render :new
 		end
+			if @product.save
+				redirect_to manager_product_add_quantity_path(@product.id)
+			else
+				render :new
+			end
 	end
 
 	def index
