@@ -4,6 +4,7 @@ ja:
       artist:
       category:
       record_label:
+      product:
     attributes:
       artist:
         name: アーティスト
@@ -11,5 +12,13 @@ ja:
         name: ジャンル
       record_label:
         name: レーベル
+      product:
+        title: 商品名
+        artist: アーティスト名
+        record_label: レーベル名
+        category: ジャンル
+        format: フォーマット
+        price: 価格
+
 
 

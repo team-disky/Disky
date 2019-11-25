@@ -70,6 +70,12 @@
 		border-bottom: solid 1px silver;
 	}
 
+	.center-line {
+		padding: 4px;
+		margin-bottom: 15px;
+		border-bottom: solid 1px silver;
+	}
+
 	.dashed-line {
 		padding: 10px;
 		border-bottom: dashed 2px silver;
@@ -93,5 +99,22 @@
 
 	.select-quantity {
 		margin-top: 50px;
+	}
+
+	.destroy-info {
+		margin-left: 200px;
+		margin-top: 10px;
+	}
+
+	.now-quantity {
+		padding-top: 30px;
+	}
+
+	.blank {
+		margin-bottom: 30px;
+	}
+
+	.blank-more {
+		margin-bottom: 60px;
 	}
 }

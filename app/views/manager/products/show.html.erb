@@ -9,6 +9,9 @@
 	<% end %>
 	<div class="row page-title">
 		<h1>商品情報</h1>
+		<% if @product.active_flag == false %>
+			<h2 class="destroy-info"><strong>この商品は削除されました。</strong></h2>
+		<% end %>
 	</div>
 	<div class="row">
 		<div class="col-sm-6">
@@ -32,6 +35,7 @@
 					<p class="text-center under-line">ジャンル：<%= @product.category.name %></p>
 					<p class="text-center">発売日：<%= @product.sales_date.strftime("%Y年%m月%d日") %></p>
 				</div>
+				<% if @product.active_flag == true %>
 				<div class="col-sm-6 product-menu">
 					<p class="text-center under-line">税込価格：<%= @product.price %>円</p>
 					<p class="text-center under-line"><%= @product.status %></p>
@@ -40,6 +44,7 @@
 						<button class="btn btn-outline-success d-block mx-auto">在庫を追加</button>
 					<% end %>
 				</div>
+				<% end %>
 			</div>
 		</div>
 	</div>
@@ -72,14 +77,18 @@
 		<div class="col"></div>
 		<div class="col-sm-2">
 			<%= link_to manager_products_path do %>
-				<button class="btn btn-warning btn-lg btn-block">戻る</button>
+				<button class="btn btn-warning btn-lg btn-block blank">戻る</button>
 			<% end %>
 		</div>
+		<% if @product.active_flag == true %>
 		<div class="col-sm-2">
 			<%= link_to edit_manager_product_path(@product.id) do %>
-				<button class="btn btn-primary btn-lg btn-block">編集</button>
+				<button class="btn btn-primary btn-lg btn-block blank">編集</button>
 			<% end %>
 		</div>
+		<% end %>
 		<div class="col"></div>
 	</div>
 </div>
+
+<%= render partial: "layouts/manager_footer" %>

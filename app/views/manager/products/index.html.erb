@@ -26,8 +26,8 @@
 				<% @products.each do |product| %>
 					<tr data-href="<%= manager_product_path(product.id) %>">
 						<td><%= product.id %></td>
-						<td><%= link_to attachment_image_tag(product, :image, size:'40x40', fallback: "no_image.png", class:"img-thumbnail"), manager_product_path(product.id) %></td>
-						<td><%= link_to product.title, manager_product_path(product.id) %></td>
+						<td><%= attachment_image_tag(product, :image, size:'40x40', fallback: "no_image.png", class:"img-thumbnail") %></td>
+						<td><%= product.title %></td>
 						<td>￥<%= product.price %></td>
 						<td><%= product.stock %></td>
 						<td style="text-align: center"><%= product.status %></td>
@@ -42,3 +42,5 @@
 		<div class="col"></div>
 	</div>
 </div>
+
+<%= render partial: "layouts/manager_footer" %>

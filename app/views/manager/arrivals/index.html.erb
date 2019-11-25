@@ -25,8 +25,8 @@
 				<% @arrivals.each do |arrival| %>
 				<tr data-href="<%= manager_product_path(arrival.product.id) %>">
 					<td><%= arrival.product_id %></td>
-					<td><%= link_to attachment_image_tag(arrival.product, :image, size:'40x40', fallback: "no_image.png"), manager_product_path(arrival.product.id) %></td>
-					<td><%= link_to arrival.product.title, manager_product_path(arrival.product.id) %></td>
+					<td><%= attachment_image_tag(arrival.product, :image, size:'40x40', fallback: "no_image.png") %></td>
+					<td><%= arrival.product.title %></td>
 					<td><%= arrival.count %></td>
 					<td><%= arrival.date.strftime("%Y年%m月%d日") %></td>
 				</tr>
@@ -40,3 +40,5 @@
 		<div class="col"></div>
 	</div>
 </div>
+
+<%= render partial: "layouts/manager_footer" %>
