@@ -4,6 +4,8 @@ ja:
       artist:
       category:
       record_label:
+      customer:
+      registration_addresses:
     attributes:
       artist:
         name: アーティスト
@@ -11,4 +13,18 @@ ja:
         name: ジャンル
       record_label:
         name: レーベル
+      customer:
+        last_name: 姓
+        first_name: 名
+        last_name_read: フリガナ セイ
+        first_name_read: フリガナ メイ
+        email: メールアドレス
+        phone_number: 電話番号
+        postal_code: 郵便番号
+        address: 住所
+      registration_addresses:
+        name: 送付先氏名
+        phone_number: 送付先電話番号
+        postal_code: 送付先郵便番号
+        address: 送付先住所
 

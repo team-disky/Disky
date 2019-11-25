@@ -18,9 +18,7 @@ class Customer < ApplicationRecord
   #論理削除テスト
   def active_for_authentication?
 	 super && self.active?
-
   end
-
 
   def fullname
     last_name + first_name
