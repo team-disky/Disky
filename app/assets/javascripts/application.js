@@ -21,6 +21,7 @@
 //= require cocoon
 //= require_tree .
 
+
 //画面を表示したときにreadyでjsを読み込ませる
 $(document).ready(function(){
 	$("tr[data-href]").click(function(){
