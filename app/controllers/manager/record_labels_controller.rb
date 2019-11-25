@@ -7,7 +7,8 @@ class Manager::RecordLabelsController < ApplicationController
     end
 
     def index
-        @record_labels = RecordLabel.page(params[:page]).per(10)
+        @q = RecordLabel.ransack(params[:q])
+        @record_labels = @q.result(distinct: true).page(params[:page]).per(10)
         @record_label = RecordLabel.new
     end
 

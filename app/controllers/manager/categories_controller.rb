@@ -7,7 +7,8 @@ class Manager::CategoriesController < ApplicationController
     end
 
     def index
-        @categories = Category.page(params[:page]).per(10)
+        @q = Category.ransack(params[:q])
+        @categories = @q.result(distinct: true).page(params[:page]).per(10)
         @category = Category.new
     end
 
