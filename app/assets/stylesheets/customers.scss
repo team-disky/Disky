@@ -4,10 +4,15 @@
 
 .customers{
 
+	.error-message{
+		color:red;
+	}
+
 	//Myページ
 	.addresses-box{
-		height:120px;
-		margin:10px 5px 10px 5px;
+		height:150px;
+		margin:5px 0px;
+		padding:10px 13px;
 		border:1px solid #000;
 		border-radius:10px
 	}
@@ -16,12 +21,32 @@
 	}
 
 	//アカウント編集画面
-	.e-addresses-box{
-		height:181px;
-		padding:2px;
-		margin:10px 5px 10px 5px;
-		border:1px solid #000;
-		border-radius:5px
+	.title{
+		margin:50px 0px;
+	}
+	.name-border{
+		height:38px;
+		border:1px solid #ced4da;
+		border-radius:0.25rem;
+	}
+	.name-title{
+		height:38px;
+		line-height:38px;
+	}
+	.address-name{
+		height:38px;
+		width:130px;
+	}
+	.address-name p{
+		line-height:38px;
+		margin-left:10px;
+		margin-bottom:0px;
+	}
+	.fa-add{
+	color:green;
+	}
+	.fa-delete{
+		color:red;
 	}
 
 }
