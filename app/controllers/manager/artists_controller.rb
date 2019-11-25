@@ -8,7 +8,6 @@ class Manager::ArtistsController < ApplicationController
 
 	def index
         #@q = Artist.ransack(params[:q])
-		@artists = Artist.all
         @artists = Artist.page(params[:page]).per(10)
 		@artist = Artist.new
     end

@@ -7,7 +7,7 @@ class Manager::RecordLabelsController < ApplicationController
     end
 
     def index
-        @record_labels = RecordLabel.all
+        @record_labels = RecordLabel.page(params[:page]).per(10)
         @record_label = RecordLabel.new
     end
 

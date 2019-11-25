@@ -50,6 +50,9 @@
  <% end %>
  </tbody>
  </table>
+ <%= paginate @record_labels, :class=>"pagination" %>
  </div>
  </div>
 </div>
+
+<%= render partial: "layouts/manager_footer" %>
