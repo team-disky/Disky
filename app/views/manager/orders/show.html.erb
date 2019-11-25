@@ -21,7 +21,7 @@
     </div>
     <div class="col-md-4">
      <%= form_for(@order, url: manager_order_path) do |f| %>
-     <%= f.select :status, [["受付","受付"],["商品準備中","商品準備中"],["出荷済み","出荷済み"]] %></li>
+     <%= f.select :status, [["受付","受付"],["商品準備中","商品準備中"],["出荷済み","出荷済み"]] %>
      <%= f.submit "編集内容を保存" %>
      <% end %>
    </div>
@@ -40,6 +40,18 @@
   </div>
   <div class="col-md-4">
     <%= link_to @order.contractee_name,manager_customer_path(@order.customer), style: "color:black;text-decoration:none" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <span>お届け先: </span>
+  </div>
+  <div class="col-md-4">
+    <% if @order.destination_name == @order.contractee_name %>
+    <span>同上</span>
+    <% else %>
+    <%= @order.destination_name%>
+    <% end %>
   </div>
 </div>
 <div class="row">
@@ -90,7 +102,6 @@
       <sapn><%= purchased_product.count %></span>
       </div>
     </div>
-  </div>
-  <% end %>
+    <% end %>
 
-</div>
+  </div>

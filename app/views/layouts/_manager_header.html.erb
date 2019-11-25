@@ -9,7 +9,7 @@
   <% if manager_signed_in? %>
 
 
-    <li class="nav-item"><%= link_to "お客様画面へ", root_path,style: "color:white;text-decoration:none" %>
+    <li class="nav-item"><%= link_to "お客様画面へ", root_path,style: "color:white;text-decoration:none;" %>
     </li>
 
     <li class="nav-item"><%= link_to "ログアウト", destroy_manager_session_path, method: :delete, style: "color:white;text-decoration:none" %>
@@ -23,7 +23,7 @@
     <li class="nav-item">
       <%= link_to "商品登録", new_manager_product_path,style: "color:white;text-decoration:none" %></li>
     <li class="nav-item">
-      <%= link_to "注文管理", manager_orders_path,style: "color:white;text-decoration:none" %></li>
+      <%= link_to "受注管理", manager_orders_path,style: "color:white;text-decoration:none" %></li>
 
     <li class="nav-item">
       <%= link_to "会員管理", manager_customers_path,style: "color:white;text-decoration:none" %></li>
@@ -31,7 +31,7 @@
     <li class="nav-item">
       <%= link_to "入荷履歴", manager_arrivals_path,style: "color:white;text-decoration:none" %></li>
 
-    <div class="nav-item dropdown">
+    <div class="nav-item-dropdown dropdown">
       <a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown" style="color:white;text-decoration:none">
         データ登録
       </a>

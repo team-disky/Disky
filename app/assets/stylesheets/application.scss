@@ -30,3 +30,13 @@
   display: block;
   clear: both;
 }
+
+.nav-item {
+	list-style:none;
+	margin-right:15px;
+}
+
+.nav-item-dropdown {
+	list-style:none;
+	margin-left: -15px;
+}
