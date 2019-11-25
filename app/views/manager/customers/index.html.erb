@@ -9,7 +9,7 @@
 
 			<%= search_form_for(@q, url: manager_customers_path) do |f| %>
 			<%= f.search_field :last_name_or_first_name, :placeholder=> "会員を検索" %>
-			<%= f.submit %>
+			<%= f.submit "検索", class:"btn btn-primary btn-sm" %>
 			<% end %>
 
 			</div>
@@ -36,7 +36,7 @@
 						<td><%= customer.id %></td>
 
 						<% if customer.active == false %>
-						<td>退会済</td>
+						<td style="color:red;">退会済</td>
 						<% else %>
 						<td></td>
 						<% end %>
