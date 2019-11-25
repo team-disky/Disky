@@ -1,7 +1,9 @@
+<%= render 'customers/customer_header' %>
+
 <div class ="container">
-<h2>カート内容</h2>
-		<section class="row">
-			<div class="col-md-9">
+  <h2 class="pt-5">カート内容</h2>
+		<section class="row py-5">
+      	<div class="col-md-9">
 				<table class="table table-hover border border-secondary">
 					<thead class="thead-dark">
 						<th>Disc</th>
@@ -47,7 +49,7 @@
         <div class="card border border-secondary">
           <div class="card-body">
             <ul class="list-group list-group-flush">
-              <li class="list-group-item"><h5>商品小計</h5><strong><h2><%= subtotal %>yen</strong></h2></li>
+              <li class="list-group-item"><h5>商品小計</h5><strong><h2 class="text-center"><%= subtotal %>&nbsp;yen</strong></h2></li>
               <li class="list-group-item">
                <%= link_to select_address_path do %>
                 <p class="btn btn-success btn-block">レジに進む</p>

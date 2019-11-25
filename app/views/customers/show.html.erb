@@ -54,19 +54,26 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-2 addresses-box">
-			<spam>〒：</spam>
-			<%= @customer.postal_code %></br>
-			<%= @customer.address %></br>
-			<%= @customer.last_name %>
-			<%= @customer.first_name %>
+		<div class="col-md-3">
+			<div class="addresses-box">
+				<%= @customer.last_name %>
+				<%= @customer.first_name %></br>
+				<spam>〒：</spam>
+				<%= @customer.postal_code %></br>
+				<%= @customer.address %>
+			</div>
 		</div>
 		<% @customer.registration_addresses.each do |sub| %>
-		<div class="col-md-2 addresses-box">
-			<spam>〒：</spam>
-			<%= sub.postal_code %></br>
-			<%= sub.address %></br>
-			<%= sub.name %>
+		<div class="col-md-3">
+			<div class="addresses-box">
+				<spam>氏名：</spam>
+				<%= sub.name %></br>
+				<spam>TEL：</spam>
+				<%= sub.phone_number %></br>
+				<spam>〒：</spam>
+				<%= sub.postal_code %></br>
+				<%= sub.address %></br>
+			</div>
 		</div>
 		<% end %>
 	</div>

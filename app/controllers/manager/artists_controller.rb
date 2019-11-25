@@ -9,7 +9,7 @@ class Manager::ArtistsController < ApplicationController
 	def index
         @q = Artist.ransack(params[:q])
         @artists = @q.result(distinct: true).page(params[:page]).per(10)
-		　　　@artist = Artist.new
+		@artist = Artist.new
     end
 
     def new
