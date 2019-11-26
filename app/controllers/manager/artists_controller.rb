@@ -20,7 +20,8 @@ class Manager::ArtistsController < ApplicationController
      if	@artist.save
     	redirect_to manager_artists_path
      else
-        @artists = Artist.page(params[:page]).per(10)
+        @q = Artist.ransack(params[:q])
+        @artists = @q.result(distinct: true).page(params[:page]).per(10)
         render :index
      end
     end

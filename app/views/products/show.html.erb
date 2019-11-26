@@ -50,7 +50,7 @@
 										    <% end %>
 								        </li>
 									  <% if customer_signed_in? %>
-	                                    <% if @product.status == "販売停止中" || @product.sales_date <= Date.today %>
+	                                    <% if @product.status == "販売停止中" || @product.sales_date > Date.today %>
 	                                    <li class="list-group-item"><strong>現在、この商品は<br>お取り扱いして<br>おりません</strong></li>
 	                                    <% elsif @product.status == "販売中" %>
 											<%= form_for @cart_product, url: cart_products_path do |f| %>

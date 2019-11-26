@@ -20,7 +20,8 @@ class Manager::CategoriesController < ApplicationController
     if  @category.save
         redirect_to manager_categories_path
     else
-        @categories = Category.all
+        @q = Category.ransack(params[:q])
+        @categories = @q.result(distinct: true).page(params[:page]).per(10)
         render :index
     end
     end
