@@ -62,15 +62,15 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2 addresses-box" style="background-color: lightgray;">
-            <span>〒:</span>
+        <div class="col-md-2 addresses-box">
+            <span>〒</span>
             <%= @customer.postal_code %></br>
             <%= @customer.address %></br>
             <%= @customer.last_name %>
             <%= @customer.first_name %>
         </div>
         <% @customer.registration_addresses.each do |sub| %>
-        <div class="col-md-2 addresses-box" style="background-color: lightgray;">
+        <div class="col-md-2 addresses-box">
             <span>〒:</span>
             <%= sub.postal_code %></br>
             <%= sub.address %></br>
