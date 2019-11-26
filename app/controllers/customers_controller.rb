@@ -28,6 +28,7 @@ class CustomersController < ApplicationController
 	  if params[:leave]
 	  	if @customer.email == quit_params[:email] && @customer.valid_password?(quit_params[:password])
 	  		@customer.update(active: false)
+	  		flash[:notice] = "退会が完了しました。ご利用ありがとうございました。"
 	  		redirect_to root_path
 	  	else
 	  		render :leave

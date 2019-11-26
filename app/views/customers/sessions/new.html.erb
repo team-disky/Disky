@@ -4,29 +4,32 @@
   <p><%= flash[:notice] %></p>
 <% end %>
 
-<h2>ログイン</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row title">
+    <h1 class="mx-auto">Diskyへようこそ！</h1>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3 border">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="leave-space">
+        <div class="m-space">
+          <span class="m-box">メールアドレス</span>
+        </div>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+      </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+      <div class="m-space">
+        <spam class="m-box">パスワード</spam>
+      </div>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+
+      <div class="actions text-center leave-btn">
+        <%= f.submit "ログイン", class: "btn btn-success" %>
+      </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
   </div>
-<% end %>
-
-<%= render "customers/shared/links" %>
+</div>
