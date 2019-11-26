@@ -86,6 +86,9 @@
         </div>
       </div>
     <% end %>
+    <div class="row">
+      <%= link_to "会員を削除", manager_customer_path(@customer), method: :delete, data: { confirm: "#{@customer.full_name}様を削除します"} %>
+    </div>
 
 </div>
 
