@@ -1,14 +1,15 @@
 class OrdersController < ApplicationController
 	before_action :authenticate_customer!
 
+  	def correct_user
+      	@order = Order.find(params[:id])
+      	redirect_to root_path unless @order.customer_id == current_customer.id
+  	end
+
+  	before_action :correct_user,only:[:show]
+
 	def show
 		#購入履歴詳細を表示する
-		before_action :correct_user
-
-  			def correct_user
-      			@order = Order.find(params[:id])
-      			redirect_to root_path unless @order.customer_id == current_customer.id
-  			end
 		@order = Order.find(params[:id])
 		@customer = Customer.find(@order.customer_id)
 	end
@@ -76,4 +77,5 @@ class OrdersController < ApplicationController
 		params.require(:order).permit(:customer_id, :total_amount, :subtotal_amount, :contractee_name, :contractee_phone_number, :postage, :destination_name, :destination_phone_number, :postal_code, :destination_address, :payment_method, 
 			purchased_products_attributes:[:id, :order_id, :product_id, :price, :count])
 	end
+
 end
