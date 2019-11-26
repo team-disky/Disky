@@ -9,7 +9,7 @@ class Product < ApplicationRecord
 
 	attachment :image
 
-	accepts_nested_attributes_for :discs
+	accepts_nested_attributes_for :discs, allow_destroy: true
 
 	enum status:{販売中:0,販売停止中:1}
 	enum format:{シングル:0,アルバム:1,マキシシングル:2,複数アルバム:3,ミニアルバム:4}
