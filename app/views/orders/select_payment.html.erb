@@ -7,7 +7,7 @@
 		<div class=" col-md-8">
 			<%= form_for @order, url: {action: 'confirm'} do |f| %>
 				<div class="radio-btn form-check">
-				  <%= f.radio_button :payment_method, "クレジットカード"%>
+				  <%= f.radio_button :payment_method, "クレジットカード", :checked => true %>
 				  <%= f.label :payment_method, "クレジットカード", {value: "クレジットカード"} %>
 				</div>
 

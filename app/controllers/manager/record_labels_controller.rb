@@ -20,7 +20,8 @@ class Manager::RecordLabelsController < ApplicationController
     if	@record_label.save
     	redirect_to manager_record_labels_path
     else
-        @record_labels = RecordLabel.all
+        @q = RecordLabel.ransack(params[:q])
+        @record_labels = @q.result(distinct: true).page(params[:page]).per(10)
         render :index
     end
     end
