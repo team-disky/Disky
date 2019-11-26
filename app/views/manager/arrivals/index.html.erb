@@ -6,7 +6,7 @@
 		<div class="col"></div>
 		<div class="serch col">
 		<%= search_form_for(@q, url: manager_arrivals_path) do |f| %>
-  			<%= f.search_field :product_title_or_product_artist_name_cont, :placeholder => "商品名またはアーティスト名" %>
+  			<%= f.search_field :product_title_or_product_artist_name_cont, :placeholder => "商品名またはアーティスト名", class:"serch-form" %>
 
   			<%= f.submit "検索", class:"btn btn-primary btn-sm" %>
   		<% end %>
