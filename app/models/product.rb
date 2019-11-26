@@ -14,6 +14,8 @@ class Product < ApplicationRecord
 	enum status:{販売中:0,販売停止中:1}
 	enum format:{シングル:0,アルバム:1,マキシシングル:2,複数アルバム:3,ミニアルバム:4}
 
+	validates :title,  :format, :sales_date, :price, presence: true
+
 	def total_arrival
 		#Arrival.where(product_id: id).sum(:count)
 		Arrival.where('date <= ?', Date.today).where(product_id: id).sum(:count)

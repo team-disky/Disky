@@ -1,11 +1,20 @@
 <%= render 'customers/customer_header' %>
 
 <div class="container">
+  <div class="row title">
+    <h2 class="mx-auto">アカウントを編集する</h2>
+  </div>
 
-  <h2 class="text-center">アカウントを編集する</h2>
+  <div class="">
+    <% if @customer.errors.any? %>
+      <% @customer.errors.full_messages.each do |message| %>
+        <li class="error-message"><%= message %></li>
+      <% end %>
+    <% end %>
+  </div>
 
   <%= form_for @customer do |f| %>
-    <div class="row">
+    <div class="row c-information">
       <table class="table">
         <div class="input-group">
           <tr>
@@ -42,55 +51,55 @@
           </td>
           <td></td>
         </tr>
+        <tr>
+          <td>パスワード</td>
+          <td><%= link_to "パスワードを変更", customer_edit_password_path(@customer), class: "btn btn-success" %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
       </table>
     </div>
 
-    <div class="row">
-      <div class="e-addresses-box">
+    <div class="row" id="details">
+      <div class="col-md-3">
+        <div class="input-group name-border">
+          <div class="input-group-prepend name-title">
+            <sapn class="input-group-text">氏名：</sapn>
+          </div>
+          <div class="address-name">
+            <p>
+              <%= @customer.last_name %>
+              <%= @customer.first_name %>
+            </p>
+          </div>
+        </div>
         <div class="input-group">
           <div class="input-group-prepend">
             <sapn class="input-group-text">〒：</sapn>
           </div>
-          <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "郵便番号", class: "form-control" %><br>
+          <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "郵便番号", class: "form-control" %>
         </div>
         <%= f.text_area :address, autofocus: true, autocomplete: "address", placeholder: "住所", class: "form-control" %>
       </div>
 
-      <%= f.nested_fields_for :registration_addresses do |q| %>
-        <div class="e-addresses-box">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <sapn class="input-group-text"> 氏名：</sapn>
-            </div>
-            <%= q.text_field :name, autofocus: true, placeholder: "送付先氏名", class: "form-control" %>
-          </div>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <sapn class="input-group-text"> TEL：</sapn>
-            </div>
-            <%= q.telephone_field :phone_number, autofocus: true, placeholder: "電話番号", class: "form-control" %>
-          </div>
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <sapn class="input-group-text">〒：</sapn>
-            </div>
-            <%= q.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "郵便番号", class: "form-control" %>
-          </div>
-          <%= q.text_area :address, autofocus: true, autocomplete: "address", placeholder: "住所", class: "form-control" %>
-          </div>
-        <%= q.remove_nested_fields_link '住所を削除' %>
+      <%= f.fields_for :registration_addresses do |detail| %>
+        <%= render 'customers/registration_addresses_fields', f: detail %>
       <% end %>
-      <%= f.add_nested_fields_link :registration_addresses, '住所を追加'%>
+      <div>
+        <%= link_to_add_association '住所を追加', f, :registration_addresses, partial:'customers/registration_addresses_fields', id: 'add-link',class: "fas fa-plus-circle fa-1x fa-add" %>
+      </div>
 
     </div>
 
-    <div class="row">
+    <div class="row title">
       <div class="mx-auto">
         <%= f.submit "編集内容を保存する", class: "btn btn-success" %>
       </div>
     </div>
   <% end %>
-
-  <%= link_to "パスワードを変更", customer_edit_password_path(@customer), class: "btn btn-success" %>
 
 </div>

@@ -7,9 +7,8 @@ class Manager::ArtistsController < ApplicationController
     end
 
 	def index
-        #@q = Artist.ransack(params[:q])
-		@artists = Artist.all
-        @artists = Artist.page(params[:page]).per(10)
+        @q = Artist.ransack(params[:q])
+        @artists = @q.result(distinct: true).page(params[:page]).per(10)
 		@artist = Artist.new
     end
 

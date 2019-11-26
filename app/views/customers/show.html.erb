@@ -1,7 +1,7 @@
 <%= render 'customers/customer_header' %>
 
 <div class="container">
-	<div class="row">
+	<div class="row title">
 		<div class="col-md-6">
 			<h2>Myページ</h2>
 		</div>
@@ -11,16 +11,16 @@
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-2">
-			<span>ID </span>
+	<div class="row i-space">
+		<div class="col-md-2 i-border">
+			<span>会員ID </span>
 		</div>
 		<div class="col-md-4">
 			<%= @customer.id %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-2">
+	<div class="row i-space">
+		<div class="col-md-2 i-border">
 			<span>名前</span>
 		</div>
 		<div class="col-md-4">
@@ -28,8 +28,8 @@
 			<%= @customer.first_name %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-2">
+	<div class="row i-space">
+		<div class="col-md-2 i-border">
 			<span>フリガナ</span>
 		</div>
 		<div class="col-md-4">
@@ -37,8 +37,8 @@
 			<%= @customer.first_name_read %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-2">
+	<div class="row i-space">
+		<div class="col-md-2 i-border">
 			<span>メールアドレス</span>
 		</div>
 		<div class="col-md-4">
@@ -46,61 +46,78 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-2">
+		<div class="col-md-2 i-border">
 			<span>電話番号</span>
 		</div>
 		<div class="col-md-4">
 			<%= @customer.phone_number %>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-2 addresses-box">
-			<spam>〒：</spam>
-			<%= @customer.postal_code %></br>
-			<%= @customer.address %></br>
-			<%= @customer.last_name %>
-			<%= @customer.first_name %>
+	<div class="row a-space">
+		<div class="col-md-3">
+			<div class="addresses-box">
+				<%= @customer.last_name %>
+				<%= @customer.first_name %></br>
+				<spam>〒：</spam>
+				<%= @customer.postal_code %></br>
+				<%= @customer.address %>
+			</div>
 		</div>
 		<% @customer.registration_addresses.each do |sub| %>
-		<div class="col-md-2 addresses-box">
-			<spam>〒：</spam>
-			<%= sub.postal_code %></br>
-			<%= sub.address %></br>
-			<%= sub.name %>
+		<div class="col-md-3">
+			<div class="addresses-box">
+				<spam>氏名：</spam>
+				<%= sub.name %></br>
+				<spam>TEL：</spam>
+				<%= sub.phone_number %></br>
+				<spam>〒：</spam>
+				<%= sub.postal_code %></br>
+				<%= sub.address %></br>
+			</div>
 		</div>
 		<% end %>
 	</div>
-	<div class="row">
-		<h2>購入履歴一覧</h2>
+	<div class="row sub-title">
+		<div class="col-md-6">
+			<h2>購入履歴一覧</h2>
+		</div>
 	</div>
-	<div class="row">
-		<table class="table">
+	<div class="row order-box">
+		<table class="table table-hover">
+			<thead>
+				<th>ステータス</th>
+				<th class="text-center">購入日時</th>
+				<th class="text-center">注文番号</th>
+				<th class="text-center">小計</th>
+				<th class="text-center">送付者氏名</th>
+				<th class="text-center">支払い方法</th>
+			</thead>
 			<% @customer.orders.each do |order| %>
-				<tr data-href="<%= order_path(order.id) %>">
+				<tr data-href="<%= order_path(order.id) %>" class="yubi">
 					<td><%= order.status %></td>
-					<td>
-						<span class="lr-space">
-							購入日時：<%= order.created_at.to_s(:published_on) %>
+					<td class="text-center">
+						<span>
+							<%= order.created_at.to_s(:published_on) %>
 						</span>
 					</td>
-					<td>
+					<td class="text-center">
 						<span class="lr-space">
-							注文番号：<%= order.id %>
+							<%= order.id %>
 						</span>
 					</td>
-					<td>
+					<td class="text-center">
 						<span class="lr-space">
-							小計：<%= order.total_amount %> 円(税込)
+							<%= order.total_amount %> 円(税込)
 						</span>
 					</td>
-					<td>
+					<td class="text-center">
 						<span class="lr-space">
-							送付先氏名：<%= order.destination_name %>
+							<%= order.destination_name %>
 						</span>
 					</td>
-					<td>
+					<td class="text-center">
 						<span class="lr-space">
-							支払い方法：<%= order.payment_method %>
+							<%= order.payment_method %>
 						</span>
 					</td>
 				</tr>
@@ -108,7 +125,7 @@
 		</table>
 	</div>
 
-	<div class="row">
+	<div class="row low-space">
 		<div class="col-md-12">
 			<div class="float-right">
 				<%= link_to "退会する", customer_leave_path(@customer), class: "btn btn-success" %>

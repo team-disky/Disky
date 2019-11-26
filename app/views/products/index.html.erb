@@ -22,10 +22,10 @@
 							<%= attachment_image_tag product, :image, :fill, 245, 245, format:'jpeg', fallback: "no_image.png", size:'245x245', class:" border border-secondary mx-auto" %>
 								<div class="card-body">
 								<h3 class="card-title font-italic text-dark" style=" width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;"><%= product.title %></h3>
-                                <ul class="list-group list-group-flush" >
-						            <li class="list-group-item"><p class="font-italic text-dark"style=" width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;"><%= product.artist.name %><p></li>
-						            <li class="list-group-item"><strong>￥<%= product.price %></strong>(税込)</li>
-						            <% if product.status == "販売中" %>
+                 <ul class="list-group list-group-flush" >
+                  <li class="list-group-item"><p class="font-italic text-dark"style=" width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;"><%= product.artist.name %><p></li>
+                  <li class="list-group-item"><strong>￥<%= product.price %></strong>(税込)</li>
+                  <% if product.status == "販売中" %>
 									<li class="list-group-item"><span class="badge badge-primary"><%= product.status %></span></li>
 									<%elsif product.status == "販売停止中" %>
 									<li class="list-group-item"><span class="badge badge-danger"><%= product.status %></span></li>
