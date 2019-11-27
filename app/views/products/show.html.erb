@@ -31,6 +31,8 @@
 
 		            	<% if @product.active_flag == false %>
 		            		<strong><h2 class="text-center">この商品は<br>お取り扱いが<br>ございません</h2></strong>
+		            	<% elsif @product.sales_date > Date.today %>
+		            	　　<strong><h2 class="text-center">この商品の<br>発売日まで<br>お待ちください</h2></strong>
 		            	<% elsif @product.active_flag == true %>
 							<div class="card border-secondary">
 								<div class="card-body">
@@ -50,14 +52,14 @@
 										    <% end %>
 								        </li>
 									  <% if customer_signed_in? %>
-	                                    <% if @product.status == "販売停止中" || @product.sales_date <= Date.today %>
+	                                    <% if @product.status == "販売停止中" %>
 	                                    <li class="list-group-item"><strong>現在、この商品は<br>お取り扱いして<br>おりません</strong></li>
 	                                    <% elsif @product.status == "販売中" %>
 											<%= form_for @cart_product, url: cart_products_path do |f| %>
 											<%= f.hidden_field :customer_id, :value => current_customer.id %>
 											<%= f.hidden_field :product_id, :value => @product.id %>
 	                                    <li class="list-group-item"><h5>数量</h5>
-										<p class="text-center"><%= f.number_field :count, min:1, max:@product.stock, value: 1 %></p></li>
+										<p class="text-center"><%= f.select :count, @current_stock_array.reject{|e|e ==0}, :selected => 1 %></p></li>
 										<li class="list-group-item">
 										    <%= f.submit 'カートに入れる', :class =>"btn btn-primary text-center btn-block" %>
 										    <% end %>
