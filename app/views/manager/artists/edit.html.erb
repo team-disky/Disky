@@ -28,8 +28,8 @@
 <div class="actions">
     <%= f.submit '保存', :class=> "artist-update-btn btn-lg" %>
 </div>
+    <%= f.submit "削除", name: 'leave', data: { confirm: "「#{@artist.name}」を削除します"}, class: "btn-sm btn-danger" %>
 <% end %>
-<%= link_to("削除", manager_artist_path(@artist), {method: :delete, data: { confirm: "「#{@artist.name}」を削除します"}, class: "artist-destroy-btn btn-lg btn-danger"}) %>
 <h3 class="back-to-top"><%= link_to "アーティスト一覧へ戻る", manager_artists_path %><h3>
 </div>
 </div>

@@ -61,7 +61,11 @@
  	<tr>
  		<td><%= category.name %></td>
  		<td><%= link_to("編集", edit_manager_category_path(category.id), {class: "btn-sm btn-success"}) %></td>
-    <td><%= link_to("削除", manager_category_path(category.id),{ method: :delete, data: { confirm: "「#{category.name}」を削除します"}, class: "btn-sm btn-danger"}) %></td>
+    <td><%= form_for(category, url: manager_category_path(category.id)) do |f| %>
+              <%= f.hidden_field :name %>
+              <%= f.submit "削除", name: 'leave', data: { confirm: "「#{category.name}」を削除します"}, class: "btn-sm btn-danger" %>
+              <% end %>
+    </td>
  	</tr>
   <% end %>
   </tbody>
