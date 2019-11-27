@@ -8,7 +8,7 @@ class Manager::CategoriesController < ApplicationController
 
     def index
         @q = Category.ransack(params[:q])
-        @categories = @q.result(distinct: true).page(params[:page]).per(10)
+        @categories = @q.result(distinct: true).where(active: true).page(params[:page]).per(10)
         @category = Category.new
     end
 
@@ -35,17 +35,19 @@ class Manager::CategoriesController < ApplicationController
 
     def update
         @category = Category.find(params[:id])
-    if  @category.update(category_params)
-        redirect_to manager_categories_path
-    else
-        render :edit
-    end
+        if params[:leave]
+            @category.update(active:false)
+            redirect_to manager_categories_path
+        else
+            if  @artist.update(category_params)
+                redirect_to manager_categories_path
+            else
+                render :edit
+            end
+        end
     end
 
     def destroy
-        category = Category.find(params[:id])
-        category.destroy
-        redirect_to manager_categories_path
     end
 
     private

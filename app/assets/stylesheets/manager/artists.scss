@@ -20,29 +20,46 @@ height: 40px;
 .artist-registration-btn {
 position: relative;
 top: 20px;
-left: 80px;
+left: 120px;
 }
 
 .pagination {
-float: right;
+  justify-content: center;
+  color:black;
+  text-decoration:none;
 }
 
-.back-to-top {
-font-size: 15px;
-position: relative;
-top: 10px;
-left: 180px;
+.error_explanation{
+	color:red;
+	text-align:center;
 }
-
-.artist-update-btn {
-position: relative;
-top: 36px;
-left: 150px;
+.title{
+	margin:50px 0px 0px 0px;
 }
-
-.artist-destroy-btn {
-position: relative;
-left: 250px;
+.border{
+	border:1px solid #ced4da;
+	border-radius:5px;
+	margin-top:50px;
+}
+.m-box{
+	font-size:18px;
+}
+.leave-space{
+	margin:30px 0px;
+}
+.m-space{
+	margin:8px 8px;
+	text-align:center;
+}
+.leave-btn{
+	margin:30px 0px;
+}
+.button {
+	text-align:center;
+}
+.back_to_index {
+	margin-left: auto;
+	font-size:15px
 }
 
 }
