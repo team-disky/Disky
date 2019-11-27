@@ -8,7 +8,7 @@ class Manager::RecordLabelsController < ApplicationController
 
     def index
         @q = RecordLabel.ransack(params[:q])
-        @record_labels = @q.result(distinct: true).page(params[:page]).per(10)
+        @record_labels = @q.result(distinct: true).where(active: true).page(params[:page]).per(10)
         @record_label = RecordLabel.new
     end
 
@@ -35,17 +35,19 @@ class Manager::RecordLabelsController < ApplicationController
 
     def update
         @record_label = RecordLabel.find(params[:id])
-    if  @record_label.update(record_label_params)
-        redirect_to manager_record_labels_path
-    else
-        render :edit
-    end
+        if params[:leave]
+            @record_label.update(active:false)
+            redirect_to manager_record_labels_path
+        else
+            if  @record_label.update(record_label_params)
+                redirect_to manager_record_labels_path
+            else
+                render :edit
+            end
+        end
     end
 
     def destroy
-    	record_label = RecordLabel.find(params[:id])
-    	record_label.destroy
-    	redirect_to manager_record_labels_path
     end
 
     private

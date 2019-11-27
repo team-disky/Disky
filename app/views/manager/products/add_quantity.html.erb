@@ -45,7 +45,7 @@
 					<%= f.date_select :date %>
 					<div class="center-line"></div>
 					<%= f.label "入荷個数", class:"blank-more" %>
-					<%= f.number_field :count, min:1, value:1 %>
+					<%= f.number_field :count, min:1, value:1, class:"number" %>
 					<%= f.submit "入荷を登録する", class:"btn btn-primary" %>
 				<% end %>
 			</div>

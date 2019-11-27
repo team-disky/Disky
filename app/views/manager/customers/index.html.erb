@@ -26,7 +26,6 @@
 						<th></th>
 						<th>会員氏名</th>
 						<th>e-mail</th>
-						<th>最後のログイン</th>
 						<th>最終購入日</th>
 					</tr>
 				</thead>
@@ -43,8 +42,6 @@
 
 						<td><%= link_to customer.full_name, manager_customer_path(customer.id), style: "color:black;text-decoration:none" %></td>
 						<td><%= customer.email %></td>
-						<td><%= customer.current_sign_in_at %></td>
-
 						<% if customer.orders.present? %>
 							<td><%= customer.orders.order(:created_at).last.created_at.in_time_zone('Tokyo').strftime('%Y年%m月%d日 %H:%M') %></td>
 						<% else %>

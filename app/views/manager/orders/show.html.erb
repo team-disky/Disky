@@ -8,10 +8,10 @@
   <% end %>
 
   <% unless @order.customer.present? %>
-    <span>このユーザーは退会しています!</span>
+    <span>このユーザは削除しました!</span>
   <% end %>
 
-  <% if @order.status == 2 %>
+  <% if @order.status == "出荷済み" %>
     <span>この注文は完了しています!</span>
   <% else %>
     <span>対応途中の注文があります!<span>
