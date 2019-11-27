@@ -11,48 +11,44 @@
 			</div>
 		</div>
 	</div>
-	<div class="row i-space">
-		<div class="col-md-2 i-border">
-			<span>会員ID </span>
-		</div>
-		<div class="col-md-4">
-			<%= @customer.id %>
-		</div>
-	</div>
-	<div class="row i-space">
-		<div class="col-md-2 i-border">
-			<span>名前</span>
-		</div>
-		<div class="col-md-4">
-			<%= @customer.last_name %>
-			<%= @customer.first_name %>
-		</div>
-	</div>
-	<div class="row i-space">
-		<div class="col-md-2 i-border">
-			<span>フリガナ</span>
-		</div>
-		<div class="col-md-4">
-			<%= @customer.last_name_read %>
-			<%= @customer.first_name_read %>
-		</div>
-	</div>
-	<div class="row i-space">
-		<div class="col-md-2 i-border">
-			<span>メールアドレス</span>
-		</div>
-		<div class="col-md-4">
-			<%= @customer.email %>
-		</div>
-	</div>
+
 	<div class="row">
-		<div class="col-md-2 i-border">
-			<span>電話番号</span>
-		</div>
-		<div class="col-md-4">
-			<%= @customer.phone_number %>
-		</div>
+	    <table class="table">
+	      <tbody>
+	      	<tr>
+	          <th class="tr-th">会員ID :</th>
+	          <td class="tr-td"><%= @customer.id %></td>
+	          <td></td>
+	        </tr>
+	        <tr>
+	          <th class="tr-th">氏名 :</th>
+	          <td class="tr-td"><%= @customer.last_name %></td>
+	          <td><%= @customer.first_name %></td>
+	        </tr>
+	        <tr>
+	          <th>フリガナ :</th>
+	          <td><%= @customer.last_name_read %></td>
+	          <td><%= @customer.first_name_read %></td>
+	        </tr>
+	        <tr>
+	          <th>メールアドレス :</th>
+	          <td><%= @customer.email %></td>
+	          <td></td>
+	        </tr>
+	        <tr>
+	          <th>TEL :</th>
+	          <td><%= @customer.phone_number %></td>
+	          <td></td>
+	        </tr>
+	        <tr>
+	          <th></th>
+	          <td></td>
+	          <td></td>
+	        </tr>
+	      </tbody>
+	    </table>
 	</div>
+
 	<div class="row a-space">
 		<div class="col-md-3">
 			<div class="addresses-box">
@@ -92,33 +88,41 @@
 				<th class="text-center">送付者氏名</th>
 				<th class="text-center">支払い方法</th>
 			</thead>
-			<% @customer.orders.each do |order| %>
-				<tr data-href="<%= order_path(order.id) %>" class="yubi">
-					<td><%= order.status %></td>
-					<td class="text-center">
-						<span>
-							<%= order.created_at.to_s(:published_on) %>
-						</span>
-					</td>
-					<td class="text-center">
-						<span class="lr-space">
-							<%= order.id %>
-						</span>
-					</td>
-					<td class="text-center">
-						<span class="lr-space">
-							<%= order.total_amount %> 円(税込)
-						</span>
-					</td>
-					<td class="text-center">
-						<span class="lr-space">
-							<%= order.destination_name %>
-						</span>
-					</td>
-					<td class="text-center">
-						<span class="lr-space">
-							<%= order.payment_method %>
-						</span>
+			<% if @customer.orders.present? %>
+				<% @customer.orders.each do |order| %>
+					<tr data-href="<%= order_path(order.id) %>" class="yubi">
+						<td><%= order.status %></td>
+						<td class="text-center">
+							<span>
+								<%= order.created_at.to_s(:published_on) %>
+							</span>
+						</td>
+						<td class="text-center">
+							<span class="lr-space">
+								<%= order.id %>
+							</span>
+						</td>
+						<td class="text-center">
+							<span class="lr-space">
+								<%= order.total_amount %> 円(税込)
+							</span>
+						</td>
+						<td class="text-center">
+							<span class="lr-space">
+								<%= order.destination_name %>
+							</span>
+						</td>
+						<td class="text-center">
+							<span class="lr-space">
+								<%= order.payment_method %>
+							</span>
+						</td>
+					</tr>
+				<% end %>
+			<% else %>
+				<tr>
+					<td colspan="6" class="text-center">
+						<span class="order-none">購入履歴はありません</span>
 					</td>
 				</tr>
 			<% end %>
@@ -134,4 +138,4 @@
 	</div>
 </div>
 
-
+<%= render 'layouts/manager_footer' %>

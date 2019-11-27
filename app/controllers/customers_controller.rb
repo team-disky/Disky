@@ -28,7 +28,6 @@ class CustomersController < ApplicationController
 	  if params[:leave]
 	  	if @customer.email == quit_params[:email] && @customer.valid_password?(quit_params[:password])
 	  		@customer.update(active: false)
-	  		flash[:notice] = "退会が完了しました。ご利用ありがとうございました。"
 	  		redirect_to root_path
 	  	else
 	  		render :leave
@@ -38,7 +37,7 @@ class CustomersController < ApplicationController
 	  		if password_params[:password] == password_params[:password_confirmation]
 	  			if @customer.update(password: password_params[:password])
 	  				@customer.update(password_confirmation: password_params[:password_confirmation])
-	  				flash[:notice] = "パスワードを変更しました。再度ログインしてください。"
+	  				flash[:password_change] = "パスワードを変更しました。再度ログインしてください。"
 	  				redirect_to new_customer_session_path
 	  			else
 	  				flash[:error] = "Passwordは6文字以上で入力してください"
