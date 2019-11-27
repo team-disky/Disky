@@ -1,73 +1,76 @@
 <%= render partial: "layouts/manager_header" %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="search">
-    <%= search_form_for(@q, url: manager_record_labels_path) do |f| %>
-    <%= f.search_field :name_cont %>
-    <%= f.submit "検索", class:"btn btn-primary btn-sm" %>
-    <% end %>
-</div>
-  </div>
-  </div>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-4 my-4">
+     <h3>レーベルを登録</h3>
 
- <div class="row">
-  <div class="col-md-4">
-   <h3>レーベルを登録</h3>
-
-   <!-- エラーメッセージ　-->
-   <br>
-   <% if @record_label.errors.any? %>
-   <div id="error_explanation">
-   <h4>入力した内容に誤りがあります</h4>
-   <h5>
-      <% @record_label.errors.full_messages.each do |message| %>
+     <!-- エラーメッセージ　-->
+     <br>
+     <% if @record_label.errors.any? %>
+     <div id="error_explanation">
+       <h4>入力した内容に誤りがあります</h4>
+       <h5>
+        <% @record_label.errors.full_messages.each do |message| %>
         <li><%= message %></li>
+        <% end %>
+      </h5>
+    </div>
+    <% end %>
+
+    <%= form_for(@record_label, url: manager_record_labels_path) do |f| %>
+
+    <div class="field">
+      <label for="record_label_name"></label>
+      <%= f.text_field :name, :placeholder => "レーベル" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit '登録', :class=>"record_label-registration-btn btn-lg" %>
       <% end %>
-   </h5>
-   </div>
-   <% end %>
-
-   <%= form_for(@record_label, url: manager_record_labels_path) do |f| %>
-
-   <div class="field">
-    <label for="_record_label_name"></label>
-    <%= f.text_field :name, :placeholder=>"レーベル" %>
-   </div>
-
-   <div class="actions">
-    <%= f.submit '登録', :class=>"label-registration-btn btn-lg" %>
-   <% end %>
-   </div>
+    </div>
   </div>
 
- <div class="col-md-8">
- <h3>登録レーベル一覧</h3>
- <table class="table table-hover table-inverse">
- <thead>
-  <tr class="table-active">
-    <th>レーベル名</th>
-    <br>
-    <th colspan="3"></th>
-  </tr>
- </thead>
- <tbody>
- <% @record_labels.each do |record_label| %>
-    <tr>
-        <td><%= record_label.name %></td>
-        <td><%= link_to("編集", edit_manager_record_label_path(record_label.id), {class: "btn-sm btn-success"}) %></td>
-        <td><%= form_for(record_label, url: manager_record_label_path(record_label.id)) do |f| %>
-              <%= f.hidden_field :name %>
-              <%= f.submit "削除", name: 'leave', data: { confirm: "「#{record_label.name}」を削除します"}, class: "btn-sm btn-danger" %>
-              <% end %>
-        </td>
+
+  <div class="col-md-8">
+    <div class="row my-4">
+      <div class="col-md-6">
+     <h3>登録レーベル一覧</h3>
+      </div>
+     <div class="col-md-6">
+      <%= search_form_for(@q, url: manager_record_labels_path) do |f| %>
+      <%= f.search_field :name_cont %>
+      <%= f.submit "検索", class:"btn btn-primary btn-sm" %>
+      <% end %>
+    </div>
+   </div>
+  <table class="table table-hover table-inverse">
+   <thead>
+     <tr class="table-active">
+       <th>レーベル名</th>
+       <th colspan="3"></th>
+     </tr>
+   </thead>
+   <tbody>
+     <% @record_labels.each do |record_label| %>
+     <tr >
+      <td><%= record_label.name %></td>
+      <td><%= link_to("編集", edit_manager_record_label_path(record_label.id), {class: "btn btn-sm btn-success"}) %></td>
+      <td><%= form_for(record_label, url: manager_record_label_path(record_label.id)) do |f| %>
+        <%= f.hidden_field :name %>
+        <%= f.submit "削除", name: 'leave', data: { confirm: "「#{record_label.name}」を削除します"}, class: "btn btn-sm btn-danger" %>
+        <% end %>
+      </td>
     </tr>
- <% end %>
- </tbody>
- </table>
- <%= paginate @record_labels, :class=>"pagination" %>
- </div>
- </div>
+    <% end %>
+  </tbody>
+</table>
+<%= paginate @record_labels, :class=>"pagination" %>
 </div>
+</div>
+</div>
+</div>
+
 <%= render partial: "layouts/manager_footer" %>
+
+

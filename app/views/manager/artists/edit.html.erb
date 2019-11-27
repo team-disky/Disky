@@ -4,12 +4,13 @@
 	<div class="row title">
 		<h3 class="mx-auto">アーティスト名を編集</h3>
   </div>
-</div>
 
 <!-- エラーメッセージ　-->
 <br>
+<div class-="row">
+  <div class="col-md-6 offset-md-3">
 <% if @artist.errors.any? %>
-<div id="error_explanation">
+<div class="error_explanation">
   <h4>入力した内容に誤りがあります</h4>
   <h5>
       <% @artist.errors.full_messages.each do |message| %>
@@ -18,27 +19,26 @@
   </h5>
 </div>
 <% end %>
-
-<div class="container">
-  <div class="row">
+</div>
+</div>
     <div class="col-md-6 offset-md-3 border">
       <%= form_for(@artist, url:"/manager/artists/#{@artist.id}") do |f| %>
-        <div class="leave-space">
-          <div class="m-space">
+          <div class="m-space my-5">
             <%= f.text_field :name %>
           </div>
+          <div class="row">
+            <div class="col-md-6 button">
+            <%= f.submit '保存', :class=> "btn btn-md btn-success" %>
+          </div>
+          <div class="col-md-6 button">
+            <%= f.submit "削除", name: 'leave', data: { confirm: "「#{@artist.name}」を削除します"}, class: "btn btn-md btn-danger" %>
+          </div>
+          <div class="my-5 back_to_index">
+          <h6><%= link_to "アーティスト一覧へ戻る", manager_artists_path %></h6><% end %>
         </div>
-          <div class="m-space">
-            <%= f.submit '保存', :class=> "artist-update-btn btn-lg btn-success" %>
-          </div>
-          <div class="m-space">
-            <%= link_to("削除", manager_artist_path(@artist), {method: :delete, data: { confirm: "「#{@artist.name}」を削除します"}, class: "artist-destroy-btn btn-lg btn-danger"}) %>
-          </div>
-          <h3 class="back-to-top"><%= link_to "アーティスト一覧へ戻る", manager_artists_path %><h3>
-      <% end %>
     </div>
-  </div>
-
+    </div>
 </div>
+
 
 <%= render partial: "layouts/manager_footer" %>

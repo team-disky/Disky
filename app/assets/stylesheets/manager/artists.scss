@@ -20,7 +20,7 @@ height: 40px;
 .artist-registration-btn {
 position: relative;
 top: 20px;
-left: 80px;
+left: 120px;
 }
 
 .pagination {
@@ -29,8 +29,9 @@ left: 80px;
   text-decoration:none;
 }
 
-.error-message{
+.error_explanation{
 	color:red;
+	text-align:center;
 }
 .title{
 	margin:50px 0px 0px 0px;
@@ -47,10 +48,18 @@ left: 80px;
 	margin:30px 0px;
 }
 .m-space{
-	margin-bottom:5px;
+	margin:8px 8px;
+	text-align:center;
 }
 .leave-btn{
 	margin:30px 0px;
+}
+.button {
+	text-align:center;
+}
+.back_to_index {
+	margin-left: auto;
+	font-size:15px
 }
 
 }
