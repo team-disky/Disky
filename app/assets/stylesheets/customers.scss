@@ -7,8 +7,17 @@
 	.error-message{
 		color:red;
 	}
+	.title{
+		margin:50px 0px 20px 0px;
+	}
 
 	//Myページ
+	.i-space{
+		margin-bottom:10px;
+	}
+	.i-border{
+		border:1px solid #000;
+	}
 	.addresses-box{
 		height:150px;
 		margin:5px 0px;
@@ -19,10 +28,31 @@
 	.lr-space{
 		margin:5px 10px;
 	}
+	.sub-title{
+		margin-bottom:10px;
+	}
+	.a-space{
+		margin-top:30px;
+		margin-bottom:40px;
+	}
+	.low-space{
+		margin:30px;
+	}
+	.yubi{
+		cursor:pointer;
+	}
+	.table{
+		margin-bottom:0px;
+	}
+	.order-box{
+		border:1px solid #000;
+		border-radius:5px;
+	}
+
 
 	//アカウント編集画面
-	.title{
-		margin:50px 0px;
+	.c-information{
+		margin-top:20px;
 	}
 	.name-border{
 		height:38px;
@@ -47,6 +77,25 @@
 	}
 	.fa-delete{
 		color:red;
+	}
+
+	//退会ページ
+	.border{
+		border:1px solid #ced4da;
+		border-radius:5px;
+		margin-top:50px;
+	}
+	.m-box{
+		font-size:18px;
+	}
+	.leave-space{
+		margin:30px 0px;
+	}
+	.m-space{
+		margin-bottom:5px;
+	}
+	.leave-btn{
+		margin:30px 0px;
 	}
 
 }

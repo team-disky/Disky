@@ -4,21 +4,28 @@
 
 	<h2 class="pt-5">商品一覧ページ</h2>
 
-		<h3 class="py-3">新着商品</h3>
+    <div class="row">
+    	<div class="col-4"></div>
+    	<div class="col-4"></div>
+    	<div class="col-4 mt-3 mb-5">
+			<%= search_form_for(@q, url: root_path) do |f| %>
+		    <%= f.search_field :title_or_artist_name_cont, :placeholder => "商品名またはアーティスト名", :class =>"form-control d-inline", style:"width:250px"%>
+		      <%= f.submit "検索", :class => "btn btn-primary btn-sm"%>
+		    <% end %>
+		</div>
+    </div>
 			<div class ="row">
-				<div class="d-flex flex-row flex-wrap   justify-content-between">
+				<div class="d-flex flex-row flex-wrap mx-auto">
 					<% @products.order(id: :desc).each do |product| %>
-	                    <div style="width:23%;">
-	                    	<%= link_to product_path(product.id) do %>
-							<div class="card text-center border border-secondary mb-5 shadow">
-							<%= attachment_image_tag product, :image, :fill, 250, 250, format:'jpeg', fallback: "no_image.png", size:'250x250', class:" border border-secondary mx-auto" %>
-
+	                    <div style="width:250px; margin-right:20px;">
+							<div data-href="<%= product_path(product.id) %>" class="card text-center border border-secondary mb-5 shadow">
+							<%= attachment_image_tag product, :image, :fill, 245, 245, format:'jpeg', fallback: "no_image.png", size:'245x245', class:" border border-secondary mx-auto", style:"margin-top:1.5px" %>
 								<div class="card-body">
-								<h3 class="card-title font-italic" style=" width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;"><%= product.title %></h3>
-                                <ul class="list-group list-group-flush" >
-						            <li class="list-group-item"><p class="font-italic"style=" width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;"><%= product.artist.name %><p></li>
-						            <li class="list-group-item"><strong>￥<%= product.price %></strong></li>
-						            <% if product.status == "販売中" %>
+								<h3 class="card-title font-italic text-dark" style=" width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;"><%= product.title %></h3>
+                 <ul class="list-group list-group-flush" >
+                  <li class="list-group-item"><p class="font-italic text-dark"style=" width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;"><%= product.artist.name %><p></li>
+                  <li class="list-group-item"><strong>￥<%= product.price %></strong>(税込)</li>
+                  <% if product.status == "販売中" %>
 									<li class="list-group-item"><span class="badge badge-primary"><%= product.status %></span></li>
 									<%elsif product.status == "販売停止中" %>
 									<li class="list-group-item"><span class="badge badge-danger"><%= product.status %></span></li>
@@ -26,12 +33,15 @@
 							    </ul>
 								</div>
 							</div>
-							<% end %>
 					    </div>
 					<%end%>
 				</div>
 		    </div>
-			<div class="kirikae">
-			  <%= paginate @products %>
+		    <div class="row">
+				<div class="col"></div>
+			  		<%= paginate @products %>
+		    	<div class="col"></div>
 		    </div>
 </div>
+
+<%= render partial: "layouts/manager_footer" %>

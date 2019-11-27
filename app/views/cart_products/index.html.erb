@@ -50,14 +50,20 @@
           <div class="card-body">
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><h5>商品小計</h5><strong><h2 class="text-center"><%= subtotal %>&nbsp;yen</strong></h2></li>
+              <% if subtotal == 0 %>
+              <li class="list-group-item"><strong><p class="text-center">カートに商品が<br>入っている必要が<br>あります</p></strong></li>
+              <% else %>
               <li class="list-group-item">
                <%= link_to select_address_path do %>
                 <p class="btn btn-success btn-block">レジに進む</p>
                 <% end %>
               </li>
+              <% end %>
             </ul>
           </div>
         </div>
       </div>
     </section>
 </div>
+
+<%= render partial: "layouts/manager_footer" %>

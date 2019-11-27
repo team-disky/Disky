@@ -5,7 +5,7 @@
     <h2 class="mx-auto">アカウントを編集する</h2>
   </div>
 
-  <div class="title">
+  <div class="">
     <% if @customer.errors.any? %>
       <% @customer.errors.full_messages.each do |message| %>
         <li class="error-message"><%= message %></li>
@@ -14,7 +14,7 @@
   </div>
 
   <%= form_for @customer do |f| %>
-    <div class="row">
+    <div class="row c-information">
       <table class="table">
         <div class="input-group">
           <tr>
@@ -103,3 +103,5 @@
   <% end %>
 
 </div>
+
+<%= render partial: "layouts/manager_footer" %>

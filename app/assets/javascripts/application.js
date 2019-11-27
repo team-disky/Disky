@@ -29,6 +29,10 @@ $(document).ready(function(){
 		window.location = $(this).data("href");
 	});
 
+	$("div[data-href]").click(function(){
+		window.location = $(this).data("href");
+	});
+  
 	//customer側編集画面のcocoon用js
 	$(function() {
   	// limits the number of categories
