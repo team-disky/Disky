@@ -29,13 +29,13 @@
                           <td><p><%= cart_product.product.price %>yen</p></td>
       	                	<td>
                             <%= form_for cart_product, url: cart_product_path(cart_product.id), method: :patch do |f| %>
-                                  <%= f.number_field :count, min:1, max:cart_product.product.stock, :class=> "quantity-form" %>
+                                  <%= f.number_field :count, required: true, min:1, max:cart_product.product.stock, :class=> "quantity-form" %>
                                   <%= f.submit "変更を確定", :class => "btn btn-outline-info" %>
                             <% end %>
                           </td>
                           <td>
                             <%= link_to cart_product_path(cart_product.id), method: :delete do %>
-                            <p><i class="fas fa-minus-circle fa-3x delete"></i></p>
+                            <p><i class="fas fa-minus-circle index-item fa-3x delete"></i></p>
                             <% end %>
                            </td>
 	                      </tr>

@@ -18,7 +18,7 @@
 				<div class="d-flex flex-row flex-wrap mx-auto">
 					<% @products.order(id: :desc).each do |product| %>
 	                    <div style="width:250px; margin-right:20px;">
-							<div data-href="<%= product_path(product.id) %>" class="card text-center border border-secondary mb-5 shadow">
+							<div data-href="<%= product_path(product.id) %>" class="card index-item text-center border border-secondary mb-5 shadow">
 							<%= attachment_image_tag product, :image, :fill, 245, 245, format:'jpeg', fallback: "no_image.png", size:'245x245', class:" border border-secondary mx-auto" %>
 								<div class="card-body">
 								<h3 class="card-title font-italic text-dark" style=" width:100%; overflow:hidden; white-space:nowrap; text-overflow:ellipsis;"><%= product.title %></h3>
