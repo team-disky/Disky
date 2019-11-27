@@ -60,7 +60,11 @@
        <tr >
         <td><%= artist.name %></td>
         <td><%= link_to("編集", edit_manager_artist_path(artist.id), {class: "btn-sm btn-success"}) %></td>
-        <td><%= link_to("削除", manager_artist_path(artist.id), { method: :delete, data: { confirm: "「#{artist.name}」を削除します"}, class: "btn-sm btn-danger"}) %></td>
+        <td><%= form_for(artist, url: manager_artist_path(artist.id)) do |f| %>
+              <%= f.hidden_field :name %>
+              <%= f.submit "削除", name: 'leave', data: { confirm: "「#{artist.name}」を削除します"}, class: "btn-sm btn-danger" %>
+              <% end %>
+        </td>
       </tr>
       <% end %>
     </tbody>

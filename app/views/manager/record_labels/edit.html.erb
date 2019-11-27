@@ -28,10 +28,8 @@
 <div class="actions">
     <%= f.submit '保存', :class=> "label-update-btn btn-lg" %>
 </div>
-
+    <%= f.submit "削除", name: 'leave', data: { confirm: "「#{@record_label.name}」を削除します"}, class: "btn-sm btn-danger" %>
 <% end %>
-
-<%= link_to("削除", manager_record_label_path(@record_label), {method: :delete, data: { confirm: "「#{@record_label.name}」を削除します"}, class: "artist-destroy-btn btn-lg btn-danger"}) %>
 <h3 class="back-to-top"><%= link_to "レーベル一覧へ戻る", manager_record_labels_path %><h3>
 </div>
 </div>

@@ -23,15 +23,15 @@
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "アーティスト名" %><strong>&#x203B;</strong></th>
-					<td><%= f.collection_select :artist_id, Artist.all, :id, :name %></td>
+					<td><%= f.collection_select :artist_id, Artist.where(active: true), :id, :name %></td>
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "レーベル名" %><strong>&#x203B;</strong></th>
-					<td><%= f.collection_select :record_label_id, RecordLabel.all, :id, :name %></td>
+					<td><%= f.collection_select :record_label_id, RecordLabel.where(active: true), :id, :name %></td>
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "ジャンル" %><strong>&#x203B;</strong></th>
-					<td><%= f.collection_select :category_id, Category.all, :id, :name %></td>
+					<td><%= f.collection_select :category_id, Category.where(active: true), :id, :name %></td>
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "フォーマット" %><strong>&#x203B;</strong></th>

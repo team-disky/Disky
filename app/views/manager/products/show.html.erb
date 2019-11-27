@@ -66,7 +66,11 @@
 				<tr>
 					<td></td>
 					<td><%= song.number %>. <%= song.title %></td>
-					<td><%= song.recording_time_minutes %>分<%= song.recording_time_seconds %>秒</td>
+					<td>
+						<% if song.recording_time_minutes.present? %><%= song.recording_time_minutes %>分
+						<% end %>
+						<%= song.recording_time_seconds %>秒
+					</td>
 				</tr>
 			</tbody>
 			<% end %>

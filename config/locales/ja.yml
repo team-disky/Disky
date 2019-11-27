@@ -7,6 +7,8 @@ ja:
       customer:
       registration_addresses:
       product:
+      product/discs: 収録内容(ディスク)
+      product/discs/songs: 収録内容(曲)
     attributes:
       artist:
         name: アーティスト
@@ -35,5 +37,14 @@ ja:
         category: ジャンル
         format: フォーマット
         price: 価格
+        discs: 収録内容(ディスク)
+      product/discs:
+        number: ディスク番号
+        songs: 収録内容(曲)
+      product/discs/songs:
+        number: 曲順
+        title: 曲名
+        recording_time_seconds: 収録時間
+
 
 

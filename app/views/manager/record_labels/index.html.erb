@@ -57,7 +57,11 @@
     <tr>
         <td><%= record_label.name %></td>
         <td><%= link_to("編集", edit_manager_record_label_path(record_label.id), {class: "btn-sm btn-success"}) %></td>
-        <td><%= link_to("削除", manager_record_label_path(record_label.id), { method: :delete, data: { confirm: "「#{record_label.name}」を削除します"}, class: "btn-sm btn-danger"}) %></td>
+        <td><%= form_for(record_label, url: manager_record_label_path(record_label.id)) do |f| %>
+              <%= f.hidden_field :name %>
+              <%= f.submit "削除", name: 'leave', data: { confirm: "「#{record_label.name}」を削除します"}, class: "btn-sm btn-danger" %>
+              <% end %>
+        </td>
     </tr>
  <% end %>
  </tbody>
