@@ -1,23 +1,34 @@
-.error-message{
-	color:red;
-}
-.title{
-	margin:50px 0px 0px 0px;
-}
-.border{
-	border:1px solid #ced4da;
-	border-radius:5px;
-	margin-top:50px;
-}
-.m-box{
-	font-size:18px;
-}
-.leave-space{
-	margin:30px 0px;
-}
-.m-space{
-	margin-bottom:5px;
-}
-.leave-btn{
-	margin:30px 0px;
+.registrations{
+
+	//新規登録
+	.error-message{
+		color:red;
+		margin:50px 0px 0px 30px;
+	}
+	.title{
+		margin:50px 0px 0px 0px;
+	}
+	.new-contents{
+		margin:30px 0px;
+	}
+	.input-head{
+		width:180px;
+	}
+	.input-group{
+		margin-bottom:5px;
+	}
+	.signup-btn{
+		margin:30px 0px;
+	}
+
+	//確認画面
+	.tr-th{
+		width:250px
+	}
+	.tr-td{
+		width:400px;
+	}
+	.confirm-btn{
+		margin:0px 30px;
+	}
 }
