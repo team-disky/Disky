@@ -2,7 +2,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-12">
       <div class="search">
     <%= search_form_for(@q, url: manager_record_labels_path) do |f| %>
     <%= f.search_field :name_cont %>
@@ -42,7 +42,7 @@
    </div>
   </div>
 
- <div class="col-md-6">
+ <div class="col-md-8">
  <h3>登録レーベル一覧</h3>
  <table class="table table-hover table-inverse">
  <thead>
