@@ -1,6 +1,13 @@
 <%= render 'customers/customer_header' %>
 
+
 <div class="container">
+   <% if flash[:stock] %>
+	<div class="row alert alert-warning" role="alert">
+		<h4 class="alert-heading text-center mx-auto"><%= flash[:stock] %></h4>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	</div>
+	<% end %>
 	<div class="row py-5">
 			<div class="col-md-6 ">
 				<%= attachment_image_tag @product, :image, :fill, 500, 500, format:'jpeg', fallback: "no_image.png", size:'500x500', :class => "border border-secondary rounded" %>
@@ -59,7 +66,7 @@
 											<%= f.hidden_field :customer_id, :value => current_customer.id %>
 											<%= f.hidden_field :product_id, :value => @product.id %>
 	                                    <li class="list-group-item"><h5>数量</h5>
-										<p class="text-center"><%= f.select :count, @current_stock_array.reject{|e|e ==0}, :selected => 1 %></p></li>
+										<p class="text-center"><%= f.select :count, @product.current_stock_array, :selected => 1 %></p></li>
 										<li class="list-group-item">
 										    <%= f.submit 'カートに入れる', :class =>"btn btn-primary text-center btn-block" %>
 										    <% end %>

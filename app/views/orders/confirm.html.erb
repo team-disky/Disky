@@ -1,4 +1,5 @@
 <%= render 'customers/customer_header' %>
+        <%= form_for @order do |f| %>
 
 <div class="container">
   <div class="row">
@@ -6,7 +7,6 @@
   </div>
   <div class="row py-5">
     <div class="col-md-8">
-        <%= form_for @order do |f| %>
         	<%= f.hidden_field :customer_id, :value => @customer.id %>
         	<!--ステータスは空でいいかな？ -->
         	<%= f.hidden_field :destination_name %>
@@ -42,7 +42,8 @@
 <!--         </div> -->
       </div>
       <div class="row pt-5">
-        <h2 class="pb-5">カート内容</h2>
+        <h2 class="d-block">カート内容</h2><br>
+        <%= link_to "カートに戻る", cart_products_path, :class => "h3 btn btn-sm btn-outline-primary d-block"%>
 
         <table class="table table-hover border border-secondary">
           <thead class="thead-dark">
@@ -54,6 +55,7 @@
           </thead>
             <tbody>
               <% subtotal = 0 %>
+              <% stock_flag = true %>
                <% @cart_products.each do |cart_product| %>
                         <tr class="nakami">
                           <td>
@@ -67,7 +69,12 @@
                           <td><%= cart_product.product.artist.name %></td>
                           <td><p><%= cart_product.product.price %>yen</p></td>
                           <td>
-                            <%= cart_product.count %>
+                           <% if cart_product.stock_check < 0 %>
+                           <%   stock_flag = false %>
+                           <p>在庫が足りません</p>
+                           <%else%>
+                            <p><%= cart_product.count %></p>
+                            <% end  %>
                           </td>
                         </tr>
                         <% total = cart_product.product.price * cart_product.count
@@ -80,6 +87,7 @@
     <div class ="col-md-4">
       <div class="card border border-secondary">
         <div class="card-body">
+          <% if stock_flag == true %>
           <ul class="list-group list-group-flush">
               <li class="list-group-item">
                 <h5>商品小計</h5>
@@ -99,11 +107,15 @@
               <%= f.hidden_field :total_amount, :value => total %>
               <li class="list-group-item">
               <%= f.submit "注文を確定する", :class => "btn btn-danger btn-block" %>
-              <%end%>
+          
               </li>
           </ul>
+          <% else %>
+           <p>在庫が足りない商品があります<p>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
 </div>
+<% end %>
