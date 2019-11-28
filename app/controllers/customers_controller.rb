@@ -30,6 +30,7 @@ class CustomersController < ApplicationController
 	  		@customer.update(active: false)
 	  		redirect_to root_path
 	  	else
+	  		flash.now[:error] = "・メールアドレスまたはパスワードに誤りがあります。"
 	  		render :leave
 	  	end
 	  elsif params[:edit_pass]
@@ -40,15 +41,15 @@ class CustomersController < ApplicationController
 	  				flash[:password_change] = "パスワードを変更しました。再度ログインしてください。"
 	  				redirect_to new_customer_session_path
 	  			else
-	  				flash[:error] = "Passwordは6文字以上で入力してください"
+	  				flash.now[:error] = "・パスワードは6文字以上で入力してください"
 	  				render :edit_password
 	  			end
 	  		else
-	  			flash[:error] = "新パスワードと新規確認用パスワードが一致しません"
+	  			flash.now[:error] = "・新パスワードと新規確認用パスワードが一致しません"
 	  			render :edit_password
 	  		end
 	  	else
-	  		flash[:error] = "現在のパスワードが一致しません"
+	  		flash.now[:error] = "・現在のパスワードが一致しません"
 	  		render :edit_password
 	  	end
 	  else
