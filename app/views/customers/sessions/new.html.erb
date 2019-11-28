@@ -1,16 +1,28 @@
 <%= render 'customers/customer_header' %>
 
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %></p>
-<% end %>
-
 <div class="container">
+
+  <% if flash[:password_change] %>
+    <p class="pass-change"><%= flash[:password_change] %></p>
+  <% end %>
+  <% if flash[:notice] %>
+    <p class="pass-change"><%= flash[:notice] %></p>
+  <% end %>
+
   <div class="row title">
     <h1 class="mx-auto">Diskyへようこそ！</h1>
   </div>
-</div>
 
-<div class="container">
+  <div class="row">
+    <div class="error-message col-md-6 offset-md-3">
+      <% if !flash[:password_change] %>
+        <%- flash.each do |name, msg| -%>
+          <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+        <%- end -%>
+      <% end %>
+    </div>
+  </div>
+
   <div class="row">
     <div class="col-md-6 offset-md-3 border">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -18,18 +30,22 @@
         <div class="m-space">
           <span class="m-box">メールアドレス</span>
         </div>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control",required: :true %>
       </div>
 
       <div class="m-space">
         <spam class="m-box">パスワード</spam>
       </div>
-      <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+      <%= f.password_field :password, autocomplete: "current-password", class: "form-control",required: :true %>
 
-      <div class="actions text-center leave-btn">
+      <div class="actions text-center signin-btn">
         <%= f.submit "ログイン", class: "btn btn-success" %>
       </div>
       <% end %>
     </div>
   </div>
 </div>
+
+
+<%= render 'layouts/manager_footer' %>
+

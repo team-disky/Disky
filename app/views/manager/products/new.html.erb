@@ -23,15 +23,15 @@
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "アーティスト名" %><strong>&#x203B;</strong></th>
-					<td><%= f.collection_select :artist_id, Artist.all, :id, :name, :prompt => "選択してください" %></td>
+					<td><%= f.collection_select :artist_id, Artist.where(active: true), :id, :name, :prompt => "選択してください" %></td>
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "レーベル名" %><strong>&#x203B;</strong></th>
-					<td><%= f.collection_select :record_label_id, RecordLabel.all, :id, :name, :prompt => "選択してください" %></td>
+					<td><%= f.collection_select :record_label_id, RecordLabel.where(active: true), :id, :name, :prompt => "選択してください" %></td>
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "ジャンル" %><strong>&#x203B;</strong></th>
-					<td><%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "選択してください" %></td>
+					<td><%= f.collection_select :category_id, Category.where(active: true), :id, :name, :prompt => "選択してください" %></td>
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "フォーマット" %><strong>&#x203B;</strong></th>
@@ -46,16 +46,16 @@
 					<td><%= f.add_nested_fields_link :discs, 'ディスクを追加', data:{limit: 5}, class:"btn btn-outline-success" %>
 							<%= f.nested_fields_for :discs do |q| %>
 							<%= q.label "ディスク番号" %><strong>&#x203B;</strong>
-							<%= q.number_field :number, min:1 %>
+							<%= q.number_field :number, min:1, class:"number" %>
 							<%= q.remove_nested_fields_link 'ディスクを削除', class:"btn btn-outline-danger" %>
 								<%= q.nested_fields_for :songs do |s| %>
 									<%= s.label "曲順" %><strong>&#x203B;</strong>
-									<%= s.number_field :number, min:1 %>
+									<%= s.number_field :number, min:1, class:"number" %>
 									<%= s.label "曲名" %><strong>&#x203B;</strong>
 									<%= s.text_field :title, class:"song_title" %>
 									<%= s.label "収録時間" %><strong>&#x203B;</strong>
-									<%= s.text_field :recording_time_minutes, class:"recording_time" %>分
-									<%= s.text_field :recording_time_seconds, class:"recording_time" %>秒
+									<%= s.number_field :recording_time_minutes, min:1, max:20, class:"number" %>分
+									<%= s.number_field :recording_time_seconds, min:1, max:59, class:"number" %>秒
 								<%= s.remove_nested_fields_link '曲を削除', class:"btn btn-outline-danger" %>
 								<% end %>
 								<%= q.add_nested_fields_link :songs, '曲を追加', class:"btn btn-outline-info" %>
@@ -64,7 +64,7 @@
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "価格(税抜)" %><strong>&#x203B;</strong></th>
-					<td><%= f.text_field :price, class:"product_price" %>円</td>
+					<td><%= f.number_field :price, class:"product_price" %>円</td>
 				</tr>
 				<tr>
 					<th scope="row"><%= f.label "商品ステータス" %><strong>&#x203B;</strong></th>

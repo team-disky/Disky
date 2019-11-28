@@ -1,64 +1,71 @@
 <%= render 'customers/customer_header' %>
 
-<%= form_for @customer, url:customer_registration_path do |f| %>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.hidden_field :password %>
+<div class="container">
+  <div class="row title">
+    <h2 class="mx-auto">登録内容の確認</h2>
   </div>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= @customer.last_name %>
+  <%= form_for @customer, url:customer_registration_path do |f| %>
+  <div class="row new-contents">
+    <table class="table">
+      <tbody>
+        <tr>
+          <th class="tr-th">氏名 :</th>
+          <td class="tr-td"><%= @customer.last_name %></td>
+          <td><%= @customer.first_name %></td>
+        </tr>
+        <tr>
+          <th>フリガナ :</th>
+          <td><%= @customer.last_name_read %></td>
+          <td><%= @customer.first_name_read %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス :</th>
+          <td><%= @customer.email %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>TEL :</th>
+          <td><%= @customer.phone_number %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>〒 :</th>
+          <td><%= @customer.postal_code %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <th>住所 :</th>
+          <td colspan="2"><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <th></th>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
     <%= f.hidden_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= @customer.first_name %>
     <%= f.hidden_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name_read %><br />
-    <%= @customer.last_name_read %>
     <%= f.hidden_field :last_name_read %>
-  </div>
-
-  <div class="field">
-    <%= f.label :first_name_read %><br />
-    <%= @customer.first_name_read %>
     <%= f.hidden_field :first_name_read %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= @customer.email %>
     <%= f.hidden_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :phone_number %><br />
-    <%= @customer.phone_number %>
     <%= f.hidden_field :phone_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :postal_code %><br />
-    <%= @customer.postal_code %>
     <%= f.hidden_field :postal_code %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address %><br />
-    <%= @customer.address %>
     <%= f.hidden_field :address %>
+    <%= f.hidden_field :password %>
+
+  </div>
+  <div class="row">
+    <div class="mx-auto">
+      <%= f.submit '入力画面へ戻る', name: 'back', class: "btn btn-outline-dark confirm-btn" %>
+      <%= f.submit 'アカウントを作成', class: "btn btn-success confirm-btn" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit 'アカウントを作成' %>
-  </div>
-  <div class="actions">
-    <%= f.submit '戻る', name: 'back' %>
-  </div>
-<% end %>
+  <% end %>
+
+</div>
+
+<%= render 'layouts/manager_footer' %>
