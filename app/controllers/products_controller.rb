@@ -25,6 +25,5 @@ class ProductsController < ApplicationController
   	end
   	@current_stock_array.reject{|e|e ==0}
   	@cart_product = CartProduct.new
-  	
   end
 end

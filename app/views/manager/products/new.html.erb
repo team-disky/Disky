@@ -43,7 +43,7 @@
 				</tr>
 				<tr>
 					<th scope="row">収録内容<strong>&#x203B;</strong></th>
-					<td><%= f.add_nested_fields_link :discs, 'ディスクを追加', data:{limit: 5}, class:"btn btn-outline-success" %>
+					<td><%= f.add_nested_fields_link :discs, 'ディスクを追加', class:"btn btn-outline-success" %>
 							<%= f.nested_fields_for :discs do |q| %>
 							<%= q.label "ディスク番号" %><strong>&#x203B;</strong>
 							<%= q.number_field :number, min:1, class:"number" %>
@@ -54,7 +54,7 @@
 									<%= s.label "曲名" %><strong>&#x203B;</strong>
 									<%= s.text_field :title, class:"song_title" %>
 									<%= s.label "収録時間" %><strong>&#x203B;</strong>
-									<%= s.number_field :recording_time_minutes, min:1, max:20, class:"number" %>分
+									<%= s.number_field :recording_time_minutes, min:1, class:"number" %>分
 									<%= s.number_field :recording_time_seconds, min:1, max:59, class:"number" %>秒
 								<%= s.remove_nested_fields_link '曲を削除', class:"btn btn-outline-danger" %>
 								<% end %>

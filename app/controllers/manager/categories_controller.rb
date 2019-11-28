@@ -21,7 +21,7 @@ class Manager::CategoriesController < ApplicationController
         redirect_to manager_categories_path
     else
         @q = Category.ransack(params[:q])
-        @categories = @q.result(distinct: true).page(params[:page]).per(10)
+        @categories = @q.result(distinct: true).where(active: true).page(params[:page]).per(10)
         render :index
     end
     end

@@ -21,7 +21,7 @@ class Manager::ArtistsController < ApplicationController
     	redirect_to manager_artists_path
      else
         @q = Artist.ransack(params[:q])
-        @artists = @q.result(distinct: true).page(params[:page]).per(10)
+        @artists = @q.result(distinct: true).where(active: true).page(params[:page]).per(10)
         render :index
      end
     end
