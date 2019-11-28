@@ -5,9 +5,14 @@ class CartProductsController < ApplicationController
         #前ページから渡ってきた自分の紐づいた商品IDを探す
        cart_product = current_customer.cart_products.find_by(product_id: params[:cart_product][:product_id])
    		if cart_product
-        #もしあればcountカラムの数値を更新する（既存の値＋パラメータで渡ってきた数値）
+        #もしあればcountカラムの数値を更新する（既存の値＋パラメータで渡ってきた数値)
+          if cart_product.count + params[:cart_product][:count].to_i <= cart_product.product.stock
           cart_product.update(count: cart_product.count + params[:cart_product][:count].to_i)
 		  redirect_to cart_products_path
+		  else
+		  	flash[:stock] = "この商品の在庫が足りません"
+		  	redirect_to product_path(cart_product.product.id)
+		  end
 		else
 		  cart_product = CartProduct.new(cart_product_params)
           cart_product.save

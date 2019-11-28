@@ -29,4 +29,12 @@ class Product < ApplicationRecord
 	def stock
 		total_arrival - total_purchased_product
 	end
+
+	def current_stock_array
+		if stock > 10
+			(1..10).to_a
+		else
+			(1..stock).to_a
+		end
+	end
 end
