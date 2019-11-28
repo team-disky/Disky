@@ -12,17 +12,11 @@
 	}
 
 	//Myページ
-	.i-space{
-		margin-bottom:10px;
-	}
-	.i-border{
-		border:1px solid #000;
-	}
 	.addresses-box{
 		height:150px;
 		margin:5px 0px;
 		padding:10px 13px;
-		border:1px solid #000;
+		border:1px solid #999999;
 		border-radius:10px
 	}
 	.lr-space{
@@ -38,6 +32,12 @@
 	.low-space{
 		margin:30px;
 	}
+	.tr-th{
+		width:250px
+	}
+	.tr-td{
+		width:300px;
+	}
 	.yubi{
 		cursor:pointer;
 	}
@@ -47,6 +47,9 @@
 	.order-box{
 		border:1px solid #000;
 		border-radius:5px;
+	}
+	.order-none{
+		color:#888888;
 	}
 
 

@@ -48,6 +48,7 @@
 					<%= f.number_field :count, min:1, value:1, class:"number" %>
 					<%= f.submit "入荷を登録する", class:"btn btn-primary" %>
 				<% end %>
+				<%= link_to "キャンセル", manager_product_path(@product.id), class:"btn btn-warning mb-5", style:"margin-left:130px" %>
 			</div>
 			<div class="col"></div>
 		</div>
