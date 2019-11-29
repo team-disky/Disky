@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-lg-12">
         <% if flash[:destroy] %>
-          <p id="notice"><%= flash[:destroy] %></p>
+          <p id="notice otsukare"><%= flash[:destroy] %></p>
         <% end %>
       </div>
     </div>
@@ -42,7 +42,6 @@
             </div>
             <%= f.submit "サインイン", class:"btn btn-lg btn-block btn-base-1 mt-20" %>
             <% end %>
-<%= render "devise/shared/links" %>
           </div>
         </div>
       </div>
