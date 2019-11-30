@@ -1,29 +1,89 @@
-<h2>Sign up</h2>
+<%= render 'customers/customer_header' %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row title">
+    <h2 class="mx-auto">アカウントを作成</h2>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <% if resource.errors.any? %>
+  <div class="row">
+    <div class="error-message">
+      <h5>入力内容に誤りがあります</h5>
+      <% resource.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </div>
   </div>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: {action: 'confirm'}) do |f| %>
+    <div class="row new-contents">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <sapn class="input-group-text input-head">氏名</sapn>
+        </div>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "苗字", placeholder: "姓", class: "form-control" %>
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "名前", placeholder: "名", class: "form-control" %>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <sapn class="input-group-text input-head">フリガナ</sapn>
+        </div>
+        <%= f.text_field :last_name_read, autofocus: true, autocomplete: "last_name_read", placeholder: "セイ", class: "form-control" %>
+        <%= f.text_field :first_name_read, autofocus: true, autocomplete: "first_name_read", placeholder: "メイ", class: "form-control" %>
+      </div>
 
-<%= render "customers/shared/links" %>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <sapn class="input-group-text input-head">メールアドレス</sapn>
+        </div>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メール", class: "form-control" %>
+      </div>
+
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <sapn class="input-group-text input-head">TEL</sapn>
+        </div>
+        <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: "電話番号", class: "form-control" %>
+      </div>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <sapn class="input-group-text input-head">郵便番号</sapn>
+        </div>
+        <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "郵便番号", class: "form-control" %>
+      </div>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <sapn class="input-group-text input-head">住所</sapn>
+        </div>
+        <%= f.text_field :address, autofocus: true, autocomplete: "address", placeholder: "住所", class: "form-control" %>
+      </div>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <sapn class="input-group-text input-head">パスワード</sapn>
+        </div>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: "form-control" %>
+      </div>
+
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <sapn class="input-group-text input-head">確認用パスワード</sapn>
+        </div>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "確認用パスワード", class: "form-control" %>
+      </div>
+
+      <div class="mx-auto signup-btn">
+        <%= f.submit "入力内容を確認", class: "btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+
+<%= render 'layouts/manager_footer' %>
+

@@ -1,0 +1,24 @@
+<%= render 'customers/customer_header' %>
+
+<div class="container">
+	<div class="row py-5">
+		<div class="card text-center text-dark mx-auto">
+		 	<div class="card-header bg-dark text-white">
+		 		<h2>ご注文ありがとうございました。</h2>
+		 	</div>
+        <div class="card-body text-center">
+		<h5 class="card-titile">ご注文番号:<%= @order.id %></h5>
+		<p class="card-text">
+			このページは大切に保管願います。<br>
+			ご注文内容確認メールが24時間以内に届かない場合は<br>
+			disky@cd.comまでご連絡お願いいたします。
+		</p>
+        <%= link_to root_path do %>
+        <p class="btn btn-outline-primary">Topページへ戻る</p>
+        <% end %>
+        </div>
+        </div>
+    </div>
+</div>
+
+<%= render partial: "layouts/manager_footer" %>

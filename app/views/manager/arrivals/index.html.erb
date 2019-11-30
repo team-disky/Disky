@@ -1,0 +1,44 @@
+<%= render partial: "layouts/manager_header" %>
+
+<div class="container">
+	<div class="row">
+		<h1 class="page-title col">入荷履歴</h1>
+		<div class="col"></div>
+		<div class="serch col">
+		<%= search_form_for(@q, url: manager_arrivals_path) do |f| %>
+  			<%= f.search_field :product_title_or_product_artist_name_cont, :placeholder => "商品名またはアーティスト名", class:"serch-form" %>
+
+  			<%= f.submit "検索", class:"btn btn-primary btn-sm" %>
+  		<% end %>
+  		</div>
+		<table class="table table-hover table-inverse">
+			<thead class="table-active">
+				<tr>
+					<th style="width: 10%">商品番号</th>
+					<th style="width: 15%">商品画像</th>
+					<th style="width: 40%">商品名</th>
+					<th style="width: 15%">入荷数</th>
+					<th style="width: 20%">入荷日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @arrivals.each do |arrival| %>
+				<tr data-href="<%= manager_product_path(arrival.product.id) %>">
+					<td><%= arrival.product_id %></td>
+					<td><%= attachment_image_tag(arrival.product, :image, size:'40x40', fallback: "no_image.png") %></td>
+					<td><%= arrival.product.title %></td>
+					<td><%= arrival.count %></td>
+					<td><%= arrival.date.strftime("%Y年%m月%d日") %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="row">
+		<div class="col"></div>
+		<%= paginate @arrivals %>
+		<div class="col"></div>
+	</div>
+</div>
+
+<%= render partial: "layouts/manager_footer" %>

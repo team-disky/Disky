@@ -1,0 +1,34 @@
+<%= render 'customers/customer_header' %>
+
+<div class="container">
+
+<h2 class="pt-5">お支払方法の選択</h2>
+	<div class="row py-5">
+		<div class=" col-md-8">
+			<%= form_for @order, url: {action: 'confirm'} do |f| %>
+				<div class="radio-btn form-check">
+				  <%= f.radio_button :payment_method, "クレジットカード", :checked => true %>
+				  <%= f.label :payment_method, "クレジットカード", {value: "クレジットカード"} %>
+				</div>
+
+				<div class="radio-btn form-check">
+				  <%= f.radio_button :payment_method, "銀行振込" %>
+				  <%= f.label :payment_method, "銀行振込", {value: "銀行振込"} %>
+				</div>
+
+				<div class="radio-btn form-check">
+				  <%= f.radio_button :payment_method, "代引き" %>
+				  <%= f.label :payment_method, "代引き", {value: "代引き"} %>
+				</div>
+
+					<%= f.hidden_field :destination_name %>
+					<%= f.hidden_field :destination_phone_number %>
+					<%= f.hidden_field :postal_code %>
+				    <%= f.hidden_field :destination_address %>
+				    <%= f.submit "確認画面へ進む", class: "btn btn-primary h5" %>
+			<% end %>
+			</div>
+</div>
+</div>
+
+<%= render partial: "layouts/manager_footer" %>

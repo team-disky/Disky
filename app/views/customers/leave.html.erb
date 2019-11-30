@@ -1,0 +1,34 @@
+<%= render 'customers/customer_header' %>
+
+<div class="container">
+
+	<div class="row err-space">
+		<% if flash[:error] %>
+			<p class="mx-auto error-message"><%= flash[:error] %></p>
+		<% end %>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6 offset-md-3 border">
+			<%= form_for @customer do |f| %>
+			<div class="leave-space">
+				<div class="m-space">
+					<span class="m-box">メールアドレス</span>
+				</div>
+				<%= f.email_field :email, value:"",autofocus: true, autocomplete: "email", class: "form-control" %>
+			</div>
+			<div class="m-space">
+		    	<spam class="m-box">パスワード</spam>
+		    </div>
+		    <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+		    <div class="text-center leave-btn">
+				<%= f.submit "退会する", name: 'leave', data: {confirm: "本当に退会しますか？"}, class: "btn btn-success" %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+
+<%= render 'layouts/manager_footer' %>
+

@@ -1,0 +1,25 @@
+<div class="nested-fields col-md-3">
+	<div class="input-group">
+		<div class="input-group-prepend">
+		  <sapn class="input-group-text"> 氏名：</sapn>
+		</div>
+		<%= f.text_field :name, autofocus: true, placeholder: "送付先氏名", class: "form-control" %>
+	</div>
+	<div class="input-group">
+		<div class="input-group-prepend">
+		  <sapn class="input-group-text"> TEL：</sapn>
+		</div>
+		<%= f.telephone_field :phone_number, autofocus: true, placeholder: "電話番号", class: "form-control" %>
+	</div>
+	<div class="input-group">
+		<div class="input-group-prepend">
+		  <sapn class="input-group-text">〒：</sapn>
+		</div>
+		<%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "郵便番号", class: "form-control" %>
+	</div>
+	<%= f.text_area :address, autofocus: true, autocomplete: "address", placeholder: "住所", class: "form-control" %>
+	<div class="text-center">
+		<i class="fas fa-minus-circle fa-1x fa-delete"></i>
+		<%= link_to_remove_association '住所を削除', f %>
+	</div>
+</div>

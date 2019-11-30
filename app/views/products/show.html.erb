@@ -1,0 +1,112 @@
+<%= render 'customers/customer_header' %>
+
+
+<div class="container">
+   <% if flash[:stock] %>
+	<div class="row alert alert-warning" role="alert">
+		<h4 class="alert-heading text-center mx-auto"><%= flash[:stock] %></h4>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	</div>
+	<% end %>
+	<div class="row py-5">
+			<div class="col-md-6 ">
+				<%= attachment_image_tag @product, :image, :fill, 500, 500, format:'jpeg', fallback: "no_image.png", size:'500x500', :class => "border border-secondary rounded" %>
+	        </div>
+	        <div class="col-md-6">
+				<h4 class="display-4 text-center pb-3"><%= @product.title %></h4>
+				<h5 class="display-5 text-center"><%= @product.artist.name %></h5>
+				<div class="row align-items-center pt-5">
+					<div class="col-md-6 align-self-start">
+						<table class="table">
+							<tbody>
+								<tr>
+						          <th>レーベル</th>
+						          <td><%= @product.record_label.name %></td>
+						        </tr>
+						        <tr>
+						          <th>ジャンル</th>
+						          <td><%= @product.category.name %></td>
+						        </tr>
+						        <tr>
+						          <th>発売日</th>
+						          <td><%= @product.sales_date.strftime("%Y年%m月%d日")    %></td>
+						        </tr>
+					        </tbody>
+					    </table>
+				    </div>
+		            <div class="col-md-6">
+
+		            	<% if @product.active_flag == false %>
+		            		<strong><h2 class="text-center">この商品は<br>お取り扱いが<br>ございません</h2></strong>
+		            	<% elsif @product.sales_date > Date.today %>
+		            	　　<strong><h2 class="text-center">この商品の<br>発売日まで<br>お待ちください</h2></strong>
+		            	<% elsif @product.active_flag == true %>
+							<div class="card border-secondary">
+								<div class="card-body">
+									<ul class="list-group list-group-flush">
+								        <li class="list-group-item"><h5>価格</h5>
+								        <strong><h4 class="text-center">￥<%= @product.price %></strong>(税込)</h4></li>
+
+								    <% if @product.stock <= 0 %>
+								        <li class="list-group-item"><strong><h2 class="text-center">売り切れ</h2></strong></li>
+
+								    <% else %>
+								        <li class="list-group-item"><h5>ステータス</h5>
+									        <% if @product.status == "販売中" %>
+										    	<h3 class="text-center"><span class="badge badge-primary"><%= @product.status %></span></h3>
+										    <% elsif @product.status == "販売停止中" %>
+										　		<h3 class="text-center"><span class="badge badge-danger"><%= @product.status %></span></h3>
+										    <% end %>
+								        </li>
+									  <% if customer_signed_in? %>
+	                                    <% if @product.status == "販売停止中" %>
+	                                    <li class="list-group-item"><strong>現在、この商品は<br>お取り扱いして<br>おりません</strong></li>
+	                                    <% elsif @product.status == "販売中" %>
+											<%= form_for @cart_product, url: cart_products_path do |f| %>
+											<%= f.hidden_field :customer_id, :value => current_customer.id %>
+											<%= f.hidden_field :product_id, :value => @product.id %>
+	                                    <li class="list-group-item"><h5>数量</h5>
+										<p class="text-center"><%= f.select :count, @product.current_stock_array, :selected => 1 %></p></li>
+										<li class="list-group-item">
+										    <%= f.submit 'カートに入れる', :class =>"btn btn-primary text-center btn-block" %>
+										    <% end %>
+										</li>
+										<% end %>
+									  <% else %>
+										<li class="list-group-item">
+										    <%= link_to "ログインが必要です", new_customer_session_path, :class=>"btn btn-danger" %>
+										</li>
+									    <% end %>
+									<% end %>
+									</ul>
+						        </div>
+						    </div>
+					    <% end %>
+					</div>
+				</div>
+		    </div>
+    </div>
+	<div class="row">
+				<% @product.discs.order(:number).each do |disc| %>
+			      <table class="table table-striped mb-5 border border-secondary">
+			      	<thead class="thead-dark">
+			      		<th>Disc<%= disc.number %></th>
+			      		<th>タイトル</th>
+			      		<th>収録時間</th>
+			      	</thead>
+				    <tbody>
+				  <% disc.songs.order(:number).each do |song| %>
+				    	<tr>
+				    		<td><%= song.number %></td>
+				    		<td><%= song.title %></td>
+						    <td><%= song.recording_time_minutes %>分
+						    <%= song.recording_time_seconds %>秒</td>
+						</tr>
+				  <%end%>
+				    </tbody>
+				    </table>
+			    <%end%>
+	</div>
+</div>
+
+<%= render partial: "layouts/manager_footer" %>

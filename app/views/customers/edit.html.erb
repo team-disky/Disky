@@ -1,0 +1,109 @@
+<%= render 'customers/customer_header' %>
+
+<div class="container">
+  <div class="row title">
+    <h2 class="mx-auto">アカウントを編集する</h2>
+  </div>
+
+  <div class="">
+    <% if @customer.errors.any? %>
+      <% @customer.errors.full_messages.each do |message| %>
+        <li class="error-message"><%= message %></li>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= form_for @customer do |f| %>
+    <div class="row c-information">
+      <table class="table">
+        <div class="input-group">
+          <tr>
+            <td>名前</td>
+            <td>
+              <%= f.text_field :last_name, autofocus: true, autocomplete: "苗字", placeholder: "姓", class: "form-control" %>
+            </td>
+            <td>
+              <%= f.text_field :first_name, autofocus: true, autocomplete: "名前", placeholder: "名",  class: "form-control" %>
+            </td>
+          </tr>
+        </div>
+
+        <tr>
+          <td>フリガナ</td>
+          <td>
+            <%= f.text_field :last_name_read, autofocus: true, autocomplete: "last_name_read", placeholder: "セイ", class: "form-control" %>
+          </td>
+          <td>
+            <%= f.text_field :first_name_read, autofocus: true, autocomplete: "first_name_read", placeholder: "メイ", class: "form-control" %>
+          </td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メール", class: "form-control" %>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>電話番号</td>
+          <td>
+            <%= f.telephone_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: "電話番号", class: "form-control" %>
+          </td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>パスワード</td>
+          <td><%= link_to "パスワードを変更", customer_edit_password_path(@customer), class: "btn btn-success" %></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="row" id="details">
+      <div class="col-md-3">
+        <div class="input-group name-border">
+          <div class="input-group-prepend name-title">
+            <sapn class="input-group-text">氏名：</sapn>
+          </div>
+          <div class="address-name">
+            <p>
+              <%= @customer.last_name %>
+              <%= @customer.first_name %>
+            </p>
+          </div>
+        </div>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <sapn class="input-group-text">〒：</sapn>
+          </div>
+          <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "郵便番号", class: "form-control" %>
+        </div>
+        <%= f.text_area :address, autofocus: true, autocomplete: "address", placeholder: "住所", class: "form-control" %>
+      </div>
+
+      <%= f.fields_for :registration_addresses do |detail| %>
+        <%= render 'customers/registration_addresses_fields', f: detail %>
+      <% end %>
+      <div>
+        <%= link_to_add_association '住所を追加', f, :registration_addresses, partial:'customers/registration_addresses_fields', id: 'add-link',class: "fas fa-plus-circle fa-1x fa-add" %>
+      </div>
+
+    </div>
+
+    <div class="row title">
+      <div class="mx-auto">
+        <%= f.submit "編集内容を保存する", class: "btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+
+</div>
+
+
+<%= render 'layouts/manager_footer' %>
+

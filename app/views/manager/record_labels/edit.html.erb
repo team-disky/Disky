@@ -1,0 +1,44 @@
+<%= render partial: "layouts/manager_header" %>
+
+<div class="container">
+  <div class="row title">
+    <h3 class="mx-auto">レーベル名を編集</h3>
+  </div>
+
+<!-- エラーメッセージ　-->
+<br>
+<div class-="row">
+  <div class="col-md-6 offset-md-3">
+<% if @record_label.errors.any? %>
+<div class="error_explanation">
+  <h4>入力した内容に誤りがあります</h4>
+  <h5>
+      <% @record_label.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+  </h5>
+</div>
+<% end %>
+</div>
+</div>
+    <div class="col-md-6 offset-md-3 border">
+      <%= form_for(@record_label, url:"/manager/record_labels/#{@record_label.id}") do |f| %>
+          <div class="m-space my-5">
+            <%= f.text_field :name %>
+          </div>
+          <div class="row">
+            <div class="col-md-6 button">
+            <%= f.submit '保存', :class=> "btn btn-md btn-success" %>
+          </div>
+          <div class="col-md-6 button">
+            <%= f.submit "削除", name: 'leave', data: { confirm: "「#{@record_label.name}」を削除します"}, class: "btn btn-md btn-danger" %>
+          </div>
+          <div class="my-5 back_to_index">
+          <h6><%= link_to "レーベル一覧へ戻る", manager_record_labels_path %></h6><% end %>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+<%= render partial: "layouts/manager_footer" %>

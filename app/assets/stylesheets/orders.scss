@@ -1,0 +1,26 @@
+// Place all the styles related to the orders controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.orders{
+
+	.radio-btn{
+		margin-bottom:20px;
+	}
+
+	.payment_card{
+		height:150px;
+	}
+
+	.nakami{
+			height:145px;
+		}
+
+	th{
+			text-align:center !important;
+		}
+
+	td{
+			text-align:center;
+			vertical-align:middle !important;
+	}
+}

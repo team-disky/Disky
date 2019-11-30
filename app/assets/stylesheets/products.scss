@@ -1,0 +1,24 @@
+// Place all the styles related to the Products controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.products{
+
+.product-item{
+	width:300px;
+}
+
+.content-card{
+	margin: 0 30px 30px 30px;
+}
+
+.index-item:hover{
+  top: -20px;
+  box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+}
+
+.index-item{
+    cursor:pointer;
+}
+
+}

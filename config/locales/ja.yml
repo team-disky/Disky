@@ -1,0 +1,63 @@
+ja:
+  activerecord:
+    models:
+      artist:
+      category:
+      record_label:
+      customer:
+      registration_addresses:
+      product:
+      product/discs: 収録内容(ディスク)
+      product/discs/songs: 収録内容(曲)
+    attributes:
+      artist:
+        name: アーティスト
+      category:
+        name: ジャンル
+      record_label:
+        name: レーベル
+      customer:
+        last_name: 姓
+        first_name: 名
+        last_name_read: フリガナ セイ
+        first_name_read: フリガナ メイ
+        email: メールアドレス
+        phone_number: 電話番号
+        postal_code: 郵便番号
+        address: 住所
+        password: パスワード
+        password_confirmation: 確認用パスワード
+      registration_addresses:
+        name: 送付先氏名
+        phone_number: 送付先電話番号
+        postal_code: 送付先郵便番号
+        address: 送付先住所
+      product:
+        title: 商品名
+        artist: アーティスト名
+        record_label: レーベル名
+        category: ジャンル
+        format: フォーマット
+        price: 価格
+        discs: 収録内容(ディスク)
+      product/discs:
+        number: ディスク番号
+        songs: 収録内容(曲)
+      product/discs/songs:
+        number: 曲順
+        title: 曲名
+        recording_time_seconds: 収録時間
+  devise:
+    failure:
+      invalid: "入力に誤りがあります。"
+      last_attempt: "あなたのアカウントがロックされる前に、もう1つの試みを持っています。"
+      not_found_in_database: "メールアドレスまたはパスワードが無効です。"
+      customer:
+        inactive: "退会が完了しました。ご利用ありがとうございました。"
+    sessions:
+      customer:
+        signed_out: ""
+
+
+
+

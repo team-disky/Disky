@@ -1,0 +1,95 @@
+<%= render partial: "layouts/manager_header" %>
+
+<div class="container">
+  <h4>会員情報編集</h4>
+
+    <%= form_for @customer, url:manager_customer_path(@customer.id) do |f| %>
+      <div class="row">
+        <table class="table">
+          <div class="input-group">
+            <tr>
+                <td>名前</td>
+                <td>
+                 <%= f.text_field :last_name, autofocus: true, autocomplete: "苗字", placeholder: "姓", class: "form-control" %>
+                </td>
+                <td>
+                 <%= f.text_field :first_name, autofocus: true, autocomplete: "名前", placeholder: "名",  class: "form-control" %>
+                </td>
+            </tr>
+          </div>
+
+            <tr>
+              <td>フリガナ</td>
+              <td><%= f.text_field :last_name_read, autofocus: true, autocomplete: "last_name_read", placeholder: "セイ", class: "form-control" %></td>
+              <td><%= f.text_field :first_name_read, autofocus: true, autocomplete: "first_name_read", placeholder: "メイ", class: "form-control" %>
+              </td>
+            </tr>
+            <tr>
+              <td>メールアドレス</td>
+              <td>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メール", class: "form-control" %>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>電話番号</td>
+              <td>
+              <%= f.telephone_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder: "電話番号", class: "form-control" %>
+              </td>
+              <td></td>
+            </tr>
+        </table>
+      </div>
+
+      <div class="row">
+        <div class="e-addresses-box">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <sapn class="input-group-text">〒：</sapn>
+          </div>
+          <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "郵便番号", class: "form-control" %><br>
+        </div>
+        <%= f.text_area :address, autofocus: true, autocomplete: "address", placeholder: "住所", class: "form-control" %>
+        </div>
+
+        <%= f.nested_fields_for :registration_addresses do |q| %>
+        <div class="e-addresses-box">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <sapn class="input-group-text"> 氏名：</sapn>
+            </div>
+            <%= q.text_field :name, autofocus: true, placeholder: "送付先氏名", class: "form-control" %>
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <sapn class="input-group-text"> TEL：</sapn>
+            </div>
+            <%= q.telephone_field :phone_number, autofocus: true, placeholder: "電話番号", class: "form-control" %>
+          </div>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <sapn class="input-group-text">〒：</sapn>
+            </div>
+            <%= q.text_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "郵便番号", class: "form-control" %>
+          </div>
+          <%= q.text_area :address, autofocus: true, autocomplete: "address", placeholder: "住所", class: "form-control" %>
+          </div>
+        <%= q.remove_nested_fields_link '住所を削除' %>
+      <% end %>
+      <%= f.add_nested_fields_link :registration_addresses, '住所を追加'%>
+
+      </div>
+
+      <div class="row">
+        <div class="mx-auto">
+          <%= f.submit "編集内容を保存する", class: "btn btn-success" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="row">
+      <%= link_to "会員を削除", manager_customer_path(@customer), method: :delete, data: { confirm: "#{@customer.full_name}様を削除します"} %>
+    </div>
+
+</div>
+
+<%= render partial: "layouts/manager_footer" %>

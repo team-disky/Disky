@@ -1,0 +1,56 @@
+<%= render 'customers/customer_header' %>
+
+<div class="container">
+
+	<h2 class="pt-5">お届け先住所の確認</h2>
+
+	<div class="row py-5">
+		<div class="col-sm-3">
+			<div class="card border border-secondary">
+				<div class="card-body text-left">
+					<h4 class="card-title"><%= @customer.fullname %></h4>
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item"><%= @customer.phone_number %></li>
+						<li class="list-group-item"><%= @customer.postal_code %></li>
+					    <li class="list-group-item"><%= @customer.address %></li>
+
+
+						<%= form_for @order, url: {action: 'select_payment'} do |f| %>
+						<%= f.hidden_field :destination_name, :value => @customer.fullname %>
+						<%= f.hidden_field :destination_phone_number, :value=> @customer.phone_number %>
+						<%= f.hidden_field :postal_code, :value => @customer.postal_code %>
+						<%= f.hidden_field :destination_address, :value => @customer.address %>
+						<li class="list-group-item"><%= f.submit 'この住所に届ける', class: "btn btn-outline-primary" %></li>
+				    </ul>
+					<%end%>
+				</div>
+			</div>
+	    </div>
+
+		<% @customer.registration_addresses.each do |address| %>
+		<div class="col-sm-3">
+		<div class="card border border-secondary">
+			<div class="card-body text-left">
+				<h4 class="card-title"><%= address.name %></h4>
+				<ul class="list-group list-group-flush">
+				<li class="list-group-item"><%=address.phone_number%></li>
+				<li class="list-group-item"><%= address.postal_code %></li>
+				<li class="list-group-item"><%= address.address %></li>
+
+
+				<%= form_for @order, url: {action: 'select_payment'} do |f| %>
+				<%= f.hidden_field :destination_name, :value => address.name %>
+				<%= f.hidden_field :destination_phone_number, :value=> address.phone_number %>
+				<%= f.hidden_field :postal_code, :value => address.postal_code %>
+				<%= f.hidden_field :destination_address, :value => address.address %>
+				<li class="list-group-item"><%= f.submit 'この住所に届ける', class: "btn btn-outline-primary" %></li>
+			    </ul>
+			</div>
+		<%end%>
+	    </div>
+	    </div>
+		<%end%>
+    </div>
+</div>
+
+<%= render partial: "layouts/manager_footer" %>

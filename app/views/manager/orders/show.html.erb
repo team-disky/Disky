@@ -1,0 +1,127 @@
+<%= render partial: "layouts/manager_header" %>
+
+<div class="container">
+	<br>
+
+<div class="row">
+  <% if flash[:update] %>
+  <p id="notice"><%= flash[:update] %></p>
+  <% end %>
+
+  <% unless @order.customer.present? %>
+    <span>このユーザは削除しました!  </span>
+  <% end %>
+
+  <% if @order.status == "出荷済み" %>
+    <span>  この注文は完了しています!  </span>
+  <% else %>
+    <span>  対応途中の注文があります!</span>
+  <% end %>
+</div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <br>
+      <h3>注文詳細</h3>
+    </div>
+    <div class="col-md-2">
+      <br>
+      <%= link_to "戻る",manager_orders_path, class: "btn btn-success" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <span>ステータス:</span>
+    </div>
+    <div class="col-md-4">
+     <%= form_for(@order, url: manager_order_path) do |f| %>
+     <%= f.select :status, [["受付","受付"],["商品準備中","商品準備中"],["出荷済み","出荷済み"]] %>
+     <%= f.submit "編集内容を保存" %>
+     <% end %>
+   </div>
+ </div>
+ <div class="row">
+  <div class="col-md-2">
+    <span>注文ID:</span>
+  </div>
+  <div class="col-md-4">
+    <%= @order.id %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <span>注文者: </span>
+  </div>
+  <% if @order.customer.present? %>
+  <div class="col-md-4">
+    <%= link_to @order.contractee_name,manager_customer_path(@order.customer), style: "color:black;text-decoration:none" %>
+  </div>
+  <% else %>
+  <div class="col-md-4">
+    <%= @order.contractee_name %>
+  </div>
+  <% end %>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <span>お届け先: </span>
+  </div>
+  <div class="col-md-4">
+    <% if @order.destination_name == @order.contractee_name %>
+    <span>同上</span>
+    <% else %>
+    <%= @order.destination_name%>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <span>指定された住所:</span>
+  </div>
+  <div class="col-md-4">
+    <%= @order.destination_address %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+    <span>支払い方法:</span>
+  </div>
+  <div class="col-md-4">
+    <%= @order.payment_method %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    <br>
+    <h3>購入内容</h3>
+  </div>
+  <div class="col-md-4">
+    <br>
+    <span><strong>￥<%= @order.total_amount %>(税込)</strong></span>
+  </div>
+</div>
+
+<div class="row">
+<% @purchased_products.each do |purchased_product| %>
+  <div class="col-md-3">
+    <%= attachment_image_tag purchased_product.product, :image, size:'100x100', fallback: "no_image.png", class:"border" %>
+  </div>
+    <div class="col-md-3">
+      <span><%= link_to purchased_product.product.title,manager_product_path(purchased_product.product.id), style: "color:black;text-decoration:none" %></span>
+    </div>
+    <div class="col-md-2">
+      <span><%= purchased_product.product.artist.name %></span>
+    </div>
+    <div class="col-md-2">
+      <span><%= purchased_product.product.price %></span>
+    </div>
+    <div class="col-md-1">
+      <span><%= purchased_product.count %></span>
+    </div>
+    <% end %>
+</div>
+</div>
+<br>
+
+<%= render partial: "layouts/manager_footer" %>

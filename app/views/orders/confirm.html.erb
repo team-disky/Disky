@@ -1,0 +1,123 @@
+<%= render 'customers/customer_header' %>
+        <%= form_for @order do |f| %>
+
+<div class="container">
+  <div class="row">
+    <h2 class="pt-5">注文内容確認</h2>
+  </div>
+  <div class="row py-5">
+    <div class="col-md-8">
+        	<%= f.hidden_field :customer_id, :value => @customer.id %>
+        	<!--ステータスは空でいいかな？ -->
+        	<%= f.hidden_field :destination_name %>
+        	<%= f.hidden_field :destination_phone_number %>
+        	<%= f.hidden_field :postal_code %>
+            <%= f.hidden_field :destination_address %>
+            <%= f.hidden_field :payment_method %>
+            <%= f.hidden_field :contractee_name, :value => @customer.fullname %>
+            <%= f.hidden_field :contractee_phone_number, :value => @customer.phone_number %>
+      <div class="row">
+<!--         <div class ="card-deck"> -->
+          <div class="col-md-6">
+            <div class="card text-center border border-secondary">
+              <div class="card-header"><h4>送付先</h4></div>
+              <div class="card-body">
+                <h4 class="card-title"><%= @order.destination_name %></h4>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><%= @order.destination_phone_number %></li>
+                  <li class="list-group-item"><%= @order.postal_code %></li>
+                  <li class="list-group-item"><%= @order.destination_address %></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card text-center payment_card border border-secondary">
+              <div class="card-header"><h4>支払い方法</h4></div>
+              <div class="card-body">
+              <h4 class="card-title"><%= @order.payment_method %></h4>
+              </div>
+            </div>
+          </div>
+<!--         </div> -->
+      </div>
+      <div class="row pt-5">
+        <h2 class="d-block">カート内容</h2><br>
+        <%= link_to "カートに戻る", cart_products_path, :class => "h3 btn btn-sm btn-outline-primary d-block"%>
+
+        <table class="table table-hover border border-secondary">
+          <thead class="thead-dark">
+            <th>Disc</th>
+            <th>Name</th>
+            <th>Artist</th>
+            <th>Price</th>
+            <th>Quantity</th>
+          </thead>
+            <tbody>
+              <% subtotal = 0 %>
+              <% stock_flag = true %>
+               <% @cart_products.each do |cart_product| %>
+                        <tr class="nakami">
+                          <td>
+                            <%= link_to product_path(cart_product.product.id) do %>
+                            <%= attachment_image_tag cart_product.product, :image, :fill, 120, 120, format:'jpeg', fallback: "no_image.png", size:'120x120', class: 'img-thumbnail' %>
+                            <% end %>
+                          </td>
+                          <td>
+                            <%= link_to cart_product.product.title, product_path(cart_product.product.id)%>
+                          </td>
+                          <td><%= cart_product.product.artist.name %></td>
+                          <td><p><%= cart_product.product.price %>yen</p></td>
+                          <td>
+                           <% if cart_product.stock_check < 0 %>
+                           <%   stock_flag = false %>
+                           <p>在庫が足りません</p>
+                           <%else%>
+                            <p><%= cart_product.count %></p>
+                            <% end  %>
+                          </td>
+                        </tr>
+                        <% total = cart_product.product.price * cart_product.count
+                           subtotal += total %>
+               <% end %>
+            </tbody>
+        </table>
+      </div>
+    </div>
+    <div class ="col-md-4">
+      <div class="card border border-secondary">
+        <div class="card-body">
+          <% if stock_flag == true %>
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <h5>商品小計</h5>
+                <strong><h2><%= subtotal %>&nbsp;yen</h2></strong>
+                <%= f.hidden_field :subtotal_amount, :value => subtotal %>
+              </li>
+              <% postage = 500 %>
+              <li class="list-group-item">
+                <h5>送料</h5>
+                <h2><%= postage %>&nbsp;yen</h2>
+              </li>
+              <li class="list-group-item">
+                <h5>注文合計</h5>
+              <strong><h2><%= subtotal + postage %>&nbsp;yen</h2></strong>
+              </li>
+              <% total = subtotal + postage %>
+              <%= f.hidden_field :total_amount, :value => total %>
+              <li class="list-group-item">
+              <%= f.submit "注文を確定する", :class => "btn btn-danger btn-block" %>
+          
+              </li>
+          </ul>
+          <% else %>
+           <p>在庫が足りない商品があります<p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<%= render partial: "layouts/manager_footer" %>
